@@ -29,9 +29,12 @@ on init
     write /sys/class/android_usb/android0/f_rndis/wceis 1
     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
 
+<<<<<<< HEAD:rootdir/etc/init.qcom.usb.rc
 on charger
     setprop sys.usb.config mass_storage
 
+=======
+>>>>>>> 502865a... s2: add charger:rootdir/init.s2.usb.rc
 on fs
     mkdir /dev/usb-ffs 0770 shell shell
     mkdir /dev/usb-ffs/adb 0770 shell shell
@@ -823,6 +826,18 @@ on property:sys.usb.config=ptp,adb
     write /sys/class/android_usb/android0/enable 1
     start adbd
     setprop sys.usb.state ${sys.usb.config}
+<<<<<<< HEAD:rootdir/etc/init.qcom.usb.rc
+=======
+#< LAFITE-347 guohongtao 2016-01-14 begin>
+#< LAFITE-5875 guohongtao 2016-03-28 begin>
+on property:sys.usb.config=mtp
+    write /sys/class/android_usb/android0/enable 0
+    write /sys/class/android_usb/android0/idVendor 2B0E
+    write /sys/class/android_usb/android0/idProduct 1714
+    write /sys/class/android_usb/android0/functions mtp
+    write /sys/class/android_usb/android0/enable 1
+    setprop sys.usb.state ${sys.usb.config}
+>>>>>>> 502865a... s2: add charger:rootdir/init.s2.usb.rc
 
 on property:sys.usb.config=mtp
     write /sys/class/android_usb/android0/enable 0
