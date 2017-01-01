@@ -91,6 +91,7 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
+<<<<<<< HEAD
         <item>30</item>
         <item>40</item>
         <item>50</item>
@@ -110,6 +111,25 @@
         <item>255</item>
         <item>255</item>
         <item>255</item>
+=======
+        <item>5</item>
+        <item>14</item>
+        <item>23</item>
+        <item>32</item>
+        <item>41</item>
+        <item>50</item>
+        <item>59</item>
+        <item>68</item>
+        <item>77</item>
+        <item>94</item>
+        <item>114</item>
+        <item>130</item>
+        <item>204</item>
+        <item>224</item>
+        <item>240</item>
+        <item>255</item>
+        <item>255</item>
+>>>>>>> 76915f3... s2: liblight: remove scaling of brightness for lcd panel
         <item>255</item>
         <item>255</item>
     </integer-array>
