@@ -55,6 +55,11 @@ Skylar Chang
 int IPACM_Wlan::total_num_wifi_clients = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+uint32_t* IPACM_Wlan::dummy_flt_rule_hdl_v4 = NULL;
+uint32_t* IPACM_Wlan::dummy_flt_rule_hdl_v6 = NULL;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 uint32_t* IPACM_Wlan::dummy_flt_rule_hdl_v4 = NULL;
 uint32_t* IPACM_Wlan::dummy_flt_rule_hdl_v6 = NULL;
@@ -111,6 +116,7 @@ IPACM_Wlan::IPACM_Wlan(int iface_index) : IPACM_Lan(iface_index)
 	IPACMDBG_H("Now the number of wlan AP iface is %d\n", IPACM_Wlan::num_wlan_ap_iface);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	m_is_guest_ap = false;
 	if (IPACM_Iface::ipacmcfg->iface_table[ipa_if_num].wlan_mode == INTERNET)
 	{
@@ -119,6 +125,8 @@ IPACM_Wlan::IPACM_Wlan(int iface_index) : IPACM_Lan(iface_index)
 	IPACMDBG_H("%s: guest ap enable: %d \n",
 		IPACM_Iface::ipacmcfg->iface_table[ipa_if_num].iface_name, m_is_guest_ap);
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	is_guest_ap = false;
 	if (IPACM_Iface::ipacmcfg->iface_table[ipa_if_num].wlan_mode == INTERNET)
 	{
@@ -174,6 +182,9 @@ IPACM_Wlan::IPACM_Wlan(int iface_index) : IPACM_Lan(iface_index)
 		}
 	}
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 #ifdef FEATURE_IPA_ANDROID
@@ -221,7 +232,11 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 				handle_down_evt();
 				/* reset the AP-iface category to unknown */
 <<<<<<< HEAD
+<<<<<<< HEAD
 				IPACM_Iface::ipacmcfg->iface_table[ipa_if_num].if_cat = UNKNOWN_IF;
+=======
+				ipa_if_cate = UNKNOWN_IF;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 				ipa_if_cate = UNKNOWN_IF;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -352,7 +367,10 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 						if((data->iptype == IPA_IP_v6 || data->iptype == IPA_IP_MAX) && num_dft_rt_v6 == 1)
 						{
 <<<<<<< HEAD
+<<<<<<< HEAD
 							memcpy(ipv6_prefix, IPACM_Wan::backhaul_ipv6_prefix, sizeof(ipv6_prefix));
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 							install_ipv6_prefix_flt_rule(IPACM_Wan::backhaul_ipv6_prefix);
@@ -428,7 +446,10 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 			if(ip_type == IPA_IP_v6 || ip_type == IPA_IP_MAX)
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				memcpy(ipv6_prefix, data_wan_tether->ipv6_prefix, sizeof(ipv6_prefix));
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 				install_ipv6_prefix_flt_rule(data_wan_tether->ipv6_prefix);
@@ -539,7 +560,10 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 		if(ip_type == IPA_IP_v6 || ip_type == IPA_IP_MAX)
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			memcpy(ipv6_prefix, data_wan->ipv6_prefix, sizeof(ipv6_prefix));
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			install_ipv6_prefix_flt_rule(data_wan->ipv6_prefix);
@@ -604,6 +628,10 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 			if (ipa_interface_index == ipa_if_num)
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+#ifdef FEATURE_ETH_BRIDGE_LE
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 #ifdef FEATURE_ETH_BRIDGE_LE
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -613,11 +641,14 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 					if(data->attribs[i].attrib_type == WLAN_HDR_ATTRIB_MAC_ADDR)
 					{
 <<<<<<< HEAD
+<<<<<<< HEAD
 						eth_bridge_post_event(IPA_ETH_BRIDGE_CLIENT_ADD, IPA_IP_MAX, data->attribs[i].u.mac_addr);
 						break;
 					}
 				}
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 						if (is_guest_ap == false)
 						{
 							if(IPACM_Lan::wlan_to_wlan_hdr_proc_ctx.valid == true)
@@ -637,6 +668,9 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 					}
 				}
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 				IPACMDBG_H("Received IPA_WLAN_CLIENT_ADD_EVENT\n");
 				handle_wlan_client_init_ex(data);
@@ -652,8 +686,11 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 			{
 				IPACMDBG_H("Received IPA_WLAN_CLIENT_DEL_EVENT\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 				eth_bridge_post_event(IPA_ETH_BRIDGE_CLIENT_DEL, IPA_IP_MAX, data->mac_addr);
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifdef FEATURE_ETH_BRIDGE_LE
 				if (is_guest_ap == false)
 				{
@@ -672,6 +709,9 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 				/* support lan2lan ipa-HW feature*/
 				handle_lan2lan_msg_post(data->mac_addr, IPA_LAN_CLIENT_DISCONNECT, IPA_IP_v4);
 				handle_lan2lan_msg_post(data->mac_addr, IPA_LAN_CLIENT_DISCONNECT, IPA_IP_v6);
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 				handle_wlan_client_down_evt(data->mac_addr);
 			}
@@ -686,6 +726,12 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 			{
 				IPACMDBG_H("Received IPA_WLAN_CLIENT_POWER_SAVE_EVENT\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+				/* support lan2lan ipa-HW feature*/
+				handle_lan2lan_msg_post(data->mac_addr, IPA_LAN_CLIENT_POWER_SAVE, IPA_IP_v4);
+				handle_lan2lan_msg_post(data->mac_addr, IPA_LAN_CLIENT_POWER_SAVE, IPA_IP_v6);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 				/* support lan2lan ipa-HW feature*/
 				handle_lan2lan_msg_post(data->mac_addr, IPA_LAN_CLIENT_POWER_SAVE, IPA_IP_v4);
@@ -704,6 +750,12 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 			{
 				IPACMDBG_H("Received IPA_WLAN_CLIENT_RECOVER_EVENT\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+				/* support lan2lan ipa-HW feature*/
+				handle_lan2lan_msg_post(data->mac_addr, IPA_LAN_CLIENT_POWER_RECOVER, IPA_IP_v4);
+				handle_lan2lan_msg_post(data->mac_addr, IPA_LAN_CLIENT_POWER_RECOVER, IPA_IP_v6);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 				/* support lan2lan ipa-HW feature*/
 				handle_lan2lan_msg_post(data->mac_addr, IPA_LAN_CLIENT_POWER_RECOVER, IPA_IP_v4);
@@ -752,6 +804,11 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 					return;
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+				/* support lan2lan ipa-hw feature */
+				handle_lan2lan_client_active(data, IPA_LAN_CLIENT_ACTIVE);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 				/* support lan2lan ipa-hw feature */
 				handle_lan2lan_client_active(data, IPA_LAN_CLIENT_ACTIVE);
@@ -781,7 +838,10 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	case IPA_ETH_BRIDGE_CLIENT_ADD_EVENT:
 		{
 			IPACMDBG_H("Received IPA_ETH_BRIDGE_CLIENT_ADD_EVENT event.\n");
@@ -904,6 +964,9 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 	}
 	break;
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	case IPA_WLAN_SWITCH_TO_SCC:
 		IPACMDBG_H("Received IPA_WLAN_SWITCH_TO_SCC\n");
@@ -912,6 +975,11 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 			handle_SCC_MCC_switch(IPA_IP_v4);
 			handle_SCC_MCC_switch(IPA_IP_v6);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+			eth_bridge_handle_wlan_SCC_MCC_switch(IPA_IP_v4);
+			eth_bridge_handle_wlan_SCC_MCC_switch(IPA_IP_v6);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 			eth_bridge_handle_wlan_SCC_MCC_switch(IPA_IP_v4);
 			eth_bridge_handle_wlan_SCC_MCC_switch(IPA_IP_v6);
@@ -921,8 +989,13 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 		{
 			handle_SCC_MCC_switch(ip_type);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 		eth_bridge_post_event(IPA_ETH_BRIDGE_WLAN_SCC_MCC_SWITCH, IPA_IP_MAX, NULL);
+=======
+			eth_bridge_handle_wlan_SCC_MCC_switch(ip_type);
+		}
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 			eth_bridge_handle_wlan_SCC_MCC_switch(ip_type);
 		}
@@ -936,6 +1009,11 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 			handle_SCC_MCC_switch(IPA_IP_v4);
 			handle_SCC_MCC_switch(IPA_IP_v6);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+			eth_bridge_handle_wlan_SCC_MCC_switch(IPA_IP_v4);
+			eth_bridge_handle_wlan_SCC_MCC_switch(IPA_IP_v6);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 			eth_bridge_handle_wlan_SCC_MCC_switch(IPA_IP_v4);
 			eth_bridge_handle_wlan_SCC_MCC_switch(IPA_IP_v6);
@@ -945,8 +1023,13 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 		{
 			handle_SCC_MCC_switch(ip_type);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
 		eth_bridge_post_event(IPA_ETH_BRIDGE_WLAN_SCC_MCC_SWITCH, IPA_IP_MAX, NULL);
+=======
+			eth_bridge_handle_wlan_SCC_MCC_switch(ip_type);
+		}
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 			eth_bridge_handle_wlan_SCC_MCC_switch(ip_type);
 		}
@@ -979,7 +1062,11 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 				IPACM_Iface::ipacmcfg->iface_table[ipa_if_num].iface_name,
 				(IPACM_Iface::ipacmcfg->iface_table[ipa_if_num].wlan_mode == 0) ? "full" : "internet",
 <<<<<<< HEAD
+<<<<<<< HEAD
 				(m_is_guest_ap == true) ? "internet" : "full");
+=======
+				(is_guest_ap == true) ? "internet" : "full");
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 				(is_guest_ap == true) ? "internet" : "full");
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -991,6 +1078,7 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 		}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (m_is_guest_ap == true && (IPACM_Iface::ipacmcfg->iface_table[ipa_if_num].wlan_mode == FULL))
 		{
 			m_is_guest_ap = false;
@@ -1001,6 +1089,8 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 		{
 			m_is_guest_ap = true;
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		if (is_guest_ap == true && (IPACM_Iface::ipacmcfg->iface_table[ipa_if_num].wlan_mode == FULL))
 		{
 			is_guest_ap = false;
@@ -1010,6 +1100,9 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 		else if (is_guest_ap == false && (IPACM_Iface::ipacmcfg->iface_table[ipa_if_num].wlan_mode == INTERNET))
 		{
 			is_guest_ap = true;
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			IPACMDBG_H("wlan mode is switched to internet only access mode. \n");
 			eth_bridge_handle_wlan_mode_switch();
@@ -1046,7 +1139,10 @@ void IPACM_Wlan::event_callback(ipa_cm_event_id event, void *param)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 int IPACM_Wlan::add_dummy_lan2lan_flt_rule(ipa_ip_type iptype)
 {
 	if(rx_prop == NULL)
@@ -1113,6 +1209,9 @@ int IPACM_Wlan::add_dummy_lan2lan_flt_rule(ipa_ip_type iptype)
 	return IPACM_SUCCESS;
 }
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 /* handle wifi client initial,copy all partial headers (tx property) */
 int IPACM_Wlan::handle_wlan_client_init_ex(ipacm_event_data_wlan_ex *data)
@@ -1412,8 +1511,11 @@ int IPACM_Wlan::handle_wlan_client_ipaddr(ipacm_event_data_all *data)
 	int clnt_indx;
 	int v6_num;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t ipv6_link_local_prefix = 0xFE800000;
 	uint32_t ipv6_link_local_prefix_mask = 0xFFC00000;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
@@ -1476,6 +1578,7 @@ int IPACM_Wlan::handle_wlan_client_ipaddr(ipacm_event_data_all *data)
 				(data->ipv6_addr[2] != 0) || (data->ipv6_addr[3] || 0)) /* check if all 0 not valid ipv6 address */
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			IPACMDBG_H("ipv6 address: 0x%x:%x:%x:%x\n", data->ipv6_addr[0], data->ipv6_addr[1], data->ipv6_addr[2], data->ipv6_addr[3]);
 			if( (data->ipv6_addr[0] & ipv6_link_local_prefix_mask) != (ipv6_link_local_prefix & ipv6_link_local_prefix_mask) &&
 				memcmp(ipv6_prefix, data->ipv6_addr, sizeof(ipv6_prefix)) != 0)
@@ -1500,6 +1603,8 @@ int IPACM_Wlan::handle_wlan_client_ipaddr(ipacm_event_data_all *data)
 					}
 				}
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		   IPACMDBG_H("ipv6 address: 0x%x:%x:%x:%x\n", data->ipv6_addr[0], data->ipv6_addr[1], data->ipv6_addr[2], data->ipv6_addr[3]);
                    if(get_client_memptr(wlan_client, clnt_indx)->ipv6_set < IPV6_NUM_ADDR)
 		   {
@@ -1516,6 +1621,9 @@ int IPACM_Wlan::handle_wlan_client_ipaddr(ipacm_event_data_all *data)
 			  		break;
 			      }
 		       }
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 		       /* not see this ipv6 before for wifi client*/
@@ -1528,8 +1636,13 @@ int IPACM_Wlan::handle_wlan_client_ipaddr(ipacm_event_data_all *data)
 		    else
 		    {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				IPACMDBG_H("Already got %d ipv6 addr for client:%d\n", IPV6_NUM_ADDR, clnt_indx);
 				return IPACM_FAILURE; /* not setup the RT rules*/
+=======
+		         IPACMDBG_H("Already got 3 ipv6 addr for client:%d\n", clnt_indx);
+			 return IPACM_FAILURE; /* not setup the RT rules*/
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		         IPACMDBG_H("Already got 3 ipv6 addr for client:%d\n", clnt_indx);
 			 return IPACM_FAILURE; /* not setup the RT rules*/
@@ -1938,7 +2051,10 @@ int IPACM_Wlan::handle_down_evt()
 		goto fail;
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifdef FEATURE_ETH_BRIDGE_LE
 	if(wlan_ap_index == 0)
 	{
@@ -1947,6 +2063,9 @@ int IPACM_Wlan::handle_down_evt()
 		del_hdr_proc_ctx();
 	}
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 	/* delete wan filter rule */
@@ -1976,13 +2095,19 @@ int IPACM_Wlan::handle_down_evt()
 		IPACM_Iface::ipacmcfg->decreaseFltRuleCount(rx_prop->rx[0].src_pipe, IPA_IP_v4, NUM_IPV4_ICMP_FLT_RULE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifdef FEATURE_ETH_BRIDGE_LE
 		if(is_guest_ap == false)	//delete eth bridge flt rules only when it is not guest ap
 		{
 			eth_bridge_remove_all_client_flt_rule(IPA_IP_v4);
 		}
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		if (m_filtering.DeleteFilteringHdls(dft_v4fl_rule_hdl, IPA_IP_v4, IPV4_DEFAULT_FILTERTING_RULES) == false)
 		{
@@ -2029,7 +2154,10 @@ int IPACM_Wlan::handle_down_evt()
 		IPACM_Iface::ipacmcfg->decreaseFltRuleCount(rx_prop->rx[0].src_pipe, IPA_IP_v6, NUM_IPV6_ICMP_FLT_RULE);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifdef FEATURE_ETH_BRIDGE_LE
 		if(is_guest_ap == false)	//delete eth bridge flt rules only when it is not guest ap
 		{
@@ -2037,6 +2165,9 @@ int IPACM_Wlan::handle_down_evt()
 		}
 #endif
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		if (m_filtering.DeleteFilteringHdls(dft_v6fl_rule_hdl, IPA_IP_v6, IPV6_DEFAULT_FILTERTING_RULES) == false)
 		{
@@ -2081,6 +2212,7 @@ int IPACM_Wlan::handle_down_evt()
 	IPACMDBG_H("finished deleting default RT rules\n ");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	eth_bridge_post_event(IPA_ETH_BRIDGE_IFACE_DOWN, IPA_IP_MAX, NULL);
 
 	/* free the wlan clients cache */
@@ -2108,6 +2240,8 @@ fail:
 	for (i = 0; i < num_wifi_client; i++)
 	{
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/* check software routing fl rule hdl */
 	if (softwarerouting_act == true && rx_prop != NULL )
 	{
@@ -2132,6 +2266,9 @@ fail:
 			eth_bridge_post_lan_client_event(get_client_memptr(wlan_client, i)->mac, IPA_ETH_BRIDGE_CLIENT_DEL_EVENT);
 		}
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		/* First reset nat rules and then route rules */
 		if(get_client_memptr(wlan_client, i)->ipv4_set == true)
@@ -2145,6 +2282,10 @@ fail:
 			IPACMERR("unbale to delete v4 default qos route rules for index: %d\n", i);
 			res = IPACM_FAILURE;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+			goto fail;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 			goto fail;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -2155,6 +2296,10 @@ fail:
 			IPACMERR("unbale to delete v6 default qos route rules for index: %d\n", i);
 			res = IPACM_FAILURE;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+			goto fail;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 			goto fail;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -2163,6 +2308,12 @@ fail:
 		IPACMDBG_H("Delete %d client header\n", num_wifi_client);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		handle_lan2lan_msg_post(get_client_memptr(wlan_client, i)->mac, IPA_LAN_CLIENT_DISCONNECT, IPA_IP_v4);
+		handle_lan2lan_msg_post(get_client_memptr(wlan_client, i)->mac, IPA_LAN_CLIENT_DISCONNECT, IPA_IP_v6);
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		handle_lan2lan_msg_post(get_client_memptr(wlan_client, i)->mac, IPA_LAN_CLIENT_DISCONNECT, IPA_IP_v4);
 		handle_lan2lan_msg_post(get_client_memptr(wlan_client, i)->mac, IPA_LAN_CLIENT_DISCONNECT, IPA_IP_v6);
@@ -2175,6 +2326,10 @@ fail:
 			{
 				res = IPACM_FAILURE;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+				goto fail;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 				goto fail;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -2188,6 +2343,10 @@ fail:
 			{
 				res = IPACM_FAILURE;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+				goto fail;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 				goto fail;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -2195,6 +2354,7 @@ fail:
 		}
 	} /* end of for loop */
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* check software routing fl rule hdl */
 	if (softwarerouting_act == true && rx_prop != NULL )
@@ -2205,6 +2365,8 @@ fail:
 	IPACMDBG_H("finished delete software-routing filtering rules\n ");
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/* free the wlan clients cache */
 	IPACMDBG_H("Free wlan clients cache\n");
 
@@ -2224,6 +2386,9 @@ fail:
 #endif /* defined(FEATURE_IPA_ANDROID)*/
 
 fail:
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/* Delete corresponding ipa_rm_resource_name of RX-endpoint after delete all IPV4V6 FT-rule */
 	if (rx_prop != NULL)
@@ -2255,8 +2420,11 @@ fail:
 		free(iface_query);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifdef FEATURE_ETH_BRIDGE_LE
 	if(eth_bridge_lan_client_rt_from_lan_info_v4 != NULL)
 	{
@@ -2291,6 +2459,9 @@ fail:
 		free(eth_bridge_wlan_client_rt_from_wlan_info_v6);
 	}
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	is_active = false;
 	post_del_self_evt();
@@ -2316,8 +2487,11 @@ int IPACM_Wlan::handle_wlan_client_reset_rt(ipa_ip_type iptype)
 			return res;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		/* Pass info to LAN2LAN module */
 		res = handle_lan2lan_msg_post(get_client_memptr(wlan_client, i)->mac, IPA_LAN_CLIENT_DISCONNECT, iptype);
 		if (res != IPACM_SUCCESS)
@@ -2325,6 +2499,9 @@ int IPACM_Wlan::handle_wlan_client_reset_rt(ipa_ip_type iptype)
 			IPACMERR("Failed to posting delete old iptype(%d) address.\n", iptype);
 			return res;
 		}
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		/* Reset ip-address */
 		if(iptype == IPA_IP_v4)
@@ -2339,6 +2516,7 @@ int IPACM_Wlan::handle_wlan_client_reset_rt(ipa_ip_type iptype)
 	return res;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void IPACM_Wlan::handle_SCC_MCC_switch(ipa_ip_type iptype)
 {
@@ -2355,6 +2533,8 @@ void IPACM_Wlan::handle_SCC_MCC_switch(ipa_ip_type iptype)
 		IPACMDBG_H("No rx properties registered for iface %s\n", dev_name);
 		return;
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 /*handle lan2lan internal mesg posting*/
 int IPACM_Wlan::handle_lan2lan_msg_post(uint8_t *mac_addr, ipa_cm_event_id event,ipa_ip_type iptype)
 {
@@ -3352,6 +3532,9 @@ void IPACM_Wlan::handle_SCC_MCC_switch(ipa_ip_type iptype)
 	{
 		IPACMDBG_H("No rx properties registered for iface %s\n", dev_name);
 		return;
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	}
 
@@ -3547,6 +3730,7 @@ void IPACM_Wlan::handle_SCC_MCC_switch(ipa_ip_type iptype)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void IPACM_Wlan::eth_bridge_handle_wlan_mode_switch()
 {
 	int i;
@@ -3580,6 +3764,8 @@ bool IPACM_Wlan::is_guest_ap()
 {
 	return m_is_guest_ap;
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 void IPACM_Wlan::eth_bridge_handle_wlan_SCC_MCC_switch(ipa_ip_type iptype)
 {
 
@@ -3909,5 +4095,8 @@ void IPACM_Wlan::eth_bridge_handle_wlan_mode_switch()
 		}
 	}
 	return;
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 }

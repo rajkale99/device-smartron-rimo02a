@@ -86,6 +86,7 @@ public:
 	static int total_num_wifi_clients;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void event_callback(ipa_cm_event_id event, void *data);
 
 	bool is_guest_ap();
@@ -96,6 +97,8 @@ private:
 
 	/* handle wlan access mode switch in ethernet bridging*/
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	void event_callback(ipa_cm_event_id event,
 											void *data);
 
@@ -128,6 +131,9 @@ private:
 	int eth_bridge_modify_wlan_rt_rule(uint8_t* mac, eth_bridge_src_iface src_iface, ipa_ip_type iptyp);
 
 	/*handle wlan access mode switch */
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	void eth_bridge_handle_wlan_mode_switch();
 
@@ -141,6 +147,12 @@ private:
 	int wlan_ap_index;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	static uint32_t* dummy_flt_rule_hdl_v4;
+	static uint32_t* dummy_flt_rule_hdl_v6;
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	static uint32_t* dummy_flt_rule_hdl_v4;
 	static uint32_t* dummy_flt_rule_hdl_v6;
@@ -256,6 +268,12 @@ private:
 	int handle_wlan_client_init_ex(ipacm_event_data_wlan_ex *data);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	/*handle lan2lan internal mesg posting*/
+	int handle_lan2lan_msg_post(uint8_t *mac_addr, ipa_cm_event_id event, ipa_ip_type iptype);
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	/*handle lan2lan internal mesg posting*/
 	int handle_lan2lan_msg_post(uint8_t *mac_addr, ipa_cm_event_id event, ipa_ip_type iptype);
@@ -277,12 +295,18 @@ private:
 	int handle_down_evt();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	virtual int add_dummy_lan2lan_flt_rule(ipa_ip_type iptype);
 
 	/* install TCP control filter rules */
 	virtual void install_tcp_ctl_flt_rule(ipa_ip_type iptype);
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/*handle reset wifi-client rt-rules */
 	int handle_wlan_client_reset_rt(ipa_ip_type iptype);

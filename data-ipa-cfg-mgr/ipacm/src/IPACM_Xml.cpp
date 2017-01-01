@@ -175,8 +175,12 @@ static int ipacm_cfg_xml_parse_tree
 						IPACM_util_icmp_string((char*)xml_node->name, IPACMALG_TAG) == 0 ||
 						IPACM_util_icmp_string((char*)xml_node->name, ALG_TAG) == 0 ||
 <<<<<<< HEAD
+<<<<<<< HEAD
 						IPACM_util_icmp_string((char*)xml_node->name, IPACMNat_TAG) == 0 ||
 						IPACM_util_icmp_string((char*)xml_node->name, IP_PassthroughFlag_TAG) == 0)
+=======
+						IPACM_util_icmp_string((char*)xml_node->name, IPACMNat_TAG) == 0)
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 						IPACM_util_icmp_string((char*)xml_node->name, IPACMNat_TAG) == 0)
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -202,6 +206,7 @@ static int ipacm_cfg_xml_parse_tree
 					ret_val = ipacm_cfg_xml_parse_tree(xml_node->children, config);
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 				else if (IPACM_util_icmp_string((char*)xml_node->name, IP_PassthroughMode_TAG) == 0)
 				{
 					IPACMDBG_H("inside IP Passthrough\n");
@@ -223,6 +228,8 @@ static int ipacm_cfg_xml_parse_tree
 						}
 					}
 				}
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 				else if (IPACM_util_icmp_string((char*)xml_node->name, ODUMODE_TAG) == 0)
@@ -275,8 +282,13 @@ static int ipacm_cfg_xml_parse_tree
 						str_size = strlen(content);
 						memset(content_buf, 0, sizeof(content_buf));
 <<<<<<< HEAD
+<<<<<<< HEAD
 						strlcpy(content_buf, content, MAX_XML_STR_LEN);
 						strlcpy(config->iface_config.iface_entries[config->iface_config.num_iface_entries - 1].iface_name, content_buf, IPA_IFACE_NAME_LEN);
+=======
+						memcpy(content_buf, (void *)content, str_size);
+						strncpy(config->iface_config.iface_entries[config->iface_config.num_iface_entries - 1].iface_name, content_buf, str_size);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 						memcpy(content_buf, (void *)content, str_size);
 						strncpy(config->iface_config.iface_entries[config->iface_config.num_iface_entries - 1].iface_name, content_buf, str_size);
@@ -657,7 +669,11 @@ static int IPACM_firewall_xml_parse_tree
 						memcpy(content_buf, (void *)content, str_size);
 						content_buf[MAX_XML_STR_LEN-1] = '\0';
 <<<<<<< HEAD
+<<<<<<< HEAD
 						if (content_buf > (char *)0)
+=======
+						if (content_buf > 0)
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 						if (content_buf > 0)
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr

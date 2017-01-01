@@ -1,6 +1,10 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
+=======
+Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -38,8 +42,11 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "IPACM_ConntrackClient.h"
 #include "IPACM_EvtDispatcher.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "IPACM_Iface.h"
 #include "IPACM_Wan.h"
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
@@ -56,7 +63,11 @@ IPACM_ConntrackListener::IPACM_ConntrackListener()
 	 StaClntCnt = 0;
 	 pNatIfaces = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 pConfig = IPACM_Config::GetInstance();;
+=======
+	 pConfig = NULL;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	 pConfig = NULL;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -72,8 +83,11 @@ IPACM_ConntrackListener::IPACM_ConntrackListener()
 	 IPACM_EvtDispatcher::registr(IPA_HANDLE_WLAN_UP, this);
 	 IPACM_EvtDispatcher::registr(IPA_HANDLE_LAN_UP, this);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 IPACM_EvtDispatcher::registr(IPA_NEIGH_CLIENT_IP_ADDR_ADD_EVENT, this);
 	 IPACM_EvtDispatcher::registr(IPA_NEIGH_CLIENT_IP_ADDR_DEL_EVENT, this);
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
@@ -84,7 +98,11 @@ IPACM_ConntrackListener::IPACM_ConntrackListener()
 
 void IPACM_ConntrackListener::event_callback(ipa_cm_event_id evt,
 <<<<<<< HEAD
+<<<<<<< HEAD
 						void *data)
+=======
+																						 void *data)
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 																						 void *data)
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -142,6 +160,7 @@ void IPACM_ConntrackListener::event_callback(ipa_cm_event_id evt,
 			break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 case IPA_NEIGH_CLIENT_IP_ADDR_ADD_EVENT:
 		 IPACMDBG("Received IPA_NEIGH_CLIENT_IP_ADDR_ADD_EVENT event\n");
 		 HandleNonNatIPAddr(data, true);
@@ -154,11 +173,14 @@ void IPACM_ConntrackListener::event_callback(ipa_cm_event_id evt,
 
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	 default:
 			IPACMDBG("Ignore cmd %d\n", evt);
 			break;
 	 }
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 int IPACM_ConntrackListener::CheckNatIface(
@@ -193,6 +215,8 @@ int IPACM_ConntrackListener::CheckNatIface(
 	if (pNatIfaces != NULL)
 	{
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 void IPACM_ConntrackListener::HandleNeighIpAddrAddEvt(ipacm_event_data_all *data)
 {
 	int fd = 0, len = 0, cnt, i, j;
@@ -223,6 +247,9 @@ void IPACM_ConntrackListener::HandleNeighIpAddrAddEvt(ipacm_event_data_all *data
 	cnt = pConfig->GetNatIfacesCnt();
 	NatIfaceCnt = cnt;
 	if (pNatIfaces != NULL) {
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		free(pNatIfaces);
 		pNatIfaces = NULL;
@@ -230,6 +257,7 @@ void IPACM_ConntrackListener::HandleNeighIpAddrAddEvt(ipacm_event_data_all *data
 
 	len = (sizeof(NatIfaces) * NatIfaceCnt);
 	pNatIfaces = (NatIfaces *)malloc(len);
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pNatIfaces == NULL)
 	{
@@ -250,6 +278,8 @@ void IPACM_ConntrackListener::HandleNeighIpAddrAddEvt(ipacm_event_data_all *data
 		PERROR("get interface name socket create failed");
 		return IPACM_FAILURE;
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	if (pNatIfaces == NULL) {
 		IPACMERR("Unable to allocate memory for non nat ifaces\n");
 		return;
@@ -268,11 +298,15 @@ void IPACM_ConntrackListener::HandleNeighIpAddrAddEvt(ipacm_event_data_all *data
 	{
 		PERROR("get interface name socket create failed");
 		return;
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	}
 
 	memset(&ifr, 0, sizeof(struct ifreq));
 	ifr.ifr_ifindex = data->if_index;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (ioctl(fd, SIOCGIFNAME, &ifr) < 0)
 	{
@@ -394,6 +428,8 @@ void IPACM_ConntrackListener::HandleNeighIpAddrAddEvt(
 void IPACM_ConntrackListener::HandleNeighIpAddrDelEvt(
    uint32_t ipv4_addr)
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 	if(ioctl(fd, SIOCGIFNAME, &ifr) < 0)
 	{
@@ -461,12 +497,16 @@ void IPACM_ConntrackListener::HandleNeighIpAddrDelEvt(
 }
 
 void IPACM_ConntrackListener::HandleNeighIpAddrDelEvt(uint32_t ipv4_addr)
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 {
 	int cnt;
 
 	if(ipv4_addr == 0)
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		IPACMDBG("Ignoring\n");
 		return;
@@ -477,6 +517,8 @@ void IPACM_ConntrackListener::HandleNeighIpAddrDelEvt(uint32_t ipv4_addr)
 	{
 		if (nat_iface_ipv4_addr[cnt] == ipv4_addr)
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		IPACMDBG("Ignoring IPA_NEIGH_CLIENT_IP_ADDR_DEL_EVENT EVENT\n");
 		return;
 	}
@@ -488,11 +530,15 @@ void IPACM_ConntrackListener::HandleNeighIpAddrDelEvt(uint32_t ipv4_addr)
 	for(cnt = 0; cnt<MAX_NAT_IFACES; cnt++)
 	{
 		if(nat_iface_ipv4_addr[cnt] == ipv4_addr)
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		{
 			IPACMDBG("Reseting ct nat iface, entry (%d) ", cnt);
 			iptodot("with ipv4 address", nat_iface_ipv4_addr[cnt]);
 			nat_iface_ipv4_addr[cnt] = 0;
+<<<<<<< HEAD
 <<<<<<< HEAD
 			nat_inst->FlushTempEntries(ipv4_addr, false);
 			nat_inst->DelEntriesOnClntDiscon(ipv4_addr);
@@ -500,6 +546,8 @@ void IPACM_ConntrackListener::HandleNeighIpAddrDelEvt(uint32_t ipv4_addr)
 	}
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		}
 
 		if(nonnat_iface_ipv4_addr[cnt] == ipv4_addr)
@@ -512,6 +560,9 @@ void IPACM_ConntrackListener::HandleNeighIpAddrDelEvt(uint32_t ipv4_addr)
 
 	nat_inst->FlushTempEntries(ipv4_addr, false);
 	nat_inst->DelEntriesOnClntDiscon(ipv4_addr);
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	return;
 }
@@ -700,7 +751,11 @@ void ParseCTMessage(struct nf_conntrack *ct)
 void ParseCTV6Message(struct nf_conntrack *ct)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	 uint32_t status, timeout;
+=======
+	 uint32_t status, timeout, secmark;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	 uint32_t status, timeout, secmark;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -864,6 +919,7 @@ void IPACM_ConntrackListener::ProcessCTMessage(void *param)
 	 return;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 bool IPACM_ConntrackListener::AddIface(
    nat_table_entry *rule, bool *isTempEntry)
@@ -1198,6 +1254,8 @@ void IPACM_ConntrackListener::CheckSTAClient(
 }
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 /* conntrack send in host order and ipa expects in host order */
 void IPACM_ConntrackListener::ProcessTCPorUDPMsg(
@@ -1206,6 +1264,7 @@ void IPACM_ConntrackListener::ProcessTCPorUDPMsg(
 	 u_int8_t l4proto)
 {
 	 nat_table_entry rule;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 uint32_t status = 0;
 	 uint32_t orig_src_ip, orig_dst_ip;
@@ -1218,6 +1277,8 @@ void IPACM_ConntrackListener::ProcessTCPorUDPMsg(
 
  	 memset(&rule, 0, sizeof(rule));
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	 u_int8_t tcp_state;
 	 uint32_t status = 0;
 	 IPACM_Config *pConfig;
@@ -1231,6 +1292,9 @@ void IPACM_ConntrackListener::ProcessTCPorUDPMsg(
 		 IPACMERR("Unable to get Config instance\n");
 	 }
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	 IPACMDBG("Received type:%d with proto:%d\n", type, l4proto);
 	 status = nfct_get_attr_u32(ct, ATTR_STATUS);
@@ -1279,6 +1343,7 @@ void IPACM_ConntrackListener::ProcessTCPorUDPMsg(
 		{
 			IPACMDBG_H("Neither orig src ip:0x%x Nor orig Dst IP:0x%x equal to wan ip:0x%x\n",
 <<<<<<< HEAD
+<<<<<<< HEAD
 					   orig_src_ip, orig_dst_ip, wan_ipaddr);
 
 #ifdef CT_OPT
@@ -1293,6 +1358,8 @@ void IPACM_ConntrackListener::ProcessTCPorUDPMsg(
 		 PopulateTCPorUDPEntry(ct, status, &rule);
 		 rule.public_ip = wan_ipaddr;
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 					orig_src_ip, orig_dst_ip, wan_ipaddr);
 
 #ifdef CT_OPT
@@ -1403,6 +1470,9 @@ void IPACM_ConntrackListener::ProcessTCPorUDPMsg(
 			{
 				 IPACMDBG("unable to retrieve private port\n");
 			}
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	 }
 	 else
@@ -1411,6 +1481,7 @@ void IPACM_ConntrackListener::ProcessTCPorUDPMsg(
 		 goto IGNORE;
 	 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	 if (rule.private_ip != wan_ipaddr)
 	 {
@@ -1425,6 +1496,8 @@ void IPACM_ConntrackListener::ProcessTCPorUDPMsg(
 		 if (isStaMode)
 		 {
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	 if(rule.private_ip != wan_ipaddr)
 	 {
 		 int cnt;
@@ -1467,11 +1540,15 @@ void IPACM_ConntrackListener::ProcessTCPorUDPMsg(
 	 else
 	 {
 		 if(isStaMode) {
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			 IPACMDBG("In STA mode, ignore connections destinated to STA interface\n");
 			 goto IGNORE;
 		 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 		 IPACMDBG("For embedded connections add dummy nat rule\n");
 		 IPACMDBG("Change private port %d to %d\n",
@@ -1483,6 +1560,8 @@ void IPACM_ConntrackListener::ProcessTCPorUDPMsg(
 	 nat_entry.rule = &rule;
 	 AddORDeleteNatEntry(&nat_entry);
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
      IPACMDBG("For embedded connections add dummy nat rule\n");
      IPACMDBG("Change private port %d to %d\n",
               rule.private_port, rule.public_port);
@@ -1608,11 +1687,15 @@ ADD:
 			IPACMDBG("Ignore protocol: %d and type: %d\n", rule.protocol, type);
 	 }
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	 return;
 
 IGNORE:
 	IPACMDBG_H("ignoring below Nat Entry\n");
+<<<<<<< HEAD
 <<<<<<< HEAD
 	iptodot("ProcessTCPorUDPMsg(): target ip or dst ip", rule.target_ip);
 	IPACMDBG("target port or dst port: 0x%x Decimal:%d\n", rule.target_port, rule.target_port);
@@ -1621,6 +1704,8 @@ IGNORE:
 	IPACMDBG("public port or reply dst port: 0x%x, Decimal:%d\n", rule.public_port, rule.public_port);
 	IPACMDBG("Protocol: %d, destination nat flag: %d\n", rule.protocol, rule.dst_nat);
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	iptodot("target ip or dst ip", rule.target_ip);
 	IPACMDBG("target port or dst port: 0x%x Decimal:%d\n", rule.target_port, rule.target_port);
 	iptodot("private ip or src ip", rule.private_ip);
@@ -1628,6 +1713,9 @@ IGNORE:
 	IPACMDBG("public port or reply dst port: 0x%x, Decimal:%d\n", rule.public_port, rule.public_port);
 	IPACMDBG("Protocol: %d, destination nat flag: %d\n", rule.protocol, rule.dst_nat);
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	return;
 }

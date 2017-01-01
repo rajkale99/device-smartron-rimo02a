@@ -43,6 +43,10 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "IPACM_Defs.h"
 #include "IPACM_Lan.h"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+#include <unordered_map>
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 #include <unordered_map>
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -53,6 +57,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <list>
 #endif /* ndefined(FEATURE_IPA_ANDROID)*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define MAX_NUM_CACHED_CLIENT_ADD_EVENT 10
 #define MAX_NUM_IFACE 10
@@ -202,6 +207,8 @@ private:
 
 	void print_data_structure_info();
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 struct client_info;
 
 struct peer_info
@@ -321,6 +328,9 @@ private:
 		void remove_cache_connection(ipacm_event_connection* del_conn);
 
 		void check_cache_connection(ipa_ip_type iptype, client_info* client);
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 };

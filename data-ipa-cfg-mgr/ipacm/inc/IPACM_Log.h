@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
+=======
+/* 
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 /* 
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -73,9 +77,13 @@ static char dmesg_cmd[MAX_BUF_LEN];
 
 #define IPACMDBG_DMESG(fmt, ...) memset(buffer_send, 0, MAX_BUF_LEN);\
 <<<<<<< HEAD
+<<<<<<< HEAD
 								 snprintf(buffer_send,MAX_BUF_LEN,"%s:%d %s: " fmt, __FILE__,  __LINE__, __FUNCTION__, ##__VA_ARGS__);\
 								 ipacm_log_send (buffer_send);\
 								 printf("%s:%d %s() " fmt, __FILE__,  __LINE__, __FUNCTION__, ##__VA_ARGS__); \
+=======
+							     snprintf(buffer_send,MAX_BUF_LEN,"%s:%d %s: " fmt, __FILE__,  __LINE__, __FUNCTION__, ##__VA_ARGS__);\
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 							     snprintf(buffer_send,MAX_BUF_LEN,"%s:%d %s: " fmt, __FILE__,  __LINE__, __FUNCTION__, ##__VA_ARGS__);\
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -89,9 +97,15 @@ static char dmesg_cmd[MAX_BUF_LEN];
                       perror(fmt);
 #define IPACMERR(fmt, ...)	memset(buffer_send, 0, MAX_BUF_LEN);\
 <<<<<<< HEAD
+<<<<<<< HEAD
 							snprintf(buffer_send,MAX_BUF_LEN,"ERROR: %s:%d %s() " fmt, __FILE__,  __LINE__, __FUNCTION__, ##__VA_ARGS__);\
 							ipacm_log_send (buffer_send);\
 							printf("ERROR: %s:%d %s() " fmt, __FILE__,  __LINE__, __FUNCTION__, ##__VA_ARGS__);
+=======
+							snprintf(buffer_send,MAX_BUF_LEN,"ERR: %s:%d %s() " fmt, __FILE__,  __LINE__, __FUNCTION__, ##__VA_ARGS__);\
+							ipacm_log_send (buffer_send);\
+							printf("ERR: %s:%d %s() " fmt, __FILE__,  __LINE__, __FUNCTION__, ##__VA_ARGS__);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 							snprintf(buffer_send,MAX_BUF_LEN,"ERR: %s:%d %s() " fmt, __FILE__,  __LINE__, __FUNCTION__, ##__VA_ARGS__);\
 							ipacm_log_send (buffer_send);\

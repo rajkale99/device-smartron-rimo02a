@@ -72,11 +72,14 @@ void IPACM_Neighbor::event_callback(ipa_cm_event_id event, void *param)
 			ipacm_event_data_wlan_ex *data = (ipacm_event_data_wlan_ex *)param;
 			ipa_interface_index = IPACM_Iface::iface_ipa_index_query(data->if_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* check for failure return */
 			if (IPACM_FAILURE == ipa_interface_index) {
 				IPACMERR("IPA_WLAN_CLIENT_ADD_EVENT_EX: not supported iface id: %d\n", data->if_index);
 				break;
 			}
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			uint8_t client_mac_addr[6];
@@ -141,6 +144,7 @@ void IPACM_Neighbor::event_callback(ipa_cm_event_id event, void *param)
 							/* ask for replaced iface name*/
 							ipa_interface_index = IPACM_Iface::iface_ipa_index_query(data_all->if_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 							/* check for failure return */
 							if (IPACM_FAILURE == ipa_interface_index) {
 								IPACMERR("not supported iface id: %d\n", data_all->if_index);
@@ -149,6 +153,11 @@ void IPACM_Neighbor::event_callback(ipa_cm_event_id event, void *param)
 									evt_data.event,
 									IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].iface_name);
 							}
+=======
+							IPACMDBG_H("Posted event %d, with %s for ipv4 client re-connect\n",
+											evt_data.event,
+											IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].iface_name);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 							IPACMDBG_H("Posted event %d, with %s for ipv4 client re-connect\n",
 											evt_data.event,
@@ -176,11 +185,15 @@ void IPACM_Neighbor::event_callback(ipa_cm_event_id event, void *param)
 			ipacm_event_data_all *data = (ipacm_event_data_all *)param;
 			ipa_interface_index = IPACM_Iface::iface_ipa_index_query(data->if_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 			/* check for failure return */
 			if (IPACM_FAILURE == ipa_interface_index) {
 				IPACMERR("not supported iface id: %d\n", data->if_index);
 				break;
 			}
+=======
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -210,9 +223,12 @@ void IPACM_Neighbor::event_callback(ipa_cm_event_id event, void *param)
 									evt_data.event = IPA_NEIGH_CLIENT_IP_ADDR_ADD_EVENT;
 								else
 <<<<<<< HEAD
+<<<<<<< HEAD
 									/* not to clean-up the client mac cache on bridge0 delneigh */
 									evt_data.event = IPA_NEIGH_CLIENT_IP_ADDR_DEL_EVENT;
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 								{
 									evt_data.event = IPA_NEIGH_CLIENT_IP_ADDR_DEL_EVENT;
 									/* do the clean-up*/
@@ -243,6 +259,9 @@ void IPACM_Neighbor::event_callback(ipa_cm_event_id event, void *param)
 									num_neighbor_client--;
 									IPACMDBG_H(" total number of left cased clients: %d\n", num_neighbor_client);
 								}
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 								data_all = (ipacm_event_data_all *)malloc(sizeof(ipacm_event_data_all));
 								if (data_all == NULL)
@@ -257,6 +276,7 @@ void IPACM_Neighbor::event_callback(ipa_cm_event_id event, void *param)
 								/* ask for replaced iface name*/
 								ipa_interface_index = IPACM_Iface::iface_ipa_index_query(data_all->if_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 								/* check for failure return */
 								if (IPACM_FAILURE == ipa_interface_index) {
 									IPACMERR("not supported iface id: %d\n", data_all->if_index);
@@ -266,6 +286,11 @@ void IPACM_Neighbor::event_callback(ipa_cm_event_id event, void *param)
 										evt_data.event,
 										IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].iface_name);
 								}
+=======
+								IPACMDBG_H("Posted event %d, with %s for ipv4\n",
+												evt_data.event,
+												IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].iface_name);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 								IPACMDBG_H("Posted event %d, with %s for ipv4\n",
 												evt_data.event,
@@ -430,6 +455,7 @@ void IPACM_Neighbor::event_callback(ipa_cm_event_id event, void *param)
 								/* ask for replaced iface name*/
 								ipa_interface_index = IPACM_Iface::iface_ipa_index_query(data_all->if_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 								/* check for failure return */
 								if (IPACM_FAILURE == ipa_interface_index) {
 									IPACMERR("not supported iface id: %d\n", data_all->if_index);
@@ -439,6 +465,11 @@ void IPACM_Neighbor::event_callback(ipa_cm_event_id event, void *param)
 										evt_data.event,
 										IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].iface_name);
 								}
+=======
+								IPACMDBG_H("Posted event %d, with %s for ipv6\n",
+												evt_data.event,
+												IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].iface_name);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 								IPACMDBG_H("Posted event %d, with %s for ipv6\n",
 												evt_data.event,
@@ -527,6 +558,7 @@ void IPACM_Neighbor::event_callback(ipa_cm_event_id event, void *param)
 									/* ask for replaced iface name*/
 									ipa_interface_index = IPACM_Iface::iface_ipa_index_query(data_all->if_index);
 <<<<<<< HEAD
+<<<<<<< HEAD
 									/* check for failure return */
 									if (IPACM_FAILURE == ipa_interface_index) {
 										IPACMERR("not supported iface id: %d\n", data_all->if_index);
@@ -536,6 +568,11 @@ void IPACM_Neighbor::event_callback(ipa_cm_event_id event, void *param)
 											evt_data.event,
 											IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].iface_name);
 									}
+=======
+									IPACMDBG_H("Posted event %d, with %s for ipv4 client re-connect\n",
+													evt_data.event,
+													IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].iface_name);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 									IPACMDBG_H("Posted event %d, with %s for ipv4 client re-connect\n",
 													evt_data.event,

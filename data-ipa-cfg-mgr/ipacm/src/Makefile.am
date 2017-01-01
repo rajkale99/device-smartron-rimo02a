@@ -32,6 +32,7 @@ requiredlibs =  ${LIBXML_LIB} -lxml2 -lpthread -lnetfilter_conntrack -lnfnetlink
                ../../ipanat/src/libipanat.la
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 AM_CPPFLAGS += "-std=c++0x"
 
 if USE_GLIB
@@ -46,10 +47,15 @@ endif
 ipacm_LDADD =  $(requiredlibs)
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 ipacm_LDADD =  $(requiredlibs)
 
 AM_CPPFLAGS += "-std=c++0x"
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 LOCAL_MODULE := libipanat
 LOCAL_PRELINK_MODULE := false

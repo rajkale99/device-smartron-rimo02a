@@ -50,11 +50,14 @@
 			</Iface>
 			<Iface>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   <Name>softap0</Name>
 			   <Category>UNKNOWN</Category>
 			   <WlanMode>full</WlanMode>
 			</Iface>
 			<Iface>
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			   <Name>wlan0</Name>
@@ -68,6 +71,7 @@
 			</Iface>
 			<Iface>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			   <Name>wlan2</Name>
 			   <Category>UNKNOWN</Category>
 			   <WlanMode>full</WlanMode>
@@ -80,6 +84,8 @@
 			<Iface>
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			   <Name>eth0</Name>
 			   <Category>ODU</Category>
 			</Iface>
@@ -89,9 +95,12 @@
 		    </Iface>
 		</IPACMIface>
 <<<<<<< HEAD
+<<<<<<< HEAD
 		<IPPassthroughFlag>
 			<IPPassthroughMode>0</IPPassthroughMode>
 		</IPPassthroughFlag>
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		<IPACMPrivateSubnet>

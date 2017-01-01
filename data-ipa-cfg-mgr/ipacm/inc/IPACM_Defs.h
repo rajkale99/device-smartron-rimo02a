@@ -46,12 +46,15 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include "IPACM_Log.h"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef USE_GLIB
 #include <glib.h>
 #define strlcpy g_strlcpy
 #define strlcat g_strlcat
 #endif
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 extern "C"
@@ -79,7 +82,11 @@ extern "C"
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IPA_MAX_IFACE_ENTRIES 20
+=======
+#define IPA_MAX_IFACE_ENTRIES 15
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 #define IPA_MAX_IFACE_ENTRIES 15
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -96,6 +103,7 @@ extern "C"
 #define WAN_DL_ROUTE_TABLE_NAME "ipa_dflt_wan_rt"
 #define V6_COMMON_ROUTE_TABLE_NAME  "COMRTBLv6"
 #define V6_WAN_ROUTE_TABLE_NAME  "WANRTBLv6"
+<<<<<<< HEAD
 <<<<<<< HEAD
 #define V4_ODU_ROUTE_TABLE_NAME  "ODURTBLv4"
 #define V6_ODU_ROUTE_TABLE_NAME  "ODURTBLv6"
@@ -114,6 +122,8 @@ extern "C"
 #define TCP_SYN_SHIFT 17
 #define TCP_RST_SHIFT 18
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #define V4_LAN_TO_LAN_ROUTE_TABLE_NAME "LANTOLANRTBLv4"
 #define V6_LAN_TO_LAN_ROUTE_TABLE_NAME "LANTOLANRTBLv6"
 #define V4_ODU_ROUTE_TABLE_NAME  "ODURTBLv4"
@@ -145,6 +155,9 @@ extern "C"
 #define TCP_SYN_SHIFT 17
 #define TCP_RST_SHIFT 18
 #define NUM_TCP_CTL_FLT_RULE 3
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #define NUM_IPV6_PREFIX_FLT_RULE 1
 
@@ -170,7 +183,11 @@ extern "C"
 typedef enum
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IPA_CFG_CHANGE_EVENT,                 /* NULL */
+=======
+	IPA_CFG_CHANGE_EVENT = 1,                 /* NULL */
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	IPA_CFG_CHANGE_EVENT = 1,                 /* NULL */
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -213,7 +230,11 @@ typedef enum
 	IPA_NETWORK_STATS_UPDATE_EVENT,           /* ipacm_event_data_fid */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IPA_EXTERNAL_EVENT_MAX,
+=======
+	IPA_EXTERNAL_EVENT_MAX = 500,
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	IPA_EXTERNAL_EVENT_MAX = 500,
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -229,6 +250,7 @@ typedef enum
 	IPA_HANDLE_WLAN_UP,                       /* ipacm_event_iface_up */
 	IPA_HANDLE_LAN_UP,                        /* ipacm_event_iface_up */
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IPA_ETH_BRIDGE_IFACE_UP,                  /* ipacm_event_eth_bridge*/
 	IPA_ETH_BRIDGE_IFACE_DOWN,                /* ipacm_event_eth_bridge*/
 	IPA_ETH_BRIDGE_CLIENT_ADD,                /* ipacm_event_eth_bridge */
@@ -236,6 +258,8 @@ typedef enum
 	IPA_ETH_BRIDGE_WLAN_SCC_MCC_SWITCH,       /* ipacm_event_eth_bridge*/
 	IPA_LAN_DELETE_SELF,                      /* ipacm_event_data_fid */
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	IPA_LAN_CLIENT_ACTIVE,                    /* ipacm_event_lan_client*/
 	IPA_LAN_CLIENT_INACTIVE,                  /* ipacm_event_lan_client*/
 	IPA_LAN_CLIENT_DISCONNECT,                /* ipacm_event_lan_client*/
@@ -246,6 +270,9 @@ typedef enum
 	IPA_ETH_BRIDGE_CLIENT_DEL_EVENT,          /* ipacm_event_data_mac */
 	IPA_ETH_BRIDGE_HDR_PROC_CTX_SET_EVENT,    /* ipacm_event_data_if_cat */
 	IPA_ETH_BRIDGE_HDR_PROC_CTX_UNSET_EVENT,  /* ipacm_event_data_if_cat */
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	IPACM_EVENT_MAX
 } ipa_cm_event_id;
@@ -321,17 +348,23 @@ typedef struct
 typedef struct
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IPACM_Lan *p_iface;
 	ipa_ip_type iptype;
 	uint8_t mac_addr[6];
 } ipacm_event_eth_bridge;
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	enum ipa_ip_type iptype;
 	uint32_t ipv4_addr;
 	uint32_t ipv6_addr[4];
 	uint8_t mac_addr[6];
 	IPACM_Lan* p_iface;
 } ipacm_event_lan_client;
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 typedef struct
@@ -359,10 +392,13 @@ typedef struct _ipacm_event_data_iptype
 	int if_index_tether;
 	enum ipa_ip_type iptype;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef IPA_WAN_MSG_IPv6_ADDR_GW_LEN
 	uint32_t  ipv4_addr_gw;
 	uint32_t  ipv6_addr_gw[4];
 #endif
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 } ipacm_event_data_iptype;

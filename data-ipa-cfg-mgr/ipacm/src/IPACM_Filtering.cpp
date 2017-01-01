@@ -261,9 +261,12 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 	int ret = 0, cnt, num_rules = 0, pos = 0;
 	ipa_install_fltr_rule_req_msg_v01 qmi_rule_msg;
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef FEATURE_IPA_V3
 	ipa_install_fltr_rule_req_ex_msg_v01 qmi_rule_ex_msg;
 #endif
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
@@ -286,8 +289,11 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* if it is not IPA v3, use old QMI format */
 #ifndef FEATURE_IPA_V3
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	if(num_rules > QMI_IPA_MAX_FILTERS_V01)
@@ -303,6 +309,7 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 		if (num_rules > 0)
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			qmi_rule_msg.filter_spec_list_valid = true;
 		}
 		else
@@ -312,6 +319,8 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 
 		qmi_rule_msg.filter_spec_list_len = num_rules;
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifndef FEATURE_IPA_V3
 			qmi_rule_msg.filter_spec_list_valid = true;
 #else /* defined (FEATURE_IPA_V3) */
@@ -333,6 +342,9 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 		qmi_rule_msg.filter_spec_ex_list_len = num_rules;
 #endif
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		qmi_rule_msg.source_pipe_index_valid = 0;
 
@@ -345,6 +357,10 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 				if (pos < QMI_IPA_MAX_FILTERS_V01)
 				{
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+#ifndef FEATURE_IPA_V3
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 #ifndef FEATURE_IPA_V3
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -359,7 +375,10 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 						&rule_table_v4->rules[cnt].rule.eq_attrib,
 						sizeof(struct ipa_filter_rule_type_v01));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #else /* defined (FEATURE_IPA_V3) */
 					qmi_rule_msg.filter_spec_ex_list[pos].ip_type = QMI_IPA_IP_TYPE_V4_V01;
 					qmi_rule_msg.filter_spec_ex_list[pos].filter_action = GetQmiFilterAction(rule_table_v4->rules[cnt].rule.action);
@@ -373,6 +392,9 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 						&rule_table_v4->rules[cnt].rule.eq_attrib,
 						sizeof(struct ipa_filter_rule_type_v01));
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 					pos++;
 				}
@@ -390,6 +412,10 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 				if (pos < QMI_IPA_MAX_FILTERS_V01)
 				{
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+#ifndef FEATURE_IPA_V3
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 #ifndef FEATURE_IPA_V3
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -404,7 +430,10 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 						&rule_table_v6->rules[cnt].rule.eq_attrib,
 						sizeof(struct ipa_filter_rule_type_v01));
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #else /* defined (FEATURE_IPA_V3) */
 					qmi_rule_msg.filter_spec_ex_list[pos].ip_type = QMI_IPA_IP_TYPE_V6_V01;
 					qmi_rule_msg.filter_spec_ex_list[pos].filter_action = GetQmiFilterAction(rule_table_v6->rules[cnt].rule.action);
@@ -418,6 +447,9 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 						&rule_table_v6->rules[cnt].rule.eq_attrib,
 						sizeof(struct ipa_filter_rule_type_v01));
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 					pos++;
 				}
@@ -436,6 +468,7 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 			return false;
 		}
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* if it is IPA v3, use new QMI format */
 #else
@@ -526,6 +559,9 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 	}
 #endif
 
+=======
+	IPACMDBG("Added Filtering rule %p\n", &qmi_rule_msg);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	IPACMDBG("Added Filtering rule %p\n", &qmi_rule_msg);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr

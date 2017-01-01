@@ -1,6 +1,10 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
+=======
+Copyright (c) 2013, The Linux Foundation. All rights reserved.
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 Copyright (c) 2013, The Linux Foundation. All rights reserved.
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -529,9 +533,15 @@ void* IPACM_ConntrackClient::UDPRegisterWithConnTrack(void *)
 	IPACMDBG_H("udp handle:%p, fd:%d\n", pClient->udp_hdl, nfct_fd(pClient->udp_hdl));
 	nfct_callback_register(pClient->udp_hdl,
 <<<<<<< HEAD
+<<<<<<< HEAD
 			(nf_conntrack_msg_type)(NFCT_T_NEW | NFCT_T_DESTROY),
 			IPAConntrackEventCB,
 			NULL);
+=======
+												 (nf_conntrack_msg_type)(NFCT_T_NEW | NFCT_T_DESTROY),
+												 IPAConntrackEventCB,
+												 NULL);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 												 (nf_conntrack_msg_type)(NFCT_T_NEW | NFCT_T_DESTROY),
 												 IPAConntrackEventCB,

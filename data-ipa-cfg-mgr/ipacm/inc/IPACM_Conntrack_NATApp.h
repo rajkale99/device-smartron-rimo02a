@@ -1,6 +1,10 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
+=======
+Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -130,7 +134,11 @@ public:
 	void CacheEntry(const nat_table_entry *);
 	void DeleteTempEntry(const nat_table_entry *);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	void FlushTempEntries(uint32_t, bool, bool isDummy = false);
+=======
+	void FlushTempEntries(uint32_t, bool);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	void FlushTempEntries(uint32_t, bool);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr

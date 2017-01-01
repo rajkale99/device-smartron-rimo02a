@@ -1,6 +1,10 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
+=======
+Copyright (c) 2013, The Linux Foundation. All rights reserved.
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 Copyright (c) 2013, The Linux Foundation. All rights reserved.
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -51,6 +55,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAX_IFACE_ADDRESS 50
 #define MAX_STA_CLNT_IFACES 10
 #define STA_CLNT_SUBNET_MASK 0xFFFFFF00
@@ -67,11 +72,16 @@ typedef struct _nat_entry_bundle
 }nat_entry_bundle;
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #define MAX_NAT_IFACES 50
 #define MAX_STA_CLNT_IFACES 10
 
 using namespace std;
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 class IPACM_ConntrackListener : public IPACM_Listener
 {
@@ -86,8 +96,13 @@ private:
 	int StaClntCnt;
 	NatIfaces *pNatIfaces;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t nat_iface_ipv4_addr[MAX_IFACE_ADDRESS];
 	uint32_t nonnat_iface_ipv4_addr[MAX_IFACE_ADDRESS];
+=======
+	uint32_t nat_iface_ipv4_addr[MAX_NAT_IFACES];
+	uint32_t nonnat_iface_ipv4_addr[MAX_NAT_IFACES];
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	uint32_t nat_iface_ipv4_addr[MAX_NAT_IFACES];
 	uint32_t nonnat_iface_ipv4_addr[MAX_NAT_IFACES];
@@ -106,6 +121,7 @@ private:
 	int  CreateNatThreads(void);
 	int  CreateConnTrackThreads(void);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool AddIface(nat_table_entry *, bool *);
 	void AddORDeleteNatEntry(const nat_entry_bundle *);
 	void PopulateTCPorUDPEntry(struct nf_conntrack *, uint32_t, nat_table_entry *);
@@ -117,6 +133,11 @@ private:
 	void ProcessCTV6Message(void *);
 	void HandleLan2Lan(struct nf_conntrack *,
 		enum nf_conntrack_msg_type, nat_table_entry* );
+=======
+
+#ifdef CT_OPT
+	void ProcessCTV6Message(void *);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 
 #ifdef CT_OPT

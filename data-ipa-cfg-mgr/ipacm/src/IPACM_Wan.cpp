@@ -56,7 +56,10 @@ bool IPACM_Wan::wan_up_v6 = false;
 uint8_t IPACM_Wan::xlat_mux_id = 0;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 uint32_t IPACM_Wan::curr_wan_ip = 0;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 int IPACM_Wan::num_v4_flt_rule = 0;
@@ -123,8 +126,11 @@ IPACM_Wan::IPACM_Wan(int iface_index,
 	memset(wan_v6_addr_gw, 0, sizeof(wan_v6_addr_gw));
 	ext_prop = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	is_ipv6_frag_firewall_flt_rule_installed = false;
 	ipv6_frag_firewall_flt_rule_hdl = 0;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
@@ -214,6 +220,7 @@ int IPACM_Wan::handle_addr_evt(ipacm_event_data_addr *data)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Update the IP Type. */
 	config_ip_type(data->iptype);
 
@@ -248,6 +255,8 @@ int IPACM_Wan::handle_addr_evt(ipacm_event_data_addr *data)
 
 		rt_rule_entry = &rt_rule->rules[0];
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	if (data->iptype == IPA_IP_v6)
 	{
 	    for(num_ipv6_addr=0;num_ipv6_addr<num_dft_rt_v6;num_ipv6_addr++)
@@ -278,6 +287,9 @@ int IPACM_Wan::handle_addr_evt(ipacm_event_data_addr *data)
 	    	strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_v6.name);
 
 	    rt_rule_entry = &rt_rule->rules[0];
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		if(m_is_sta_mode == Q6_WAN)
 		{
@@ -291,7 +303,11 @@ int IPACM_Wan::handle_addr_evt(ipacm_event_data_addr *data)
 			rt_rule_entry->rule.hdr_hdl = hdr.hdl;
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		rt_rule_entry->at_rear = false;
+=======
+	    rt_rule_entry->at_rear = false;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	    rt_rule_entry->at_rear = false;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -303,6 +319,7 @@ int IPACM_Wan::handle_addr_evt(ipacm_event_data_addr *data)
 		{
 			rt_rule_entry->rule.dst = IPA_CLIENT_APPS_LAN_CONS;
 		}
+<<<<<<< HEAD
 <<<<<<< HEAD
 		rt_rule_entry->rule.attrib.attrib_mask = IPA_FLT_DST_ADDR;
 		rt_rule_entry->rule.attrib.u.v6.dst_addr[0] = data->ipv6_addr[0];
@@ -358,6 +375,8 @@ int IPACM_Wan::handle_addr_evt(ipacm_event_data_addr *data)
 		if (num_dft_rt_v6 == 1)
 		{
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	    rt_rule_entry->rule.attrib.attrib_mask = IPA_FLT_DST_ADDR;
 	    	rt_rule_entry->rule.attrib.u.v6.dst_addr[0] = data->ipv6_addr[0];
 	    	rt_rule_entry->rule.attrib.u.v6.dst_addr[1] = data->ipv6_addr[1];
@@ -414,6 +433,9 @@ int IPACM_Wan::handle_addr_evt(ipacm_event_data_addr *data)
 		/* add default filtering rules when wan-iface get global v6-prefix */
         	if (num_dft_rt_v6 == 1)
 	    	{
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			if(m_is_sta_mode == Q6_WAN)
 			{
@@ -427,7 +449,11 @@ int IPACM_Wan::handle_addr_evt(ipacm_event_data_addr *data)
 				init_fl_rule(data->iptype);
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		}
+=======
+	    	}
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	    	}
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -530,7 +556,11 @@ int IPACM_Wan::handle_addr_evt(ipacm_event_data_addr *data)
 		if (!rt_rule)
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			IPACMERR("Error Locate ipa_ioc_add_rt_rule memory...\n");
+=======
+		IPACMERR("Error Locate ipa_ioc_add_rt_rule memory...\n");
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		IPACMERR("Error Locate ipa_ioc_add_rt_rule memory...\n");
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -561,7 +591,11 @@ int IPACM_Wan::handle_addr_evt(ipacm_event_data_addr *data)
 		rt_rule_entry->rule.attrib.attrib_mask = IPA_FLT_DST_ADDR;
 		/* still need setup v4 default routing rule to A5*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		strlcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_lan_v4.name, sizeof(rt_rule->rt_tbl_name));
+=======
+		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_lan_v4.name);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_lan_v4.name);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -587,6 +621,12 @@ int IPACM_Wan::handle_addr_evt(ipacm_event_data_addr *data)
 			/* initial multicast/broadcast/fragment filter rule */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+		/* Update the IP Type. */
+		config_ip_type(data->iptype);
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		/* Update the IP Type. */
 		config_ip_type(data->iptype);
@@ -612,10 +652,13 @@ int IPACM_Wan::handle_addr_evt(ipacm_event_data_addr *data)
 		wan_v4_addr = data->ipv4_addr;
 		wan_v4_addr_set = true;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		if (m_is_sta_mode == Q6_WAN)
 			curr_wan_ip = data->ipv4_addr;
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		IPACMDBG_H("Receved wan ipv4-addr:0x%x\n",wan_v4_addr);
@@ -843,6 +886,7 @@ void IPACM_Wan::event_callback(ipa_cm_event_id event, void *param)
 					if (active_v4 == false)
 					{
 <<<<<<< HEAD
+<<<<<<< HEAD
 #ifdef IPA_WAN_MSG_IPv6_ADDR_GW_LEN
 						IPACMDBG_H("adding routing table(upstream), dev (%s) ip-type(%d) default gw (%x)\n", dev_name,data->iptype, wan_v4_addr_gw);
 						wan_v4_addr_gw = data->ipv4_addr_gw;
@@ -855,6 +899,9 @@ void IPACM_Wan::event_callback(ipa_cm_event_id event, void *param)
 =======
 						IPACMDBG_H("adding routing table(upstream), dev (%s) ip-type(%d)\n", dev_name,data->iptype);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
+						IPACMDBG_H("adding routing table(upstream), dev (%s) ip-type(%d)\n", dev_name,data->iptype);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 						handle_route_add_evt(data->iptype);
 					}
 #ifdef FEATURE_IPA_ANDROID
@@ -864,6 +911,7 @@ void IPACM_Wan::event_callback(ipa_cm_event_id event, void *param)
 				}
 				else if ((data->iptype == IPA_IP_v6) && (ip_type == IPA_IP_v6 || ip_type == IPA_IP_MAX))
 				{
+<<<<<<< HEAD
 <<<<<<< HEAD
 					if(ipv6_prefix[0] == 0 && ipv6_prefix[1] == 0)
 					{
@@ -890,6 +938,11 @@ void IPACM_Wan::event_callback(ipa_cm_event_id event, void *param)
 					{
 						IPACMDBG_H("\n get default v6 route (dst:00.00.00.00) upstream\n");
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
+					if (active_v6 == false)
+					{
+						IPACMDBG_H("\n get default v6 route (dst:00.00.00.00) upstream\n");
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 						handle_route_add_evt(data->iptype);
 					}
 #ifdef FEATURE_IPA_ANDROID
@@ -905,7 +958,11 @@ void IPACM_Wan::event_callback(ipa_cm_event_id event, void *param)
 					IPACMDBG_H("Received v4 IPA_WAN_UPSTREAM_ROUTE_ADD_EVENT for other iface (%s)\n", IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].iface_name);
 					IPACMDBG_H("need clean default v4 route (dst:0.0.0.0) for old iface (%s)\n", dev_name);
 <<<<<<< HEAD
+<<<<<<< HEAD
 					wan_v4_addr_gw_set = false;
+=======
+//					wan_v4_addr_gw_set = false; /* android requires CnE change too */
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 //					wan_v4_addr_gw_set = false; /* android requires CnE change too */
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -952,7 +1009,11 @@ void IPACM_Wan::event_callback(ipa_cm_event_id event, void *param)
 				{
 					IPACMDBG_H("get del default v4 route (dst:0.0.0.0)\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 					wan_v4_addr_gw_set = false;
+=======
+//					wan_v4_addr_gw_set = false; /* android requires CnE change too */
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 //					wan_v4_addr_gw_set = false; /* android requires CnE change too */
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -1051,12 +1112,15 @@ void IPACM_Wan::event_callback(ipa_cm_event_id event, void *param)
 						(active_v6 == false) &&	(ip_type == IPA_IP_v6 || ip_type == IPA_IP_MAX))
 				{
 <<<<<<< HEAD
+<<<<<<< HEAD
 					if(ipv6_prefix[0] == 0 && ipv6_prefix[1] == 0)
 					{
 						IPACMDBG_H("IPv6 default route comes earlier than global IP, ignore.\n");
 						return;
 					}
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 					IPACMDBG_H("\n get default v6 route (dst:00.00.00.00)\n");
@@ -1381,6 +1445,11 @@ int IPACM_Wan::handle_route_add_evt(ipa_ip_type iptype)
 	is_default_gateway = true;
 	IPACMDBG_H("Default route is added to iface %s.\n", dev_name);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	memcpy(backhaul_ipv6_prefix, ipv6_prefix, sizeof(backhaul_ipv6_prefix));
+	IPACMDBG_H("Setup backhaul ipv6 prefix to be 0x%08x%08x.\n", backhaul_ipv6_prefix[0], backhaul_ipv6_prefix[1]);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	memcpy(backhaul_ipv6_prefix, ipv6_prefix, sizeof(backhaul_ipv6_prefix));
 	IPACMDBG_H("Setup backhaul ipv6 prefix to be 0x%08x%08x.\n", backhaul_ipv6_prefix[0], backhaul_ipv6_prefix[1]);
@@ -1519,7 +1588,11 @@ int IPACM_Wan::handle_route_add_evt(ipa_ip_type iptype)
 			if (iptype == IPA_IP_v4)
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				strlcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_wan_v4.name, sizeof(rt_rule->rt_tbl_name));
+=======
+	    		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_wan_v4.name);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	    		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_wan_v4.name);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -1528,7 +1601,11 @@ int IPACM_Wan::handle_route_add_evt(ipa_ip_type iptype)
 			else
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 				strlcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_v6.name, sizeof(rt_rule->rt_tbl_name));
+=======
+	    		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_v6.name);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	    		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_v6.name);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -1603,7 +1680,11 @@ int IPACM_Wan::handle_route_add_evt(ipa_ip_type iptype)
 	if (iptype == IPA_IP_v6)
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		strlcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_wan_v6.name, sizeof(rt_rule->rt_tbl_name));
+=======
+		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_wan_v6.name);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_wan_v6.name);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -1723,9 +1804,12 @@ int IPACM_Wan::handle_route_add_evt(ipa_ip_type iptype)
 	else
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		memcpy(backhaul_ipv6_prefix, ipv6_prefix, sizeof(backhaul_ipv6_prefix));
 		IPACMDBG_H("Setup backhaul ipv6 prefix to be 0x%08x%08x.\n", backhaul_ipv6_prefix[0], backhaul_ipv6_prefix[1]);
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		IPACM_Wan::wan_up_v6 = true;
@@ -2089,6 +2173,7 @@ int IPACM_Wan::config_dft_firewall_rules(ipa_ip_type iptype)
 	strlcpy(firewall_config.firewall_config_file, "/etc/mobileap_firewall.xml", sizeof(firewall_config.firewall_config_file));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IPACMDBG_H("Firewall XML file is %s \n", firewall_config.firewall_config_file);
 	if (IPACM_SUCCESS == IPACM_read_firewall_xml(firewall_config.firewall_config_file, &firewall_config))
 	{
@@ -2111,6 +2196,8 @@ int IPACM_Wan::config_dft_firewall_rules(ipa_ip_type iptype)
 	{
 		IPACMERR("QCMAP Firewall XML read failed, no that file, use default configuration \n");
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	if (firewall_config.firewall_config_file)
 	{
 		IPACMDBG_H("Firewall XML file is %s \n", firewall_config.firewall_config_file);
@@ -2140,6 +2227,9 @@ int IPACM_Wan::config_dft_firewall_rules(ipa_ip_type iptype)
 	{
 		IPACMERR("No firewall xml mentioned \n");
 		return IPACM_FAILURE;
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	}
 
@@ -2186,7 +2276,10 @@ int IPACM_Wan::config_dft_firewall_rules(ipa_ip_type iptype)
 			IPACM_Iface::ipacmcfg->increaseFltRuleCount(rx_prop->rx[0].src_pipe, IPA_IP_v6, 1);
 			ipv6_frag_firewall_flt_rule_hdl = m_pFilteringTable->rules[0].flt_rule_hdl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 			is_ipv6_frag_firewall_flt_rule_installed = true;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			IPACMDBG_H("Installed IPv6 frag firewall rule, handle %d.\n", ipv6_frag_firewall_flt_rule_hdl);
@@ -2849,6 +2942,7 @@ int IPACM_Wan::config_dft_firewall_rules_ex(struct ipa_flt_rule_add *rules, int 
 	strlcpy(firewall_config.firewall_config_file, "/etc/mobileap_firewall.xml", sizeof(firewall_config.firewall_config_file));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IPACMDBG_H("Firewall XML file is %s \n", firewall_config.firewall_config_file);
 	if (IPACM_SUCCESS == IPACM_read_firewall_xml(firewall_config.firewall_config_file, &firewall_config))
 	{
@@ -2858,6 +2952,8 @@ int IPACM_Wan::config_dft_firewall_rules_ex(struct ipa_flt_rule_add *rules, int 
 	{
 		IPACMERR("QCMAP Firewall XML read failed, no that file, use default configuration \n");
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	if (firewall_config.firewall_config_file)
 	{
 		IPACMDBG_H("Firewall XML file is %s \n", firewall_config.firewall_config_file);
@@ -2874,6 +2970,9 @@ int IPACM_Wan::config_dft_firewall_rules_ex(struct ipa_flt_rule_add *rules, int 
 	{
 		IPACMERR("No firewall xml mentioned \n");
 		return IPACM_FAILURE;
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	}
 
@@ -3358,7 +3457,10 @@ int IPACM_Wan::config_dft_firewall_rules_ex(struct ipa_flt_rule_add *rules, int 
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 void IPACM_Wan::config_ip_type(ipa_ip_type iptype)
 {
 
@@ -3405,6 +3507,9 @@ void IPACM_Wan::config_ip_type(ipa_ip_type iptype)
 	return;
 }
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 int IPACM_Wan::init_fl_rule_ex(ipa_ip_type iptype)
 {
@@ -4137,7 +4242,11 @@ int IPACM_Wan::del_dft_firewall_rules(ipa_ip_type iptype)
 		IPACM_Iface::ipacmcfg->decreaseFltRuleCount(rx_prop->rx[0].src_pipe, IPA_IP_v6, 1);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if (is_ipv6_frag_firewall_flt_rule_installed &&
+=======
+		if (firewall_config.firewall_enable == true &&
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		if (firewall_config.firewall_enable == true &&
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -4149,7 +4258,10 @@ int IPACM_Wan::del_dft_firewall_rules(ipa_ip_type iptype)
 				return IPACM_FAILURE;
 			}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			is_ipv6_frag_firewall_flt_rule_installed = false;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			IPACM_Iface::ipacmcfg->decreaseFltRuleCount(rx_prop->rx[0].src_pipe, IPA_IP_v6, 1);

@@ -1,6 +1,10 @@
 /*
 <<<<<<< HEAD
+<<<<<<< HEAD
 Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
+=======
+Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -154,7 +158,11 @@ int NatApp::AddTable(uint32_t pub_ip)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Add back the cached NAT-entry */
+=======
+	/* Add back the cashed NAT-entry */
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	/* Add back the cashed NAT-entry */
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -206,7 +214,11 @@ void NatApp::Reset()
 	for(cnt = 0; cnt < max_entries; cnt++)
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		cache[cnt].enabled = false;
+=======
+		cache[cnt].enabled ==false;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		cache[cnt].enabled ==false;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -255,7 +267,11 @@ bool NatApp::ChkForDup(const nat_table_entry *rule)
 		{
 			log_nat(rule->protocol,rule->private_ip,rule->target_ip,rule->private_port,\
 <<<<<<< HEAD
+<<<<<<< HEAD
 			rule->target_port,"Duplicate Rule\n");
+=======
+			rule->target_port,"Duplicate Rule");
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 			rule->target_port,"Duplicate Rule");
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -274,7 +290,11 @@ int NatApp::DeleteEntry(const nat_table_entry *rule)
 
 	log_nat(rule->protocol,rule->private_ip,rule->target_ip,rule->private_port,\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rule->target_port,"for deletion\n");
+=======
+	rule->target_port,"for deletion");
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	rule->target_port,"for deletion");
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -316,9 +336,15 @@ int NatApp::DeleteEntry(const nat_table_entry *rule)
 int NatApp::AddEntry(const nat_table_entry *rule)
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int cnt = 0;
 	ipa_nat_ipv4_rule nat_rule;
 
+=======
+
+	int cnt = 0;
+	ipa_nat_ipv4_rule nat_rule;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 
 	int cnt = 0;
@@ -329,7 +355,11 @@ int NatApp::AddEntry(const nat_table_entry *rule)
 	CHK_TBL_HDL();
 	log_nat(rule->protocol,rule->private_ip,rule->target_ip,rule->private_port,\
 <<<<<<< HEAD
+<<<<<<< HEAD
 	rule->target_port,"for addition\n");
+=======
+	rule->target_port,"for addition");
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	rule->target_port,"for addition");
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -521,8 +551,12 @@ void NatApp::UpdateUDPTimeStamp()
 	{
 		ts = 0;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		if(cache[cnt].enabled == true &&
 		   (cache[cnt].private_ip != cache[cnt].public_ip))
+=======
+		if(cache[cnt].enabled == true)
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		if(cache[cnt].enabled == true)
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -760,8 +794,13 @@ void NatApp::DeleteTempEntry(const nat_table_entry *entry)
 	iptodot("Private IP", entry->private_ip);
 	iptodot("Target IP", entry->target_ip);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IPACMDBG("Private Port: %d\t Target Port: %d\n", entry->private_port, entry->target_port);
 	IPACMDBG("protocol: %d\n", entry->protocol);
+=======
+	IPACMDBG("Private Port: %d\t Target Port: %d\t", entry->private_port, entry->target_port);
+	IPACMDBG("protocolcol: %d\n", entry->protocol);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	IPACMDBG("Private Port: %d\t Target Port: %d\t", entry->private_port, entry->target_port);
 	IPACMDBG("protocolcol: %d\n", entry->protocol);
@@ -786,8 +825,12 @@ void NatApp::DeleteTempEntry(const nat_table_entry *entry)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void NatApp::FlushTempEntries(uint32_t ip_addr, bool isAdd,
 		bool isDummy)
+=======
+void NatApp::FlushTempEntries(uint32_t ip_addr, bool isAdd)
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 void NatApp::FlushTempEntries(uint32_t ip_addr, bool isAdd)
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -797,7 +840,11 @@ void NatApp::FlushTempEntries(uint32_t ip_addr, bool isAdd)
 
 	IPACMDBG_H("Received below with isAdd:%d ", isAdd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	iptodot("IP Address: ", ip_addr);
+=======
+	IPACMDBG_H("IP Address: (ox%x)\n", ip_addr);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	IPACMDBG_H("IP Address: (ox%x)\n", ip_addr);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -812,6 +859,7 @@ void NatApp::FlushTempEntries(uint32_t ip_addr, bool isAdd)
 				if(temp[cnt].public_ip == pub_ip_addr)
 				{
 <<<<<<< HEAD
+<<<<<<< HEAD
 					if (isDummy) {
 						/* To avoild DL expections for non IPA path */
 						temp[cnt].private_ip = temp[cnt].public_ip;
@@ -820,6 +868,8 @@ void NatApp::FlushTempEntries(uint32_t ip_addr, bool isAdd)
 						iptodot("Private IP", temp[cnt].private_ip);
 					}
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 					ret = AddEntry(&temp[cnt]);
@@ -922,7 +972,10 @@ void NatApp::CacheEntry(const nat_table_entry *rule)
 {
 	int cnt;
 <<<<<<< HEAD
+<<<<<<< HEAD
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	if(rule->private_ip == 0 ||
@@ -938,7 +991,11 @@ void NatApp::CacheEntry(const nat_table_entry *rule)
 	if(!ChkForDup(rule))
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		for(cnt=0; cnt < max_entries; cnt++)
+=======
+		for(; cnt < max_entries; cnt++)
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		for(; cnt < max_entries; cnt++)
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr

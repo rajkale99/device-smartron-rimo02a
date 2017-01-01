@@ -62,6 +62,10 @@ public:
 
 	bool GetRoutingTable(struct ipa_ioc_get_rt_tbl *routingTable);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	bool PutRoutingTable(uint32_t routingTableHandle);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	bool PutRoutingTable(uint32_t routingTableHandle);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -75,8 +79,11 @@ private:
 	static const char *DEVICE_NAME;
 	int m_fd; /* File descriptor of the IPA device node /dev/ipa */
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	bool PutRoutingTable(uint32_t routingTableHandle);
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 };

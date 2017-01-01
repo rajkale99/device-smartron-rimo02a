@@ -1,5 +1,9 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
+=======
+/* 
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 /* 
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -208,7 +212,11 @@ bool IPACM_Header::AddHeaderProcCtx(struct ipa_ioc_add_hdr_proc_ctx* pHeader)
 	//call the Driver ioctl to add header processing context
 	ret = ioctl(m_fd, IPA_IOC_ADD_HDR_PROC_CTX, pHeader);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	return (ret == 0);
+=======
+	return (ret != -1);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	return (ret != -1);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -234,6 +242,7 @@ bool IPACM_Header::DeleteHeaderProcCtx(uint32_t hdl)
 
 	ret = ioctl(m_fd, IPA_IOC_DEL_HDR_PROC_CTX, pHeaderTable);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if(ret != 0)
 	{
 		IPACMERR("Failed to delete hdr proc ctx: return value %d, status %d\n",
@@ -241,6 +250,10 @@ bool IPACM_Header::DeleteHeaderProcCtx(uint32_t hdl)
 	}
 	free(pHeaderTable);
 	return (ret == 0);
+=======
+	free(pHeaderTable);
+	return (ret != -1);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	free(pHeaderTable);
 	return (ret != -1);

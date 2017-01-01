@@ -37,7 +37,10 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 struct ipa_nat_cache ipv4_nat_cache;
 <<<<<<< HEAD
+<<<<<<< HEAD
 pthread_mutex_t nat_mutex    = PTHREAD_MUTEX_INITIALIZER;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
@@ -909,6 +912,7 @@ int ipa_nati_del_ipv4_table(uint32_t tbl_hdl)
 	if (!ipv4_nat_cache.ip4_tbl[index].valid) {
 		IPAERR("invalid table handle passed\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -EINVAL;
 		goto fail;
 	}
@@ -916,6 +920,9 @@ int ipa_nati_del_ipv4_table(uint32_t tbl_hdl)
 	if (pthread_mutex_lock(&nat_mutex) != 0) {
 		ret = -1;
 		goto lock_mutex_fail;
+=======
+		return -EINVAL;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		return -EINVAL;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -933,10 +940,14 @@ int ipa_nati_del_ipv4_table(uint32_t tbl_hdl)
 	if (close(ipv4_nat_cache.ip4_tbl[index].nat_fd)) {
 		IPAERR("unable to close the file descriptor\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -EINVAL;
 		if (pthread_mutex_unlock(&nat_mutex) != 0)
 			goto unlock_mutex_fail;
 		goto fail;
+=======
+		return -EINVAL;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		return -EINVAL;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -950,12 +961,18 @@ int ipa_nati_del_ipv4_table(uint32_t tbl_hdl)
 		IPAERR("unable to post nat del command init Error: %d\n", ret);
 		IPADBG("ipa fd %d\n", ipv4_nat_cache.ipa_fd);
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -EINVAL;
 		if (pthread_mutex_unlock(&nat_mutex) != 0)
 			goto unlock_mutex_fail;
 		goto fail;
 	}
 	IPAERR("posted IPA_IOC_V4_DEL_NAT to kernel successfully\n");
+=======
+		return -EINVAL;
+	}
+	IPADBG("posted IPA_IOC_V4_DEL_NAT to kernel successfully\n");
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		return -EINVAL;
 	}
@@ -972,6 +989,7 @@ int ipa_nati_del_ipv4_table(uint32_t tbl_hdl)
 	/* Decrease the table count by 1*/
 	ipv4_nat_cache.table_cnt--;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 	if (pthread_mutex_unlock(&nat_mutex) != 0) {
 		ret = -1;
@@ -992,6 +1010,9 @@ fail:
 =======
 	return 0;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
+	return 0;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 }
 
 int ipa_nati_query_timestamp(uint32_t  tbl_hdl,
@@ -1009,11 +1030,14 @@ int ipa_nati_query_timestamp(uint32_t  tbl_hdl,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pthread_mutex_lock(&nat_mutex) != 0) {
 		IPAERR("unable to lock the nat mutex\n");
 		return -1;
 	}
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	ipa_nati_parse_ipv4_rule_hdl(tbl_index, (uint16_t)rule_hdl,
@@ -1027,6 +1051,7 @@ int ipa_nati_query_timestamp(uint32_t  tbl_hdl,
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (tbl_ptr)
 		*time_stamp = Read32BitFieldValue(tbl_ptr[tbl_entry].ts_proto,
 					TIME_STAMP_FIELD);
@@ -1036,6 +1061,10 @@ int ipa_nati_query_timestamp(uint32_t  tbl_hdl,
 		return -1;
 	}
 
+=======
+	*time_stamp = Read32BitFieldValue(tbl_ptr[tbl_entry].ts_proto,
+																		TIME_STAMP_FIELD);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	*time_stamp = Read32BitFieldValue(tbl_ptr[tbl_entry].ts_proto,
 																		TIME_STAMP_FIELD);
@@ -1557,7 +1586,10 @@ int ipa_nati_del_ipv4_rule(uint32_t tbl_hdl,
 	del_type rule_pos;
 	uint8_t tbl_indx = (uint8_t)(tbl_hdl - 1);
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int ret;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
@@ -1567,6 +1599,7 @@ int ipa_nati_del_ipv4_rule(uint32_t tbl_hdl,
 	if (IPA_NAT_INVALID_NAT_ENTRY == tbl_entry) {
 		IPAERR("Invalid Rule Entry\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -EINVAL;
 		goto fail;
 	}
@@ -1574,6 +1607,9 @@ int ipa_nati_del_ipv4_rule(uint32_t tbl_hdl,
 	if (pthread_mutex_lock(&nat_mutex) != 0) {
 		ret = -1;
 		goto mutex_lock_error;
+=======
+		return -EINVAL;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		return -EINVAL;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -1586,10 +1622,14 @@ int ipa_nati_del_ipv4_rule(uint32_t tbl_hdl,
 	if (!tbl_ptr->valid) {
 		IPAERR("invalid table handle\n");
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -EINVAL;
 		if (pthread_mutex_unlock(&nat_mutex) != 0)
 			goto mutex_unlock_error;
 		goto fail;
+=======
+		return -EINVAL;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		return -EINVAL;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -1602,10 +1642,14 @@ int ipa_nati_del_ipv4_rule(uint32_t tbl_hdl,
 	if (ipa_nati_post_del_dma_cmd(tbl_indx, tbl_entry,
 					expn_tbl, rule_pos)) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		ret = -EINVAL;
 		if (pthread_mutex_unlock(&nat_mutex) != 0)
 			goto mutex_unlock_error;
 		goto fail;
+=======
+		return -EINVAL;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		return -EINVAL;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -1623,6 +1667,7 @@ int ipa_nati_del_ipv4_rule(uint32_t tbl_hdl,
 #endif
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	if (pthread_mutex_unlock(&nat_mutex) != 0) {
 		ret = -1;
 		goto mutex_unlock_error;
@@ -1639,6 +1684,9 @@ mutex_unlock_error:
 
 fail:
 	return ret;
+=======
+	return 0;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	return 0;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr

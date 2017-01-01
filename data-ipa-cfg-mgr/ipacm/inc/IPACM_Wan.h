@@ -98,7 +98,10 @@ public:
 	/* IPACM interface name */
 	static char wan_up_dev_name[IF_NAME_LEN];
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static uint32_t curr_wan_ip;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	IPACM_Wan(int, ipacm_wan_iface_type, uint8_t *);
@@ -145,11 +148,14 @@ public:
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	static uint32_t getWANIP()
 	{
 		return curr_wan_ip;
 	}
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	static bool getXlat_Mux_Id()
@@ -189,7 +195,10 @@ public:
 private:
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool is_ipv6_frag_firewall_flt_rule_installed;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	uint32_t ipv6_frag_firewall_flt_rule_hdl;
@@ -469,6 +478,12 @@ private:
 		ipa_ip_type iptype);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	/* Change IP Type.*/
+	void config_ip_type(ipa_ip_type iptype);
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	/* Change IP Type.*/
 	void config_ip_type(ipa_ip_type iptype);

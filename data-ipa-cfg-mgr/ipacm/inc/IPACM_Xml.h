@@ -179,9 +179,12 @@ if (!(a)) {                                                 \
 #define NAT_MaxEntries_TAG                   "MaxNatEntries"
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define IP_PassthroughFlag_TAG               "IPPassthroughFlag"
 #define IP_PassthroughMode_TAG               "IPPassthroughMode"
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 /*---------------------------------------------------------------------------
@@ -283,7 +286,10 @@ typedef struct  _IPACM_conf_t
 	bool odu_embms_enable;
 	int num_wlan_guest_ap;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool ip_passthrough_mode;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 } IPACM_conf_t;  

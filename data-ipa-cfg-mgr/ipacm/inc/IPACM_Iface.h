@@ -127,6 +127,7 @@ public:
 	int query_iface_property(void);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/*Configure the initial filter rules */
 	virtual int init_fl_rule(ipa_ip_type iptype);
 
@@ -134,6 +135,8 @@ public:
 	void config_ip_type(ipa_ip_type iptype);
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/*implement IPACM strlcpy */
 	size_t strlcpy(char *dest, const char *src, size_t size);
 
@@ -143,6 +146,9 @@ public:
 	/*Configure the initial filter rules */
 	virtual int init_fl_rule(ipa_ip_type iptype);
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/* Get interface index */
 	virtual int ipa_get_if_index(char * if_name, int * if_index);

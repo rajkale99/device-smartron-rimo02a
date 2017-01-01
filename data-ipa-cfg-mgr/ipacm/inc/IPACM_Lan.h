@@ -74,7 +74,10 @@ struct ipa_lan_rt_rule
 };
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 typedef enum
 {
 	SRC_WLAN,
@@ -87,6 +90,9 @@ typedef enum
 	DST_LAN
 } eth_bridge_dst_iface;
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 /* Support multiple eth client */
 typedef struct _eth_client_rt_hdl
@@ -113,7 +119,10 @@ typedef struct _ipa_eth_client
 }ipa_eth_client;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 struct lan2lan_flt_rule_hdl
 {
 	uint32_t rule_hdl;
@@ -153,6 +162,9 @@ struct eth_bridge_subnet_client_info
 	int ipa_if_num;
 	int ipa_if_cate;
 };
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 /* lan iface */
@@ -199,7 +211,10 @@ public:
 	virtual int handle_uplink_filter_rule(ipacm_ext_prop* prop, ipa_ip_type iptype, uint8_t xlat_mux_id);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	int add_lan2lan_flt_rule(ipa_ip_type iptype, uint32_t src_v4_addr, uint32_t dst_v4_addr, uint32_t* src_v6_addr, uint32_t* dst_v6_addr, uint32_t* rule_hdl);
 
 	int del_lan2lan_flt_rule(ipa_ip_type iptype, uint32_t rule_hdl);
@@ -213,11 +228,15 @@ public:
 
 	int del_lan2lan_hdr(ipa_ip_type iptype, uint32_t hdr_hdl);
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	int handle_cradle_wan_mode_switch(bool is_wan_bridge_mode);
 
 	int install_ipv4_icmp_flt_rule();
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	/* add header processing context and return handle to lan2lan controller */
@@ -257,6 +276,8 @@ protected:
 
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	static ipa_hdr_l2_type lan_hdr_type;
 	static ipa_hdr_l2_type wlan_hdr_type;
 
@@ -334,6 +355,9 @@ protected:
 
 	virtual int add_dummy_lan2lan_flt_rule(ipa_ip_type iptype);
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	virtual int add_dummy_private_subnet_flt_rule(ipa_ip_type iptype);
 
@@ -342,6 +366,12 @@ protected:
 	int reset_to_dummy_flt_rule(ipa_ip_type iptype, uint32_t rule_hdl);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	/*handle lan2lan client active*/
+	int handle_lan2lan_client_active(ipacm_event_data_all *data, ipa_cm_event_id event);
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	/*handle lan2lan client active*/
 	int handle_lan2lan_client_active(ipacm_event_data_all *data, ipa_cm_event_id event);
@@ -362,7 +392,10 @@ protected:
 	int handle_tethering_client(bool reset, ipacm_client_enum ipa_client);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	lan2lan_flt_rule_hdl lan2lan_flt_rule_hdl_v4[MAX_OFFLOAD_PAIR];
 	lan2lan_flt_rule_hdl lan2lan_flt_rule_hdl_v6[MAX_OFFLOAD_PAIR];
 
@@ -372,6 +405,9 @@ protected:
 	lan2lan_hdr_hdl lan2lan_hdr_hdl_v4[MAX_OFFLOAD_PAIR];
 	lan2lan_hdr_hdl lan2lan_hdr_hdl_v6[MAX_OFFLOAD_PAIR];
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/* store ipv4 UL filter rule handlers from Q6*/
 	uint32_t wan_ul_fl_rule_hdl_v4[MAX_WAN_UL_FILTER_RULES];
@@ -380,13 +416,19 @@ protected:
 	uint32_t wan_ul_fl_rule_hdl_v6[MAX_WAN_UL_FILTER_RULES];
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t ipv4_icmp_flt_rule_hdl[NUM_IPV4_ICMP_FLT_RULE];
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	virtual void install_tcp_ctl_flt_rule(ipa_ip_type iptype);
 
 	uint32_t ipv4_icmp_flt_rule_hdl[NUM_IPV4_ICMP_FLT_RULE];
 	uint32_t tcp_ctl_flt_rule_hdl_v4[NUM_TCP_CTL_FLT_RULE];
 	uint32_t tcp_ctl_flt_rule_hdl_v6[NUM_TCP_CTL_FLT_RULE];
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 	uint32_t ipv6_prefix_flt_rule_hdl[NUM_IPV6_PREFIX_FLT_RULE];
@@ -402,6 +444,7 @@ protected:
 	uint32_t if_ipv4_subnet;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t ipv6_prefix[2];
 
 private:
@@ -414,11 +457,16 @@ private:
 
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	uint32_t eth_bridge_flt_rule_offset_v4;
 	uint32_t eth_bridge_flt_rule_offset_v6;
 
 private:
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/* dynamically allocate lan iface's unicast routing rule structure */
 
@@ -571,6 +619,12 @@ private:
 	int handle_down_evt();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+	/*handle lan2lan internal mesg posting*/
+	int post_lan2lan_client_disconnect_msg(ipa_ip_type iptype);
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	/*handle lan2lan internal mesg posting*/
 	int post_lan2lan_client_disconnect_msg(ipa_ip_type iptype);

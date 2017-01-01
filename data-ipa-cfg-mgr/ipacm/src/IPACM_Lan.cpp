@@ -56,7 +56,10 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 bool IPACM_Lan::odu_up = false;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 ipa_hdr_l2_type IPACM_Lan::lan_hdr_type = IPA_HDR_L2_NONE;
 ipa_hdr_l2_type IPACM_Lan::wlan_hdr_type = IPA_HDR_L2_NONE;
 
@@ -77,6 +80,9 @@ int IPACM_Lan::eth_bridge_num_client = 0;
 bool IPACM_Lan::is_usb_up = false;
 bool IPACM_Lan::is_cpe_up = false;
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 IPACM_Lan::IPACM_Lan(int iface_index) : IPACM_Iface(iface_index)
 {
@@ -89,7 +95,12 @@ IPACM_Lan::IPACM_Lan(int iface_index) : IPACM_Iface(iface_index)
 	odu_route_rule_v6_hdl = NULL;
 	eth_client = NULL;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int i, m_fd_odu, ret = IPACM_SUCCESS;
+=======
+	int m_fd_odu, ret = IPACM_SUCCESS;
+	uint32_t* hdr_template_ptr;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	int m_fd_odu, ret = IPACM_SUCCESS;
 	uint32_t* hdr_template_ptr;
@@ -119,8 +130,11 @@ IPACM_Lan::IPACM_Lan(int iface_index) : IPACM_Iface(iface_index)
 		IPACMDBG_H(" IPACM->IPACM_Lan(%d) constructor: Tx:%d Rx:%d \n", ipa_if_num,
 					 iface_query->num_tx_props, iface_query->num_rx_props);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifdef FEATURE_ETH_BRIDGE_LE
 		if((ipa_if_cate == LAN_IF || ipa_if_cate == ODU_IF) && tx_prop != NULL)
 		{
@@ -154,6 +168,9 @@ IPACM_Lan::IPACM_Lan(int iface_index) : IPACM_Iface(iface_index)
 			}
 		}
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		/* ODU routing table initilization */
 		if(ipa_if_cate == ODU_IF)
@@ -175,10 +192,13 @@ IPACM_Lan::IPACM_Lan(int iface_index) : IPACM_Iface(iface_index)
 	memset(wan_ul_fl_rule_hdl_v6, 0, MAX_WAN_UL_FILTER_RULES * sizeof(uint32_t));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	is_active = true;
 	memset(ipv4_icmp_flt_rule_hdl, 0, NUM_IPV4_ICMP_FLT_RULE * sizeof(uint32_t));
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	memset(lan2lan_flt_rule_hdl_v4, 0, MAX_OFFLOAD_PAIR * sizeof(lan2lan_flt_rule_hdl));
 	num_lan2lan_flt_rule_v4 = 0;
 
@@ -192,6 +212,9 @@ IPACM_Lan::IPACM_Lan(int iface_index) : IPACM_Iface(iface_index)
 	memset(ipv4_icmp_flt_rule_hdl, 0, NUM_IPV4_ICMP_FLT_RULE * sizeof(uint32_t));
 	memset(tcp_ctl_flt_rule_hdl_v4, 0, NUM_TCP_CTL_FLT_RULE*sizeof(uint32_t));
 	memset(tcp_ctl_flt_rule_hdl_v6, 0, NUM_TCP_CTL_FLT_RULE*sizeof(uint32_t));
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	is_mode_switch = false;
 	if_ipv4_subnet =0;
@@ -201,7 +224,10 @@ IPACM_Lan::IPACM_Lan(int iface_index) : IPACM_Iface(iface_index)
 	modem_ul_v4_set = false;
 	modem_ul_v6_set = false;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(ipv6_prefix, 0, sizeof(ipv6_prefix));
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
@@ -209,6 +235,10 @@ IPACM_Lan::IPACM_Lan(int iface_index) : IPACM_Iface(iface_index)
 	if(ipa_if_cate == ODU_IF)
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -245,6 +275,7 @@ IPACM_Lan::IPACM_Lan(int iface_index) : IPACM_Iface(iface_index)
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	each_client_rt_rule_count[IPA_IP_v4] = 0;
 	each_client_rt_rule_count[IPA_IP_v6] = 0;
 	if(iface_query != NULL && tx_prop != NULL)
@@ -254,6 +285,8 @@ IPACM_Lan::IPACM_Lan(int iface_index) : IPACM_Iface(iface_index)
 	}
 	IPACMDBG_H("Need to add %d IPv4 and %d IPv6 routing rules for eth bridge for each client.\n", each_client_rt_rule_count[IPA_IP_v4], each_client_rt_rule_count[IPA_IP_v6]);
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	int i;
 	each_client_rt_rule_count_v4 = 0;
 	each_client_rt_rule_count_v6 = 0;
@@ -295,6 +328,9 @@ IPACM_Lan::IPACM_Lan(int iface_index) : IPACM_Iface(iface_index)
 	lan_client_rt_from_lan_info_count_v6 = 0;
 	lan_client_rt_from_wlan_info_count_v4 = 0;
 	lan_client_rt_from_wlan_info_count_v6 = 0;
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 #ifdef FEATURE_IPA_ANDROID
@@ -512,7 +548,10 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 							if((data->iptype == IPA_IP_v6 || data->iptype == IPA_IP_MAX) && num_dft_rt_v6 == 1)
 							{
 <<<<<<< HEAD
+<<<<<<< HEAD
 								memcpy(ipv6_prefix, IPACM_Wan::backhaul_ipv6_prefix, sizeof(ipv6_prefix));
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 								install_ipv6_prefix_flt_rule(IPACM_Wan::backhaul_ipv6_prefix);
@@ -618,7 +657,10 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 			if(ip_type == IPA_IP_v6 || ip_type == IPA_IP_MAX)
 			{
 <<<<<<< HEAD
+<<<<<<< HEAD
 					memcpy(ipv6_prefix, data_wan_tether->ipv6_prefix, sizeof(ipv6_prefix));
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 					install_ipv6_prefix_flt_rule(data_wan_tether->ipv6_prefix);
@@ -717,6 +759,7 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 		if(ip_type == IPA_IP_v6 || ip_type == IPA_IP_MAX)
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			memcpy(ipv6_prefix, data_wan->ipv6_prefix, sizeof(ipv6_prefix));
 			install_ipv6_prefix_flt_rule(data_wan->ipv6_prefix);
 			if(data_wan->is_sta == false)
@@ -729,6 +772,8 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 				handle_wan_up(IPA_IP_v6);
 			}
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			install_ipv6_prefix_flt_rule(data_wan->ipv6_prefix);
 		if(data_wan->is_sta == false)
 		{
@@ -739,6 +784,9 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 		{
 			handle_wan_up(IPA_IP_v6);
 		}
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		}
 		break;
@@ -818,6 +866,10 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 				/* first construc ETH full header */
 				handle_eth_hdr_init(data->mac_addr);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+				handle_lan2lan_client_active(data, IPA_LAN_CLIENT_ACTIVE);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 				handle_lan2lan_client_active(data, IPA_LAN_CLIENT_ACTIVE);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -834,8 +886,11 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 					CtList->HandleNeighIpAddrAddEvt(data);
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 				eth_bridge_post_event(IPA_ETH_BRIDGE_CLIENT_ADD, IPA_IP_MAX, data->mac_addr);
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifdef FEATURE_ETH_BRIDGE_LE
 				if (ipa_if_cate == LAN_IF)
 				{
@@ -866,6 +921,9 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 				eth_bridge_post_lan_client_event(data->mac_addr, IPA_ETH_BRIDGE_CLIENT_ADD_EVENT);
 				eth_bridge_add_client(data->mac_addr);
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 				return;
 			}
@@ -894,12 +952,15 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 					return;
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 				eth_bridge_post_event(IPA_ETH_BRIDGE_CLIENT_DEL, IPA_IP_MAX, data->mac_addr);
 
 				IPACMDBG_H("LAN iface delete client \n");
 				handle_eth_client_down_evt(data->mac_addr);
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifdef FEATURE_ETH_BRIDGE_LE
 				if (ipa_if_cate == LAN_IF)
 				{
@@ -929,6 +990,9 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 				IPACMDBG_H("LAN iface delete client \n");
 				handle_eth_client_down_evt(data->mac_addr);
 				handle_lan2lan_client_active(data, IPA_LAN_CLIENT_INACTIVE);
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 				return;
 			}
@@ -948,7 +1012,10 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 		break;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	case IPA_ETH_BRIDGE_CLIENT_ADD_EVENT:
 			{
 				IPACMDBG_H("Received IPA_ETH_BRIDGE_CLIENT_ADD_EVENT event.\n");
@@ -1067,6 +1134,9 @@ void IPACM_Lan::event_callback(ipa_cm_event_id event, void *param)
 	}
 	break;
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	case IPA_CRADLE_WAN_MODE_SWITCH:
 	{
@@ -1124,7 +1194,11 @@ int IPACM_Lan::handle_del_ipv6_addr(ipacm_event_data_all *data)
 	uint32_t tx_index;
 	uint32_t rt_hdl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	int num_v6 =0, clnt_indx;
+=======
+	int num_v6, clnt_indx;
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 	int num_v6, clnt_indx;
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -1297,9 +1371,12 @@ int IPACM_Lan::handle_addr_evt(ipacm_event_data_addr *data)
 #endif /* defined(FEATURE_IPA_ANDROID)*/
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	/* Update the IP Type. */
 	config_ip_type(data->iptype);
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	if (data->iptype == IPA_IP_v4)
@@ -1322,7 +1399,11 @@ int IPACM_Lan::handle_addr_evt(ipacm_event_data_addr *data)
 		rt_rule_entry->rule.dst = IPA_CLIENT_APPS_LAN_CONS;  //go to A5
 		rt_rule_entry->rule.attrib.attrib_mask = IPA_FLT_DST_ADDR;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		strlcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_lan_v4.name, sizeof(rt_rule->rt_tbl_name));
+=======
+   		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_lan_v4.name);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
    		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_lan_v4.name);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -1350,16 +1431,22 @@ int IPACM_Lan::handle_addr_evt(ipacm_event_data_addr *data)
 		init_fl_rule(data->iptype);
 		install_ipv4_icmp_flt_rule();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 		/* populate the flt rule offset for eth bridge */
 		eth_bridge_flt_rule_offset[data->iptype] = ipv4_icmp_flt_rule_hdl[0];
 		eth_bridge_post_event(IPA_ETH_BRIDGE_IFACE_UP, IPA_IP_v4, NULL);
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifdef FEATURE_ETH_BRIDGE_LE
 		/* populate the flt rule offset for eth bridge */
 		eth_bridge_flt_rule_offset_v4 = ipv4_icmp_flt_rule_hdl[0];
 		eth_bridge_install_cache_client_flt_rule(data->iptype);
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	}
 	else
@@ -1391,7 +1478,11 @@ int IPACM_Lan::handle_addr_evt(ipacm_event_data_addr *data)
 		rt_rule->num_rules = NUM_RULES;
 		rt_rule->ip = data->iptype;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		strlcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_v6.name, sizeof(rt_rule->rt_tbl_name));
+=======
+		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_v6.name);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_v6.name);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -1431,7 +1522,11 @@ int IPACM_Lan::handle_addr_evt(ipacm_event_data_addr *data)
 
 		/* setup same rule for v6_wan table*/
 <<<<<<< HEAD
+<<<<<<< HEAD
 		strlcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_wan_v6.name, sizeof(rt_rule->rt_tbl_name));
+=======
+		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_wan_v6.name);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_wan_v6.name);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -1457,16 +1552,22 @@ int IPACM_Lan::handle_addr_evt(ipacm_event_data_addr *data)
 		{
 			install_ipv6_icmp_flt_rule();
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 			/* populate the flt rule offset for eth bridge */
 			eth_bridge_flt_rule_offset[data->iptype] = ipv6_icmp_flt_rule_hdl[0];
 			eth_bridge_post_event(IPA_ETH_BRIDGE_IFACE_UP, IPA_IP_v6, NULL);
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifdef FEATURE_ETH_BRIDGE_LE
 			eth_bridge_flt_rule_offset_v6 = ipv6_icmp_flt_rule_hdl[0];
 			eth_bridge_install_cache_client_flt_rule(data->iptype);
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			init_fl_rule(data->iptype);
 		}
@@ -1517,7 +1618,10 @@ int IPACM_Lan::handle_private_subnet(ipa_ip_type iptype)
 		m_pFilteringTable->num_rules = (uint8_t)IPACM_Iface::ipacmcfg->ipa_num_private_subnet;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		if (false == m_routing.GetRoutingTable(&IPACM_Iface::ipacmcfg->rt_tbl_lan_v4))
 		{
 			IPACMERR("LAN m_routing.GetRoutingTable(&IPACM_Iface::ipacmcfg->rt_tbl_lan_v4=0x%p) Failed.\n", &IPACM_Iface::ipacmcfg->rt_tbl_lan_v4);
@@ -1525,6 +1629,9 @@ int IPACM_Lan::handle_private_subnet(ipa_ip_type iptype)
 			return IPACM_FAILURE;
 		}
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		/* Make LAN-traffic always go A5, use default IPA-RT table */
 		if (false == m_routing.GetRoutingTable(&IPACM_Iface::ipacmcfg->rt_tbl_default_v4))
@@ -2070,8 +2177,11 @@ int IPACM_Lan::handle_eth_client_ipaddr(ipacm_event_data_all *data)
 	int clnt_indx;
 	int v6_num;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	uint32_t ipv6_link_local_prefix = 0xFE800000;
 	uint32_t ipv6_link_local_prefix_mask = 0xFFC00000;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
@@ -2121,15 +2231,21 @@ int IPACM_Lan::handle_eth_client_ipaddr(ipacm_event_data_all *data)
 					get_client_memptr(eth_client, clnt_indx)->v4_addr = data->ipv4_addr;
 				}
 <<<<<<< HEAD
+<<<<<<< HEAD
 			}
 		}
 		else
 		{
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		}
 	}
 	else
 	{
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		    IPACMDBG_H("Invalid client IPv4 address \n");
 		    return IPACM_FAILURE;
@@ -2140,6 +2256,7 @@ int IPACM_Lan::handle_eth_client_ipaddr(ipacm_event_data_all *data)
 		if ((data->ipv6_addr[0] != 0) || (data->ipv6_addr[1] != 0) ||
 				(data->ipv6_addr[2] != 0) || (data->ipv6_addr[3] || 0)) /* check if all 0 not valid ipv6 address */
 		{
+<<<<<<< HEAD
 <<<<<<< HEAD
 			IPACMDBG_H("ipv6 address: 0x%x:%x:%x:%x\n", data->ipv6_addr[0], data->ipv6_addr[1], data->ipv6_addr[2], data->ipv6_addr[3]);
 			if( (data->ipv6_addr[0] & ipv6_link_local_prefix_mask) != (ipv6_link_local_prefix & ipv6_link_local_prefix_mask) &&
@@ -2164,6 +2281,8 @@ int IPACM_Lan::handle_eth_client_ipaddr(ipacm_event_data_all *data)
 					}
 				}
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		   IPACMDBG_H("ipv6 address: 0x%x:%x:%x:%x\n", data->ipv6_addr[0], data->ipv6_addr[1], data->ipv6_addr[2], data->ipv6_addr[3]);
                    if(get_client_memptr(eth_client, clnt_indx)->ipv6_set < IPV6_NUM_ADDR)
 		   {
@@ -2179,6 +2298,9 @@ int IPACM_Lan::handle_eth_client_ipaddr(ipacm_event_data_all *data)
 			  	    return IPACM_FAILURE; /* not setup the RT rules*/
 			      }
 		       }
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 		       /* not see this ipv6 before for wifi client*/
@@ -2191,8 +2313,13 @@ int IPACM_Lan::handle_eth_client_ipaddr(ipacm_event_data_all *data)
 		    else
 		    {
 <<<<<<< HEAD
+<<<<<<< HEAD
 		        IPACMDBG_H("Already got %d ipv6 addr for client:%d\n", IPV6_NUM_ADDR, clnt_indx);
 				return IPACM_FAILURE; /* not setup the RT rules*/
+=======
+		         IPACMDBG_H("Already got 3 ipv6 addr for client:%d\n", clnt_indx);
+			 return IPACM_FAILURE; /* not setup the RT rules*/
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		         IPACMDBG_H("Already got 3 ipv6 addr for client:%d\n", clnt_indx);
 			 return IPACM_FAILURE; /* not setup the RT rules*/
@@ -2482,7 +2609,11 @@ int IPACM_Lan::handle_odu_hdr_init(uint8_t *mac_addr)
 								memset(pHeaderDescriptor->hdr[0].name, 0,
 											 sizeof(pHeaderDescriptor->hdr[0].name));
 <<<<<<< HEAD
+<<<<<<< HEAD
 								strlcpy(pHeaderDescriptor->hdr[0].name, IPA_ODU_HDR_NAME_v4, sizeof(pHeaderDescriptor->hdr[0].name));
+=======
+								strcpy(pHeaderDescriptor->hdr[0].name, IPA_ODU_HDR_NAME_v4);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 								strcpy(pHeaderDescriptor->hdr[0].name, IPA_ODU_HDR_NAME_v4);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -2566,7 +2697,11 @@ int IPACM_Lan::handle_odu_hdr_init(uint8_t *mac_addr)
 					 sizeof(pHeaderDescriptor->hdr[0].name));
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 				strlcpy(pHeaderDescriptor->hdr[0].name, IPA_ODU_HDR_NAME_v6, sizeof(pHeaderDescriptor->hdr[0].name));
+=======
+				strcpy(pHeaderDescriptor->hdr[0].name, IPA_ODU_HDR_NAME_v6);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 				strcpy(pHeaderDescriptor->hdr[0].name, IPA_ODU_HDR_NAME_v6);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -2637,7 +2772,11 @@ int IPACM_Lan::handle_odu_route_add()
 		if (IPA_IP_v4 == tx_prop->tx[tx_index].ip)
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			strlcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_odu_v4.name, sizeof(rt_rule->rt_tbl_name));
+=======
+			strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_odu_v4.name);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 			strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_odu_v4.name);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -2647,7 +2786,11 @@ int IPACM_Lan::handle_odu_route_add()
 		else
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			strlcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_odu_v6.name, sizeof(rt_rule->rt_tbl_name));
+=======
+			strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_odu_v6.name);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 			strcpy(rt_rule->rt_tbl_name, IPACM_Iface::ipacmcfg->rt_tbl_odu_v6.name);
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -2926,7 +3069,10 @@ int IPACM_Lan::handle_down_evt()
 	}
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifdef FEATURE_ETH_BRIDGE_LE
 	if(ipa_if_cate == LAN_IF)
 	{
@@ -2949,6 +3095,9 @@ int IPACM_Lan::handle_down_evt()
 	del_hdr_proc_ctx();
 #endif
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/* delete wan filter rule */
 	if (IPACM_Wan::isWanUP(ipa_if_num) && rx_prop != NULL)
@@ -2983,11 +3132,17 @@ int IPACM_Lan::handle_down_evt()
 		IPACM_Iface::ipacmcfg->decreaseFltRuleCount(rx_prop->rx[0].src_pipe, IPA_IP_v4, IPV4_DEFAULT_FILTERTING_RULES);
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifdef FEATURE_ETH_BRIDGE_LE
 		eth_bridge_remove_all_client_flt_rule(IPA_IP_v4);
 #endif
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		/* free private-subnet ipv4 filter rules */
 		if (IPACM_Iface::ipacmcfg->ipa_num_private_subnet > IPA_PRIV_SUBNET_FILTER_RULE_HANDLES)
@@ -3036,6 +3191,12 @@ int IPACM_Lan::handle_down_evt()
 		}
 		IPACM_Iface::ipacmcfg->decreaseFltRuleCount(rx_prop->rx[0].src_pipe, IPA_IP_v6, IPV6_DEFAULT_FILTERTING_RULES);
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+#ifdef FEATURE_ETH_BRIDGE_LE
+		eth_bridge_remove_all_client_flt_rule(IPA_IP_v6);
+#endif
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 #ifdef FEATURE_ETH_BRIDGE_LE
 		eth_bridge_remove_all_client_flt_rule(IPA_IP_v6);
@@ -3074,7 +3235,10 @@ int IPACM_Lan::handle_down_evt()
 
 	IPACMDBG_H("Finished delete default iface ipv6 rules \n ");
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/* clean eth-client header, routing rules */
 	IPACMDBG_H("left %d eth clients need to be deleted \n ", num_eth_client);
 	for (i = 0; i < num_eth_client; i++)
@@ -3130,6 +3294,9 @@ int IPACM_Lan::handle_down_evt()
 			}
 			}
 	} /* end of for loop */
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 	/* free the edm clients cache */
@@ -3143,9 +3310,12 @@ int IPACM_Lan::handle_down_evt()
 		IPACM_Iface::ipacmcfg->DelRmDepend(IPACM_Iface::ipacmcfg->ipa_client_rm_map_tbl[tx_prop->tx[0].dst_pipe]);
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 	eth_bridge_post_event(IPA_ETH_BRIDGE_IFACE_DOWN, IPA_IP_MAX, NULL);
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/* check software routing fl rule hdl */
 	if (softwarerouting_act == true && rx_prop != NULL)
 	{
@@ -3155,6 +3325,9 @@ int IPACM_Lan::handle_down_evt()
 	/* posting ip to lan2lan module to delete RT/FILTER rules*/
 	post_lan2lan_client_disconnect_msg(IPA_IP_v4);
 	post_lan2lan_client_disconnect_msg(IPA_IP_v6);
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 /* Delete private subnet*/
@@ -3176,6 +3349,7 @@ int IPACM_Lan::handle_down_evt()
 	}
 #endif /* defined(FEATURE_IPA_ANDROID)*/
 fail:
+<<<<<<< HEAD
 <<<<<<< HEAD
 	/* clean eth-client header, routing rules */
 	IPACMDBG_H("left %d eth clients need to be deleted \n ", num_eth_client);
@@ -3260,6 +3434,8 @@ fail:
 	}
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	if (odu_route_rule_v4_hdl != NULL)
 	{
 		free(odu_route_rule_v4_hdl);
@@ -3309,6 +3485,9 @@ fail:
 		free(eth_bridge_lan_client_rt_from_wlan_info_v6);
 	}
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	is_active = false;
 	post_del_self_evt();
@@ -3531,8 +3710,11 @@ int IPACM_Lan::handle_wan_down_v6(bool is_sta_mode)
 	delete_ipv6_prefix_flt_rule();
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	memset(ipv6_prefix, 0, sizeof(ipv6_prefix));
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	if(is_sta_mode == false)
@@ -3600,6 +3782,7 @@ int IPACM_Lan::handle_wan_down_v6(bool is_sta_mode)
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int IPACM_Lan::reset_to_dummy_flt_rule(ipa_ip_type iptype, uint32_t rule_hdl)
 {
 	int len, res = IPACM_SUCCESS;
@@ -3609,6 +3792,8 @@ int IPACM_Lan::reset_to_dummy_flt_rule(ipa_ip_type iptype, uint32_t rule_hdl)
 	IPACMDBG_H("Reset flt rule to dummy, IP type: %d, hdl: %d\n", iptype, rule_hdl);
 	len = sizeof(struct ipa_ioc_mdfy_flt_rule) + sizeof(struct ipa_flt_rule_mdfy);
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 /*handle lan2lan client active*/
 int IPACM_Lan::handle_lan2lan_client_active(ipacm_event_data_all *data, ipa_cm_event_id event)
@@ -3682,13 +3867,20 @@ int IPACM_Lan::add_lan2lan_flt_rule(ipa_ip_type iptype, uint32_t src_v4_addr, ui
 
 	len = sizeof(struct ipa_ioc_mdfy_flt_rule) + sizeof(struct ipa_flt_rule_mdfy);
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	pFilteringTable = (struct ipa_ioc_mdfy_flt_rule*)malloc(len);
 
 	if (pFilteringTable == NULL)
 	{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		IPACMERR("Error allocate flt rule memory...\n");
+=======
+		IPACMERR("Error allocate lan2lan flt rule memory...\n");
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 		IPACMERR("Error allocate lan2lan flt rule memory...\n");
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -3701,6 +3893,7 @@ int IPACM_Lan::add_lan2lan_flt_rule(ipa_ip_type iptype, uint32_t src_v4_addr, ui
 	pFilteringTable->num_rules = 1;
 
 	memset(&flt_rule, 0, sizeof(struct ipa_flt_rule_mdfy));
+<<<<<<< HEAD
 <<<<<<< HEAD
 	flt_rule.status = -1;
 	flt_rule.rule_hdl = rule_hdl;
@@ -3718,6 +3911,8 @@ int IPACM_Lan::add_lan2lan_flt_rule(ipa_ip_type iptype, uint32_t src_v4_addr, ui
 		flt_rule.rule.attrib.u.v4.src_addr = ~0;
 		flt_rule.rule.attrib.u.v4.src_addr_mask = ~0;
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 	if(iptype == IPA_IP_v4)
 	{
@@ -3772,6 +3967,9 @@ int IPACM_Lan::add_lan2lan_flt_rule(ipa_ip_type iptype, uint32_t src_v4_addr, ui
 		flt_rule.rule.attrib.attrib_mask |= IPA_FLT_DST_ADDR;
 		flt_rule.rule.attrib.u.v4.dst_addr = dst_v4_addr;
 		flt_rule.rule.attrib.u.v4.dst_addr_mask = 0xFFFFFFFF;
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 		memcpy(&(pFilteringTable->rules[0]), &flt_rule, sizeof(struct ipa_flt_rule_mdfy));
@@ -3784,18 +3982,25 @@ int IPACM_Lan::add_lan2lan_flt_rule(ipa_ip_type iptype, uint32_t src_v4_addr, ui
 		else
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			IPACMDBG_H("Flt rule reset to dummy, hdl: 0x%x, status: %d\n", pFilteringTable->rules[0].rule_hdl,
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			lan2lan_flt_rule_hdl_v4[i].valid = true;
 			*rule_hdl = lan2lan_flt_rule_hdl_v4[i].rule_hdl;
 			num_lan2lan_flt_rule_v4++;
 			IPACMDBG_H("Flt rule modified, hdl: 0x%x, status: %d\n", pFilteringTable->rules[0].rule_hdl,
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 						pFilteringTable->rules[0].status);
 		}
 	}
 	else if(iptype == IPA_IP_v6)
 	{
+<<<<<<< HEAD
 <<<<<<< HEAD
 		IPACMDBG_H("Reset IPv6 flt rule to dummy\n");
 
@@ -3818,6 +4023,8 @@ int IPACM_Lan::add_lan2lan_flt_rule(ipa_ip_type iptype, uint32_t src_v4_addr, ui
 		flt_rule.rule.attrib.u.v6.dst_addr_mask[3] = ~0;
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		if(num_lan2lan_flt_rule_v6 >= MAX_OFFLOAD_PAIR)
 		{
 			IPACMERR("Lan2lan flt rule table is full, not able to add.\n");
@@ -3888,6 +4095,9 @@ int IPACM_Lan::add_lan2lan_flt_rule(ipa_ip_type iptype, uint32_t src_v4_addr, ui
 		flt_rule.rule.attrib.u.v6.dst_addr_mask[1] = 0xFFFFFFFF;
 		flt_rule.rule.attrib.u.v6.dst_addr_mask[2] = 0xFFFFFFFF;
 		flt_rule.rule.attrib.u.v6.dst_addr_mask[3] = 0xFFFFFFFF;
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 		memcpy(&(pFilteringTable->rules[0]), &flt_rule, sizeof(struct ipa_flt_rule_mdfy));
@@ -3900,12 +4110,18 @@ int IPACM_Lan::add_lan2lan_flt_rule(ipa_ip_type iptype, uint32_t src_v4_addr, ui
 		else
 		{
 <<<<<<< HEAD
+<<<<<<< HEAD
 			IPACMDBG_H("Flt rule reset to dummy, hdl: 0x%x, status: %d\n", pFilteringTable->rules[0].rule_hdl,
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			lan2lan_flt_rule_hdl_v6[i].valid = true;
 			*rule_hdl = lan2lan_flt_rule_hdl_v6[i].rule_hdl;
 			num_lan2lan_flt_rule_v6++;
 			IPACMDBG_H("Flt rule modified, hdl: 0x%x, status: %d\n", pFilteringTable->rules[0].rule_hdl,
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 						pFilteringTable->rules[0].status);
 		}
@@ -3922,6 +4138,7 @@ fail:
 	return res;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void IPACM_Lan::post_del_self_evt()
 {
@@ -4195,6 +4412,86 @@ int IPACM_Lan::add_dummy_lan2lan_flt_rule(ipa_ip_type iptype)
 					goto fail;
 				}
 			}
+=======
+int IPACM_Lan::add_dummy_lan2lan_flt_rule(ipa_ip_type iptype)
+{
+	if(rx_prop == NULL)
+	{
+		IPACMDBG_H("There is no rx_prop for iface %s, not able to add dummy lan2lan filtering rule.\n", dev_name);
+		return 0;
+	}
+
+	int i, len, res = IPACM_SUCCESS;
+	struct ipa_flt_rule_add flt_rule;
+	ipa_ioc_add_flt_rule* pFilteringTable;
+
+	len = sizeof(struct ipa_ioc_add_flt_rule) +	MAX_OFFLOAD_PAIR * sizeof(struct ipa_flt_rule_add);
+
+	pFilteringTable = (struct ipa_ioc_add_flt_rule *)malloc(len);
+	if (pFilteringTable == NULL)
+	{
+		IPACMERR("Error allocate flt table memory...\n");
+		return IPACM_FAILURE;
+	}
+	memset(pFilteringTable, 0, len);
+
+	pFilteringTable->commit = 1;
+	pFilteringTable->ep = rx_prop->rx[0].src_pipe;
+	pFilteringTable->global = false;
+	pFilteringTable->ip = iptype;
+	pFilteringTable->num_rules = MAX_OFFLOAD_PAIR;
+
+	memset(&flt_rule, 0, sizeof(struct ipa_flt_rule_add));
+
+	flt_rule.rule.retain_hdr = 0;
+	flt_rule.at_rear = true;
+	flt_rule.flt_rule_hdl = -1;
+	flt_rule.status = -1;
+	flt_rule.rule.action = IPA_PASS_TO_EXCEPTION;
+#ifdef FEATURE_IPA_V3
+	flt_rule.rule.hashable = true;
+#endif
+	memcpy(&flt_rule.rule.attrib, &rx_prop->rx[0].attrib,
+			sizeof(flt_rule.rule.attrib));
+
+	if(iptype == IPA_IP_v4)
+	{
+		flt_rule.rule.attrib.attrib_mask = IPA_FLT_SRC_ADDR | IPA_FLT_DST_ADDR;
+		flt_rule.rule.attrib.u.v4.src_addr_mask = ~0;
+		flt_rule.rule.attrib.u.v4.src_addr = ~0;
+		flt_rule.rule.attrib.u.v4.dst_addr_mask = ~0;
+		flt_rule.rule.attrib.u.v4.dst_addr = ~0;
+
+		for(i=0; i<MAX_OFFLOAD_PAIR; i++)
+		{
+			memcpy(&(pFilteringTable->rules[i]), &flt_rule, sizeof(struct ipa_flt_rule_add));
+		}
+
+		if (false == m_filtering.AddFilteringRule(pFilteringTable))
+		{
+			IPACMERR("Error adding dummy lan2lan v4 flt rule\n");
+			res = IPACM_FAILURE;
+			goto fail;
+		}
+		else
+		{
+			IPACM_Iface::ipacmcfg->increaseFltRuleCount(rx_prop->rx[0].src_pipe, IPA_IP_v4, MAX_OFFLOAD_PAIR);
+			/* copy filter rule hdls */
+			for (int i = 0; i < MAX_OFFLOAD_PAIR; i++)
+			{
+				if (pFilteringTable->rules[i].status == 0)
+				{
+					lan2lan_flt_rule_hdl_v4[i].rule_hdl = pFilteringTable->rules[i].flt_rule_hdl;
+					IPACMDBG_H("Lan2lan v4 flt rule %d hdl:0x%x\n", i, lan2lan_flt_rule_hdl_v4[i].rule_hdl);
+				}
+				else
+				{
+					IPACMERR("Failed adding lan2lan v4 flt rule %d\n", i);
+					res = IPACM_FAILURE;
+					goto fail;
+				}
+			}
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		}
 	}
 	else if(iptype == IPA_IP_v6)
@@ -4334,12 +4631,16 @@ int IPACM_Lan::reset_to_dummy_flt_rule(ipa_ip_type iptype, uint32_t rule_hdl)
 	if (pFilteringTable == NULL)
 	{
 		IPACMERR("Error allocate flt rule memory...\n");
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		return IPACM_FAILURE;
 	}
 	memset(pFilteringTable, 0, len);
 
 	pFilteringTable->commit = 1;
+<<<<<<< HEAD
 <<<<<<< HEAD
 	pFilteringTable->ep = rx_prop->rx[0].src_pipe;
 	pFilteringTable->global = false;
@@ -4376,6 +4677,8 @@ int IPACM_Lan::reset_to_dummy_flt_rule(ipa_ip_type iptype, uint32_t rule_hdl)
 		{
 			IPACMERR("Error adding dummy private subnet v4 flt rule\n");
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	pFilteringTable->ip = iptype;
 	pFilteringTable->num_rules = 1;
 
@@ -4387,6 +4690,7 @@ int IPACM_Lan::reset_to_dummy_flt_rule(ipa_ip_type iptype, uint32_t rule_hdl)
 	flt_rule.rule.action = IPA_PASS_TO_EXCEPTION;
 
 	if(iptype == IPA_IP_v4)
+<<<<<<< HEAD
 	{
 		IPACMDBG_H("Reset IPv4 flt rule to dummy\n");
 
@@ -4677,6 +4981,26 @@ int IPACM_Lan::eth_bridge_get_hdr_template_hdl(uint32_t* hdr_hdl)
 	*hdr_hdl = hdr.hdl;
 	return IPACM_SUCCESS;
 =======
+=======
+	{
+		IPACMDBG_H("Reset IPv4 flt rule to dummy\n");
+
+		flt_rule.rule.attrib.attrib_mask = IPA_FLT_SRC_ADDR | IPA_FLT_DST_ADDR;
+		flt_rule.rule.attrib.u.v4.dst_addr = ~0;
+		flt_rule.rule.attrib.u.v4.dst_addr_mask = ~0;
+		flt_rule.rule.attrib.u.v4.src_addr = ~0;
+		flt_rule.rule.attrib.u.v4.src_addr_mask = ~0;
+
+		memcpy(&(pFilteringTable->rules[0]), &flt_rule, sizeof(struct ipa_flt_rule_mdfy));
+		if (false == m_filtering.ModifyFilteringRule(pFilteringTable))
+		{
+			IPACMERR("Error modifying filtering rule.\n");
+			res = IPACM_FAILURE;
+			goto fail;
+		}
+		else
+		{
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			IPACMDBG_H("Flt rule reset to dummy, hdl: 0x%x, status: %d\n", pFilteringTable->rules[0].rule_hdl,
 						pFilteringTable->rules[0].status);
 		}
@@ -7111,6 +7435,9 @@ enum ipa_hdr_l2_type IPACM_Lan::eth_bridge_get_l2_hdr_type()
 	{
 		return IPACM_Lan::wlan_hdr_type;
 	}
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 }
 
@@ -7361,6 +7688,7 @@ int IPACM_Lan::handle_tethering_client(bool reset, ipacm_client_enum ipa_client)
 	close(fd_wwan_ioctl);
 	return ret;
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 /* mac address has to be provided for client related events */
@@ -7732,5 +8060,7 @@ int IPACM_Lan::eth_bridge_del_hdr_proc_ctx(uint32_t hdr_proc_ctx_hdl)
 	}
 	return IPACM_SUCCESS;
 }
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr

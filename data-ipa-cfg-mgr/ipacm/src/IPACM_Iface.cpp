@@ -643,7 +643,10 @@ int IPACM_Iface::init_fl_rule(ipa_ip_type iptype)
 	const char *dev_ecm0="ecm0";
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/* update the iface ip-type to be IPA_IP_v4, IPA_IP_v6 or both*/
 	if (iptype == IPA_IP_v4)
 	{
@@ -686,6 +689,9 @@ int IPACM_Iface::init_fl_rule(ipa_ip_type iptype)
 		IPACMDBG_H(" interface(%s:%d) now ip-type is %d\n", dev_name, ipa_if_num, ip_type);
 	}
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
     /* ADD corresponding ipa_rm_resource_name of RX-endpoint before adding all IPV4V6 FT-rules */
 	if((IPACM_Iface::ipacmcfg->iface_table[ipa_if_num].if_cat== WAN_IF) || (IPACM_Iface::ipacmcfg->iface_table[ipa_if_num].if_cat== EMBMS_IF))
@@ -996,6 +1002,7 @@ int IPACM_Iface::ipa_get_if_index
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 void IPACM_Iface::config_ip_type(ipa_ip_type iptype)
 {
 	/* update the iface ip-type to be IPA_IP_v4, IPA_IP_v6 or both*/
@@ -1039,6 +1046,8 @@ void IPACM_Iface::config_ip_type(ipa_ip_type iptype)
 
 	return;
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 size_t IPACM_Iface::strlcpy(char *dest, const char *src, size_t n)
 {
 	size_t ret = strlen(src);
@@ -1082,5 +1091,8 @@ size_t IPACM_Iface::strlcat(char *dest, const char *src, size_t n)
 		IPACMERR(" dest buffer full\n");
 	}
 	return ret;
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 }

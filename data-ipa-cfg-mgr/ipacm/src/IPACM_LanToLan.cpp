@@ -40,6 +40,7 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 #include <stdlib.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include "IPACM_LanToLan.h"
 #include "IPACM_Wlan.h"
 
@@ -93,6 +94,8 @@ IPACM_LanToLan::IPACM_LanToLan()
 	IPACM_EvtDispatcher::registr(IPA_ETH_BRIDGE_WLAN_SCC_MCC_SWITCH, this);
 
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #include <assert.h>
 #include "IPACM_LanToLan.h"
 #include "IPACM_Wlan.h"
@@ -119,6 +122,9 @@ IPACM_LanToLan::IPACM_LanToLan()
 	IPACM_EvtDispatcher::registr(IPA_LAN_CLIENT_POWER_RECOVER, this);
 	IPACM_EvtDispatcher::registr(IPA_LAN_TO_LAN_NEW_CONNECTION, this);
 	IPACM_EvtDispatcher::registr(IPA_LAN_TO_LAN_DEL_CONNECTION, this);
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	return;
 }
@@ -126,8 +132,11 @@ IPACM_LanToLan::IPACM_LanToLan()
 IPACM_LanToLan::~IPACM_LanToLan()
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
 	IPACMDBG_DMESG("WARNING: UNEXPECTEDLY KILL LAN2LAN CONTROLLER!\n");
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	client_table_v4::iterator it_v4;
 	for(it_v4 = client_info_v4_.begin(); it_v4 != client_info_v4_.end(); it_v4++)
 	{
@@ -146,12 +155,16 @@ IPACM_LanToLan::~IPACM_LanToLan()
 	client_info_v6_.clear();
 	IPACMDBG("Clear IPv6 hash table in Lan2Lan distructor.\n");
 
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	return;
 }
 
 void IPACM_LanToLan::event_callback(ipa_cm_event_id event, void* param)
 {
+<<<<<<< HEAD
 <<<<<<< HEAD
 	ipacm_event_eth_bridge *data = (ipacm_event_eth_bridge*)param;
 	IPACMDBG_H("Get %s event.\n", IPACM_Iface::ipacmcfg->getEventName(event));
@@ -186,6 +199,8 @@ void IPACM_LanToLan::event_callback(ipa_cm_event_id event, void* param)
 		{
 			handle_wlan_scc_mcc_switch(data);
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	switch(event)
 	{
 		case IPA_LAN_CLIENT_ACTIVE:
@@ -239,12 +254,16 @@ void IPACM_LanToLan::event_callback(ipa_cm_event_id event, void* param)
 			IPACMDBG_H("Get IPA_LAN_CLIENT_POWER_RECOVER event.\n");
 			ipacm_event_lan_client* data = (ipacm_event_lan_client*)param;
 			handle_client_power_recover(data);
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			break;
 		}
 		default:
 			break;
 	}
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 	print_data_structure_info();
@@ -435,6 +454,8 @@ void IPACM_LanToLan::handle_client_add(ipacm_event_eth_bridge *data)
 		{
 			IPACMDBG_H("Cached client add event has reached maximum number.\n");
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	return;
 }
 
@@ -741,6 +762,7 @@ void IPACM_LanToLan::handle_client_inactive(ipacm_event_lan_client* data)
 		else
 		{
 			client_info_v6_.erase(v6_addr);
+<<<<<<< HEAD
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		}
 	}
@@ -784,11 +806,14 @@ void IPACM_LanToLan::handle_wlan_scc_mcc_switch(ipacm_event_eth_bridge *data)
 		{
 			it_iface->handle_wlan_scc_mcc_switch();
 			break;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		}
 	}
 	return;
 }
 
+<<<<<<< HEAD
 void IPACM_LanToLan::handle_cached_client_add_event(IPACM_Lan *p_iface)
 {
 	list<ipacm_event_eth_bridge>::iterator it;
@@ -808,6 +833,8 @@ void IPACM_LanToLan::handle_cached_client_add_event(IPACM_Lan *p_iface)
 			it++;
 		}
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 int IPACM_LanToLan::turnoff_offload_links(ipa_ip_type iptype, client_info* client)
 {
 	if(client == NULL)
@@ -957,11 +984,15 @@ void IPACM_LanToLan::handle_client_disconnect(ipacm_event_lan_client* data)
 	else
 	{
 		client_info_v6_.erase(v6_addr);
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	}
 	return;
 }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 void IPACM_LanToLan::clear_cached_client_add_event(IPACM_Lan *p_iface)
 {
@@ -1309,6 +1340,116 @@ void IPACM_LanToLan::handle_new_lan2lan_connection(ipacm_event_connection* data)
 	if(data->iptype == IPA_IP_v4)
 	{
 		if(client_info_v4_.count(data->src_ipv4_addr) == 0 || client_info_v4_.count(data->dst_ipv4_addr) == 0)
+=======
+int IPACM_LanToLan::clear_peer_list(client_info* client)
+{
+	if(client == NULL)
+	{
+		IPACMERR("Client is NULL.\n");
+		return IPACM_FAILURE;
+	}
+
+	bool err_flag;
+	peer_info_list::iterator client_it;
+	peer_info_list::iterator peer_it;
+	client_info* peer;
+
+	for(client_it = client->peer.begin(); client_it != client->peer.end(); client_it++)
+	{
+		err_flag = true;
+		peer = client_it->peer_pointer;
+		for(peer_it = peer->peer.begin(); peer_it != peer->peer.end(); peer_it++)
+		{
+			if(peer_it->peer_pointer == client)
+			{
+				peer->peer.erase(peer_it);
+				err_flag = false;
+				break;
+			}
+		}
+		if(err_flag == true)
+		{
+			IPACMERR("Failed to find peer info.\n");
+			return IPACM_FAILURE;
+		}
+	}
+	client->peer.clear();
+	return IPACM_SUCCESS;
+}
+
+void IPACM_LanToLan::handle_client_power_save(ipacm_event_lan_client* data)
+{
+	if(data == NULL)
+	{
+		IPACMERR("No client info is found.\n");
+		return;
+	}
+	if(data->mac_addr == NULL || data->ipv6_addr == NULL || data->p_iface == NULL)
+	{
+		IPACMERR("Event data is not populated properly.\n");
+		return;
+	}
+	if(data->iptype != IPA_IP_v4 && data->iptype != IPA_IP_v6)
+	{
+		IPACMERR("IP type is not expected: %d.\n", data->iptype);
+		return;
+	}
+
+	IPACMDBG_H("Client power save info: iface %s, iptype: %d, mac: 0x%02x%02x%02x%02x%02x%02x, v4_addr: 0x%08x, v6_addr: 0x%08x%08x%08x%08x \n",
+		data->p_iface->dev_name, data->iptype,
+		data->mac_addr[0], data->mac_addr[1], data->mac_addr[2], data->mac_addr[3], data->mac_addr[4], data->mac_addr[5],
+		data->ipv4_addr, data->ipv6_addr[0], data->ipv6_addr[1], data->ipv6_addr[2], data->ipv6_addr[3]);
+
+	client_info* client_ptr;
+	uint64_t v6_addr;
+
+	if(data->iptype == IPA_IP_v4)
+	{
+		if(client_info_v4_.count(data->ipv4_addr) == 0)//if not found the client, return
+		{
+			IPACMERR("The client is not found the client, return.\n");
+			return;
+		}
+		IPACMDBG_H("The client is found.\n");
+		client_info& client = client_info_v4_[data->ipv4_addr];
+		client_ptr = &client;
+	}
+	else
+	{
+		memcpy(&v6_addr, &(data->ipv6_addr[2]), sizeof(uint64_t));
+		if(client_info_v6_.count(v6_addr) == 0)	//if not found the client, insert it in table
+		{
+			IPACMERR("The client is not found the client, return.\n");
+			return;
+		}
+		IPACMDBG_H("The client is found.\n");
+		client_info& client = client_info_v6_[v6_addr];
+		client_ptr = &client;
+	}
+
+	if(remove_flt_rules(data->iptype, client_ptr) == IPACM_FAILURE)
+	{
+		IPACMERR("Failed to remove flt rules when power save.\n");
+		return;
+	}
+	client_ptr->is_active = false;
+	client_ptr->is_powersave = true;
+	return;
+}
+
+void IPACM_LanToLan::handle_new_lan2lan_connection(ipacm_event_connection* data)
+{
+	IPACMDBG_H("New lan2lan connection info: IP type: %d, src_v4_addr: 0x%08x, dst_v4_addr: 0x%08x\n", data->iptype, data->src_ipv4_addr, data->dst_ipv4_addr);
+	IPACMDBG_H("src_v6_addr: 0x%08x%08x%08x%08x, dst_v6_addr: 0x%08x%08x%08x%08x", data->src_ipv6_addr[0], data->src_ipv6_addr[1], data->src_ipv6_addr[2],
+				data->src_ipv6_addr[3], data->dst_ipv6_addr[0], data->dst_ipv6_addr[1], data->dst_ipv6_addr[2], data->dst_ipv6_addr[3]);
+
+	client_info* src_client_ptr;
+	client_info* dst_client_ptr;
+
+	if(data->iptype == IPA_IP_v4)
+	{
+		if(client_info_v4_.count(data->src_ipv4_addr) == 0 || client_info_v4_.count(data->dst_ipv4_addr) == 0)
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		{
 			IPACMERR("Either source or destination is not in table.\n");
 			return;
@@ -1506,6 +1647,7 @@ void IPACM_LanToLan::handle_del_lan2lan_connection(ipacm_event_connection* data)
 		else
 		{
 			client_info_v6_.erase(dst_ipv6_addr);
+<<<<<<< HEAD
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		}
 	}
@@ -2135,6 +2277,13 @@ void IPACM_LanToLan_Iface::decrement_ref_cnt_peer_l2_hdr_type(ipa_hdr_l2_type pe
 		ref_cnt_peer_l2_hdr_type[peer_l2_type]);
 
 =======
+=======
+		}
+	}
+	return;
+}
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 //If need to remove an entry in peer list, return true, otherwise return false
 bool IPACM_LanToLan::remove_connection(client_info* src_client, client_info* dst_client)
 {
@@ -2811,6 +2960,9 @@ void IPACM_LanToLan::check_cache_connection(ipa_ip_type iptype, client_info* cli
 		}
 	}
 #endif
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	return;
 }

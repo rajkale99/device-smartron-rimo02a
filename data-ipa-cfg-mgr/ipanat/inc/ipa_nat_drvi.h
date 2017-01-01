@@ -40,7 +40,10 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <sys/inotify.h>
 #include <errno.h>
 <<<<<<< HEAD
+<<<<<<< HEAD
 #include <pthread.h>
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 

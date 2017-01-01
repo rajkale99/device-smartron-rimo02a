@@ -63,7 +63,11 @@ typedef struct _ipa_rm_client
 }ipa_rm_client;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 #define MAX_NUM_EXT_PROPS 25
+=======
+#define MAX_NUM_EXT_PROPS 15
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 #define MAX_NUM_EXT_PROPS 15
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -120,8 +124,11 @@ public:
 	bool ipacm_odu_embms_enable;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 	bool ipacm_ip_passthrough_mode;
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 =======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	int ipa_nat_iface_entries;
@@ -149,12 +156,18 @@ public:
 	struct ipa_ioc_get_rt_tbl rt_tbl_lan_v4, rt_tbl_wan_v4, rt_tbl_default_v4, rt_tbl_v6, rt_tbl_wan_v6;
 	struct ipa_ioc_get_rt_tbl rt_tbl_wan_dl;
 <<<<<<< HEAD
+<<<<<<< HEAD
 	struct ipa_ioc_get_rt_tbl rt_tbl_odu_v4, rt_tbl_odu_v6;
 =======
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	struct ipa_ioc_get_rt_tbl rt_tbl_lan2lan_v4, rt_tbl_lan2lan_v6;
 	struct ipa_ioc_get_rt_tbl rt_tbl_odu_v4, rt_tbl_odu_v6;
 	struct ipa_ioc_get_rt_tbl rt_tbl_eth_bridge_lan_lan_v4, rt_tbl_eth_bridge_lan_wlan_v4, rt_tbl_eth_bridge_wlan_wlan_v4;
 	struct ipa_ioc_get_rt_tbl rt_tbl_eth_bridge_lan_lan_v6, rt_tbl_eth_bridge_lan_wlan_v6, rt_tbl_eth_bridge_wlan_wlan_v6;
+<<<<<<< HEAD
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+=======
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 	bool isMCC_Mode;
