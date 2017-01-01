@@ -97,7 +97,10 @@ public:
 	static uint8_t xlat_mux_id;
 	/* IPACM interface name */
 	static char wan_up_dev_name[IF_NAME_LEN];
+<<<<<<< HEAD
 	static uint32_t curr_wan_ip;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	IPACM_Wan(int, ipacm_wan_iface_type, uint8_t *);
 	virtual ~IPACM_Wan();
 
@@ -141,11 +144,14 @@ public:
 #endif
 	}
 
+<<<<<<< HEAD
 	static uint32_t getWANIP()
 	{
 		return curr_wan_ip;
 	}
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	static bool getXlat_Mux_Id()
 	{
 		return xlat_mux_id;
@@ -182,7 +188,10 @@ public:
 
 private:
 
+<<<<<<< HEAD
 	bool is_ipv6_frag_firewall_flt_rule_installed;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	uint32_t ipv6_frag_firewall_flt_rule_hdl;
 	uint32_t *wan_route_rule_v4_hdl;
 	uint32_t *wan_route_rule_v6_hdl;
@@ -459,6 +468,12 @@ private:
 	int config_dft_firewall_rules_ex(struct ipa_flt_rule_add* rules, int rule_offset,
 		ipa_ip_type iptype);
 
+<<<<<<< HEAD
+=======
+	/* Change IP Type.*/
+	void config_ip_type(ipa_ip_type iptype);
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/* init filtering rule in wan dl filtering table */
 	int init_fl_rule_ex(ipa_ip_type iptype);
 

@@ -260,9 +260,12 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 {
 	int ret = 0, cnt, num_rules = 0, pos = 0;
 	ipa_install_fltr_rule_req_msg_v01 qmi_rule_msg;
+<<<<<<< HEAD
 #ifdef FEATURE_IPA_V3
 	ipa_install_fltr_rule_req_ex_msg_v01 qmi_rule_ex_msg;
 #endif
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 	int fd_wwan_ioctl = open(WWAN_QMI_IOCTL_DEVICE_NAME, O_RDWR);
 	if(fd_wwan_ioctl < 0)
@@ -282,8 +285,11 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 		IPACMDBG_H("Get %d WAN DL IPv6 filtering rules.\n", rule_table_v6->num_rules);
 	}
 
+<<<<<<< HEAD
 	/* if it is not IPA v3, use old QMI format */
 #ifndef FEATURE_IPA_V3
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	if(num_rules > QMI_IPA_MAX_FILTERS_V01)
 	{
 		IPACMERR("The number of filtering rules exceed limit.\n");
@@ -296,6 +302,7 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 
 		if (num_rules > 0)
 		{
+<<<<<<< HEAD
 			qmi_rule_msg.filter_spec_list_valid = true;
 		}
 		else
@@ -304,6 +311,29 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 		}
 
 		qmi_rule_msg.filter_spec_list_len = num_rules;
+=======
+#ifndef FEATURE_IPA_V3
+			qmi_rule_msg.filter_spec_list_valid = true;
+#else /* defined (FEATURE_IPA_V3) */
+			qmi_rule_msg.filter_spec_ex_list_valid = true;
+#endif
+		}
+		else
+		{
+#ifndef FEATURE_IPA_V3
+			qmi_rule_msg.filter_spec_list_valid = false;
+#else /* defined (FEATURE_IPA_V3) */
+			qmi_rule_msg.filter_spec_ex_list_valid = false;
+#endif
+		}
+
+#ifndef FEATURE_IPA_V3
+		qmi_rule_msg.filter_spec_list_len = num_rules;
+#else /* defined (FEATURE_IPA_V3) */
+		qmi_rule_msg.filter_spec_ex_list_len = num_rules;
+#endif
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		qmi_rule_msg.source_pipe_index_valid = 0;
 
 		IPACMDBG_H("Get %d WAN DL filtering rules in total.\n", num_rules);
@@ -314,6 +344,10 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 			{
 				if (pos < QMI_IPA_MAX_FILTERS_V01)
 				{
+<<<<<<< HEAD
+=======
+#ifndef FEATURE_IPA_V3
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 					qmi_rule_msg.filter_spec_list[pos].filter_spec_identifier = pos;
 					qmi_rule_msg.filter_spec_list[pos].ip_type = QMI_IPA_IP_TYPE_V4_V01;
 					qmi_rule_msg.filter_spec_list[pos].filter_action = GetQmiFilterAction(rule_table_v4->rules[cnt].rule.action);
@@ -324,6 +358,22 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 					memcpy(&qmi_rule_msg.filter_spec_list[pos].filter_rule,
 						&rule_table_v4->rules[cnt].rule.eq_attrib,
 						sizeof(struct ipa_filter_rule_type_v01));
+<<<<<<< HEAD
+=======
+#else /* defined (FEATURE_IPA_V3) */
+					qmi_rule_msg.filter_spec_ex_list[pos].ip_type = QMI_IPA_IP_TYPE_V4_V01;
+					qmi_rule_msg.filter_spec_ex_list[pos].filter_action = GetQmiFilterAction(rule_table_v4->rules[cnt].rule.action);
+					qmi_rule_msg.filter_spec_ex_list[pos].is_routing_table_index_valid = 1;
+					qmi_rule_msg.filter_spec_ex_list[pos].route_table_index = rule_table_v4->rules[cnt].rule.rt_tbl_idx;
+					qmi_rule_msg.filter_spec_ex_list[pos].is_mux_id_valid = 1;
+					qmi_rule_msg.filter_spec_ex_list[pos].mux_id = mux_id;
+					qmi_rule_msg.filter_spec_ex_list[pos].rule_id = rule_table_v4->rules[cnt].rule.rule_id;
+					qmi_rule_msg.filter_spec_ex_list[pos].is_rule_hashable = rule_table_v4->rules[cnt].rule.hashable;
+					memcpy(&qmi_rule_msg.filter_spec_ex_list[pos].filter_rule,
+						&rule_table_v4->rules[cnt].rule.eq_attrib,
+						sizeof(struct ipa_filter_rule_type_v01));
+#endif
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 					pos++;
 				}
 				else
@@ -339,6 +389,10 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 			{
 				if (pos < QMI_IPA_MAX_FILTERS_V01)
 				{
+<<<<<<< HEAD
+=======
+#ifndef FEATURE_IPA_V3
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 					qmi_rule_msg.filter_spec_list[pos].filter_spec_identifier = pos;
 					qmi_rule_msg.filter_spec_list[pos].ip_type = QMI_IPA_IP_TYPE_V6_V01;
 					qmi_rule_msg.filter_spec_list[pos].filter_action = GetQmiFilterAction(rule_table_v6->rules[cnt].rule.action);
@@ -349,6 +403,22 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 					memcpy(&qmi_rule_msg.filter_spec_list[pos].filter_rule,
 						&rule_table_v6->rules[cnt].rule.eq_attrib,
 						sizeof(struct ipa_filter_rule_type_v01));
+<<<<<<< HEAD
+=======
+#else /* defined (FEATURE_IPA_V3) */
+					qmi_rule_msg.filter_spec_ex_list[pos].ip_type = QMI_IPA_IP_TYPE_V6_V01;
+					qmi_rule_msg.filter_spec_ex_list[pos].filter_action = GetQmiFilterAction(rule_table_v6->rules[cnt].rule.action);
+					qmi_rule_msg.filter_spec_ex_list[pos].is_routing_table_index_valid = 1;
+					qmi_rule_msg.filter_spec_ex_list[pos].route_table_index = rule_table_v6->rules[cnt].rule.rt_tbl_idx;
+					qmi_rule_msg.filter_spec_ex_list[pos].is_mux_id_valid = 1;
+					qmi_rule_msg.filter_spec_ex_list[pos].mux_id = mux_id;
+					qmi_rule_msg.filter_spec_ex_list[pos].rule_id = rule_table_v6->rules[cnt].rule.rule_id;
+					qmi_rule_msg.filter_spec_ex_list[pos].is_rule_hashable = rule_table_v6->rules[cnt].rule.hashable;
+					memcpy(&qmi_rule_msg.filter_spec_ex_list[pos].filter_rule,
+						&rule_table_v6->rules[cnt].rule.eq_attrib,
+						sizeof(struct ipa_filter_rule_type_v01));
+#endif
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 					pos++;
 				}
 				else
@@ -366,6 +436,7 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 			return false;
 		}
 	}
+<<<<<<< HEAD
 	/* if it is IPA v3, use new QMI format */
 #else
 	if(num_rules > QMI_IPA_MAX_FILTERS_EX_V01)
@@ -455,6 +526,9 @@ bool IPACM_Filtering::AddWanDLFilteringRule(struct ipa_ioc_add_flt_rule const *r
 	}
 #endif
 
+=======
+	IPACMDBG("Added Filtering rule %p\n", &qmi_rule_msg);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	close(fd_wwan_ioctl);
 	return true;
 }

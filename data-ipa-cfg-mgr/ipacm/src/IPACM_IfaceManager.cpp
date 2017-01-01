@@ -56,8 +56,13 @@ IPACM_IfaceManager::IPACM_IfaceManager()
 	IPACM_EvtDispatcher::registr(IPA_CFG_CHANGE_EVENT, this); 		// register for IPA_CFG_CHANGE event
 	IPACM_EvtDispatcher::registr(IPA_LINK_UP_EVENT, this);
 	IPACM_EvtDispatcher::registr(IPA_WLAN_AP_LINK_UP_EVENT, this);  // register for wlan AP-iface
+<<<<<<< HEAD
 	IPACM_EvtDispatcher::registr(IPA_WLAN_STA_LINK_UP_EVENT, this); // register for wlan STA-iface
 #ifndef FEATURE_IPA_ANDROID
+=======
+#ifndef FEATURE_IPA_ANDROID
+	IPACM_EvtDispatcher::registr(IPA_WLAN_STA_LINK_UP_EVENT, this); // register for wlan STA-iface
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/* only MDM targets support device on bridge mode */
 	IPACM_EvtDispatcher::registr(IPA_BRIDGE_LINK_UP_EVENT, this); 	// register for IPA_BRIDGE_LINK_UP_EVENT event
 #endif /* not defined(FEATURE_IPA_ANDROID)*/
@@ -83,11 +88,14 @@ void IPACM_IfaceManager::event_callback(ipa_cm_event_id event, void *param)
 		case IPA_BRIDGE_LINK_UP_EVENT:
 			IPACMDBG_H(" Save the bridge0 mac info in IPACM_cfg \n");
 			ipa_interface_index = IPACM_Iface::iface_ipa_index_query(data_all->if_index);
+<<<<<<< HEAD
 			/* check for failure return */
 			if (IPACM_FAILURE == ipa_interface_index) {
 				IPACMERR("IPA_BRIDGE_LINK_UP_EVENT: not supported iface id: %d\n", data_all->if_index);
 				break;
 			}
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			/* check if iface is bridge interface*/
 			if (strcmp(IPACM_Iface::ipacmcfg->ipa_virtual_iface_name, IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].iface_name) == 0)
 			{
@@ -103,11 +111,14 @@ void IPACM_IfaceManager::event_callback(ipa_cm_event_id event, void *param)
 		case IPA_LINK_UP_EVENT:
 			IPACMDBG_H("Recieved IPA_LINK_UP_EVENT event: link up %d: \n", evt_data->if_index);
 			ipa_interface_index = IPACM_Iface::iface_ipa_index_query(evt_data->if_index);
+<<<<<<< HEAD
 			/* check for failure return */
 			if (IPACM_FAILURE == ipa_interface_index) {
 				IPACMERR("IPA_LINK_UP_EVENT: not supported iface id: %d\n", evt_data->if_index);
 				break;
 			}
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			/* LTE-backhaul */
 			if(IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].if_cat == EMBMS_IF)
 			{
@@ -125,11 +136,14 @@ void IPACM_IfaceManager::event_callback(ipa_cm_event_id event, void *param)
 		case IPA_USB_LINK_UP_EVENT:
 			IPACMDBG_H("Recieved IPA_USB_LINK_UP_EVENT event: link up %d: \n", evt_data->if_index);
 			ipa_interface_index = IPACM_Iface::iface_ipa_index_query(evt_data->if_index);
+<<<<<<< HEAD
 			/* check for failure return */
 			if (IPACM_FAILURE == ipa_interface_index) {
 				IPACMERR("IPA_USB_LINK_UP_EVENT: not supported iface id: %d\n", evt_data->if_index);
 				break;
 			}
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			/* check if it's WAN_IF */
 			if(IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].if_cat == WAN_IF)
 			{
@@ -149,11 +163,14 @@ void IPACM_IfaceManager::event_callback(ipa_cm_event_id event, void *param)
 
 		case IPA_WLAN_AP_LINK_UP_EVENT:
 			ipa_interface_index = IPACM_Iface::iface_ipa_index_query(evt_data->if_index);
+<<<<<<< HEAD
 			/* check for failure return */
 			if (IPACM_FAILURE == ipa_interface_index) {
 				IPACMERR("IPA_WLAN_AP_LINK_UP_EVENT: not supported iface id: %d\n", evt_data->if_index);
 				break;
 			}
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			/* change iface category from unknown to WLAN_IF */
 			if(IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].if_cat == UNKNOWN_IF)
 			{
@@ -171,11 +188,14 @@ void IPACM_IfaceManager::event_callback(ipa_cm_event_id event, void *param)
 
 		case IPA_WLAN_STA_LINK_UP_EVENT:
 			ipa_interface_index = IPACM_Iface::iface_ipa_index_query(StaData->if_index);
+<<<<<<< HEAD
 			/* check for failure return */
 			if (IPACM_FAILURE == ipa_interface_index) {
 				IPACMERR("IPA_WLAN_STA_LINK_UP_EVENT: not supported iface id: %d\n", StaData->if_index);
 				break;
 			}
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			/* change iface category from unknown to WAN_IF */
 			if(IPACM_Iface::ipacmcfg->iface_table[ipa_interface_index].if_cat == UNKNOWN_IF)
 			{
@@ -200,11 +220,14 @@ void IPACM_IfaceManager::event_callback(ipa_cm_event_id event, void *param)
 		/* Add new instance open for eMBMS iface and wan iface */
 		case IPA_WAN_EMBMS_LINK_UP_EVENT:
 			ipa_interface_index = IPACM_Iface::iface_ipa_index_query(evt_data->if_index);
+<<<<<<< HEAD
 			/* check for failure return */
 			if (IPACM_FAILURE == ipa_interface_index) {
 				IPACMERR("IPA_WAN_EMBMS_LINK_UP_EVENT: not supported iface id: %d\n", evt_data->if_index);
 				break;
 			}
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			/* change iface category from unknown to EMBMS_IF */
 			if ((IPACM_Iface::ipacmcfg->ipacm_odu_enable == true) && (IPACM_Iface::ipacmcfg->ipacm_odu_embms_enable == true))
 			{
@@ -275,6 +298,15 @@ int IPACM_IfaceManager::create_iface_instance(ipacm_ifacemgr_data *param)
 #endif
 				IPACM_EvtDispatcher::registr(IPA_CFG_CHANGE_EVENT, lan); 				// register for IPA_CFG_CHANGE event
 				IPACM_EvtDispatcher::registr(IPA_PRIVATE_SUBNET_CHANGE_EVENT, lan); 	// register for IPA_PRIVATE_SUBNET_CHANGE_EVENT event
+<<<<<<< HEAD
+=======
+#ifdef FEATURE_ETH_BRIDGE_LE
+				IPACM_EvtDispatcher::registr(IPA_ETH_BRIDGE_CLIENT_ADD_EVENT, lan);
+				IPACM_EvtDispatcher::registr(IPA_ETH_BRIDGE_CLIENT_DEL_EVENT, lan);
+				IPACM_EvtDispatcher::registr(IPA_ETH_BRIDGE_HDR_PROC_CTX_SET_EVENT, lan);
+				IPACM_EvtDispatcher::registr(IPA_ETH_BRIDGE_HDR_PROC_CTX_UNSET_EVENT, lan);
+#endif
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 #ifdef FEATURE_IPA_ANDROID
 				IPACM_EvtDispatcher::registr(IPA_TETHERING_STATS_UPDATE_EVENT, lan);
 #endif
@@ -327,6 +359,15 @@ int IPACM_IfaceManager::create_iface_instance(ipacm_ifacemgr_data *param)
 					IPACM_EvtDispatcher::registr(IPA_HANDLE_WAN_UP_V6, odu);
 					IPACM_EvtDispatcher::registr(IPA_HANDLE_WAN_DOWN, odu);
 					IPACM_EvtDispatcher::registr(IPA_HANDLE_WAN_DOWN_V6, odu);
+<<<<<<< HEAD
+=======
+#ifdef FEATURE_ETH_BRIDGE_LE
+					IPACM_EvtDispatcher::registr(IPA_ETH_BRIDGE_CLIENT_ADD_EVENT, odu);
+					IPACM_EvtDispatcher::registr(IPA_ETH_BRIDGE_CLIENT_DEL_EVENT, odu);
+					IPACM_EvtDispatcher::registr(IPA_ETH_BRIDGE_HDR_PROC_CTX_SET_EVENT, odu);
+					IPACM_EvtDispatcher::registr(IPA_ETH_BRIDGE_HDR_PROC_CTX_UNSET_EVENT, odu);
+#endif
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 					IPACM_EvtDispatcher::registr(IPA_CRADLE_WAN_MODE_SWITCH, odu);
 					IPACM_EvtDispatcher::registr(IPA_LINK_DOWN_EVENT, odu);
 					/* IPA_LAN_DELETE_SELF should be always last */
@@ -382,6 +423,13 @@ int IPACM_IfaceManager::create_iface_instance(ipacm_ifacemgr_data *param)
 #endif
 				IPACM_EvtDispatcher::registr(IPA_PRIVATE_SUBNET_CHANGE_EVENT, wl); 	// register for IPA_PRIVATE_SUBNET_CHANGE_EVENT event
 #ifdef FEATURE_ETH_BRIDGE_LE
+<<<<<<< HEAD
+=======
+				IPACM_EvtDispatcher::registr(IPA_ETH_BRIDGE_CLIENT_ADD_EVENT, wl);
+				IPACM_EvtDispatcher::registr(IPA_ETH_BRIDGE_CLIENT_DEL_EVENT, wl);
+				IPACM_EvtDispatcher::registr(IPA_ETH_BRIDGE_HDR_PROC_CTX_SET_EVENT, wl);
+				IPACM_EvtDispatcher::registr(IPA_ETH_BRIDGE_HDR_PROC_CTX_UNSET_EVENT, wl);
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 				IPACM_EvtDispatcher::registr(IPA_CFG_CHANGE_EVENT, wl);
 #endif
 				IPACM_EvtDispatcher::registr(IPA_CRADLE_WAN_MODE_SWITCH, wl);
@@ -436,7 +484,11 @@ int IPACM_IfaceManager::create_iface_instance(ipacm_ifacemgr_data *param)
 					if(is_sta_mode == WLAN_WAN)
 					{
 						IPACM_EvtDispatcher::registr(IPA_WLAN_LINK_DOWN_EVENT, w); // for STA mode
+<<<<<<< HEAD
 #ifndef FEATURE_IPA_ANDROID
+=======
+#ifndef FEATURE_IPA_ANDROI
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 						IPACM_EvtDispatcher::registr(IPA_WLAN_SWITCH_TO_SCC, w);
 						IPACM_EvtDispatcher::registr(IPA_WLAN_SWITCH_TO_MCC, w);
 #endif

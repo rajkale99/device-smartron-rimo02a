@@ -49,11 +49,14 @@
 			   <Category>WAN</Category>
 			</Iface>
 			<Iface>
+<<<<<<< HEAD
 			   <Name>softap0</Name>
 			   <Category>UNKNOWN</Category>
 			   <WlanMode>full</WlanMode>
 			</Iface>
 			<Iface>
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			   <Name>wlan0</Name>
 			   <Category>UNKNOWN</Category>
 			   <WlanMode>full</WlanMode>
@@ -64,6 +67,7 @@
 			   <WlanMode>full</WlanMode>
 			</Iface>
 			<Iface>
+<<<<<<< HEAD
 			   <Name>wlan2</Name>
 			   <Category>UNKNOWN</Category>
 			   <WlanMode>full</WlanMode>
@@ -74,6 +78,8 @@
 			   <WlanMode>full</WlanMode>
 			</Iface>
 			<Iface>
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			   <Name>eth0</Name>
 			   <Category>ODU</Category>
 			</Iface>
@@ -82,9 +88,12 @@
 			   <Category>VIRTUAL</Category>
 		    </Iface>
 		</IPACMIface>
+<<<<<<< HEAD
 		<IPPassthroughFlag>
 			<IPPassthroughMode>0</IPPassthroughMode>
 		</IPPassthroughFlag>
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		<IPACMPrivateSubnet>
 			<Subnet>
   			   <SubnetAddress>192.168.225.0</SubnetAddress>

@@ -176,10 +176,15 @@ bool IPACM_Routing::GetRoutingTable(struct ipa_ioc_get_rt_tbl *routingTable)
 		IPACMERR("IPA_IOCTL_GET_RT_TBL ioctl failed, routingTable =0x%p, retval=0x%x.\n", routingTable, retval);
 		return false;
 	}
+<<<<<<< HEAD
 	IPACMDBG_H("IPA_IOCTL_GET_RT_TBL ioctl issued to IPA routing block.\n");
 	/* put routing table right after successfully get routing table */
 	PutRoutingTable(routingTable->hdl);
 
+=======
+
+	IPACMDBG_H("IPA_IOCTL_GET_RT_TBL ioctl issued to IPA routing block.\n");
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	return true;
 }
 

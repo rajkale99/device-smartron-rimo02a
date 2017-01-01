@@ -99,12 +99,25 @@ const char *ipacm_event_name[] = {
 	__stringify(IPA_HANDLE_WAN_DOWN_V6_TETHER),            /* ipacm_event_iface_up_tehter */
 	__stringify(IPA_HANDLE_WLAN_UP),                       /* ipacm_event_iface_up */
 	__stringify(IPA_HANDLE_LAN_UP),                        /* ipacm_event_iface_up */
+<<<<<<< HEAD
 	__stringify(IPA_ETH_BRIDGE_IFACE_UP),                  /* ipacm_event_eth_bridge*/
 	__stringify(IPA_ETH_BRIDGE_IFACE_DOWN),                /* ipacm_event_eth_bridge*/
 	__stringify(IPA_ETH_BRIDGE_CLIENT_ADD),                /* ipacm_event_eth_bridge*/
 	__stringify(IPA_ETH_BRIDGE_CLIENT_DEL),                /* ipacm_event_eth_bridge*/
 	__stringify(IPA_ETH_BRIDGE_WLAN_SCC_MCC_SWITCH),       /* ipacm_event_eth_bridge*/
 	__stringify(IPA_LAN_DELETE_SELF),                      /* ipacm_event_data_fid */
+=======
+	__stringify(IPA_LAN_CLIENT_ACTIVE),                    /* ipacm_event_lan_client*/
+	__stringify(IPA_LAN_CLIENT_INACTIVE),                  /* ipacm_event_lan_client*/
+	__stringify(IPA_LAN_CLIENT_DISCONNECT),                /* ipacm_event_lan_client*/
+	__stringify(IPA_LAN_CLIENT_POWER_SAVE),                /* ipacm_event_lan_client*/
+	__stringify(IPA_LAN_CLIENT_POWER_RECOVER),             /* ipacm_event_lan_client*/
+	__stringify(IPA_LAN_DELETE_SELF),                      /* ipacm_event_data_fid */
+	__stringify(IPA_ETH_BRIDGE_CLIENT_ADD_EVENT),          /* ipacm_event_data_mac */
+	__stringify(IPA_ETH_BRIDGE_CLIENT_DEL_EVENT),          /* ipacm_event_data_mac */
+	__stringify(IPA_ETH_BRIDGE_HDR_PROC_CTX_SET_EVENT),    /* ipacm_event_data_if_cat */
+	__stringify(IPA_ETH_BRIDGE_HDR_PROC_CTX_UNSET_EVENT),  /* ipacm_event_data_if_cat */
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	__stringify(IPACM_EVENT_MAX),
 };
 
@@ -112,7 +125,10 @@ IPACM_Config::IPACM_Config()
 {
 	iface_table = NULL;
 	alg_table = NULL;
+<<<<<<< HEAD
 	pNatIfaces = NULL;
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	memset(&ipa_client_rm_map_tbl, 0, sizeof(ipa_client_rm_map_tbl));
 	memset(&ipa_rm_tbl, 0, sizeof(ipa_rm_tbl));
 	ipa_rm_a2_check=0;
@@ -142,6 +158,14 @@ IPACM_Config::IPACM_Config()
 	memset(&ext_prop_v4, 0, sizeof(ext_prop_v4));
 	memset(&ext_prop_v6, 0, sizeof(ext_prop_v6));
 
+<<<<<<< HEAD
+=======
+	memset(&rt_tbl_eth_bridge_lan_wlan_v4, 0, sizeof(rt_tbl_eth_bridge_lan_wlan_v4));
+	memset(&rt_tbl_eth_bridge_wlan_wlan_v4, 0, sizeof(rt_tbl_eth_bridge_wlan_wlan_v4));
+	memset(&rt_tbl_eth_bridge_lan_wlan_v6, 0, sizeof(rt_tbl_eth_bridge_lan_wlan_v6));
+	memset(&rt_tbl_eth_bridge_wlan_wlan_v6, 0, sizeof(rt_tbl_eth_bridge_wlan_wlan_v6));
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	qmap_id = ~0;
 
 	memset(flt_rule_count_v4, 0, (IPA_CLIENT_CONS - IPA_CLIENT_PROD)*sizeof(int));
@@ -223,7 +247,11 @@ int IPACM_Config::Init(void)
 		/* copy bridge interface name to ipacmcfg */
 		if( iface_table[i].if_cat == VIRTUAL_IF)
 		{
+<<<<<<< HEAD
 			strlcpy(ipa_virtual_iface_name, iface_table[i].iface_name, sizeof(ipa_virtual_iface_name));
+=======
+			memcpy(ipa_virtual_iface_name, iface_table[i].iface_name, sizeof(ipa_virtual_iface_name));
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 			IPACMDBG_H("ipa_virtual_iface_name(%s) \n", ipa_virtual_iface_name);
 		}
 	}
@@ -287,10 +315,13 @@ int IPACM_Config::Init(void)
 	IPACMDBG_H("ipacm_odu_enable %d\n", ipacm_odu_enable);
 	IPACMDBG_H("ipacm_odu_mode %d\n", ipacm_odu_router_mode);
 	IPACMDBG_H("ipacm_odu_embms_enable %d\n", ipacm_odu_embms_enable);
+<<<<<<< HEAD
 
 	ipacm_ip_passthrough_mode = cfg->ip_passthrough_mode;
 	IPACMDBG_H("ipacm_ip_passthrough_mode %d. \n", ipacm_ip_passthrough_mode);
 
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	ipa_num_wlan_guest_ap = cfg->num_wlan_guest_ap;
 	IPACMDBG_H("ipa_num_wlan_guest_ap %d\n",ipa_num_wlan_guest_ap);
 
@@ -337,6 +368,33 @@ int IPACM_Config::Init(void)
 	rt_tbl_wan_dl.ip = IPA_IP_MAX;
 	strncpy(rt_tbl_wan_dl.name, WAN_DL_ROUTE_TABLE_NAME, sizeof(rt_tbl_wan_dl.name));
 
+<<<<<<< HEAD
+=======
+	rt_tbl_lan2lan_v4.ip = IPA_IP_v4;
+	strncpy(rt_tbl_lan2lan_v4.name, V4_LAN_TO_LAN_ROUTE_TABLE_NAME, sizeof(rt_tbl_lan2lan_v4.name));
+
+	rt_tbl_lan2lan_v6.ip = IPA_IP_v6;
+	strncpy(rt_tbl_lan2lan_v6.name, V6_LAN_TO_LAN_ROUTE_TABLE_NAME, sizeof(rt_tbl_lan2lan_v6.name));
+
+	rt_tbl_eth_bridge_lan_lan_v4.ip = IPA_IP_v4;
+	strncpy(rt_tbl_eth_bridge_lan_lan_v4.name, ETH_BRIDGE_USB_CPE_ROUTE_TABLE_NAME_V4, sizeof(rt_tbl_eth_bridge_lan_lan_v4.name));
+
+	rt_tbl_eth_bridge_lan_wlan_v4.ip = IPA_IP_v4;
+	strncpy(rt_tbl_eth_bridge_lan_wlan_v4.name, ETH_BRIDGE_USB_WLAN_ROUTE_TABLE_NAME_V4, sizeof(rt_tbl_eth_bridge_lan_wlan_v4.name));
+
+	rt_tbl_eth_bridge_wlan_wlan_v4.ip = IPA_IP_v4;
+	strncpy(rt_tbl_eth_bridge_wlan_wlan_v4.name, ETH_BRIDGE_WLAN_WLAN_ROUTE_TABLE_NAME_V4, sizeof(rt_tbl_eth_bridge_wlan_wlan_v4.name));
+
+	rt_tbl_eth_bridge_lan_lan_v6.ip = IPA_IP_v6;
+	strncpy(rt_tbl_eth_bridge_lan_lan_v6.name, ETH_BRIDGE_USB_CPE_ROUTE_TABLE_NAME_V6, sizeof(rt_tbl_eth_bridge_lan_lan_v6.name));
+
+	rt_tbl_eth_bridge_lan_wlan_v6.ip = IPA_IP_v6;
+	strncpy(rt_tbl_eth_bridge_lan_wlan_v6.name, ETH_BRIDGE_USB_WLAN_ROUTE_TABLE_NAME_V6, sizeof(rt_tbl_eth_bridge_lan_wlan_v6.name));
+
+	rt_tbl_eth_bridge_wlan_wlan_v6.ip = IPA_IP_v6;
+	strncpy(rt_tbl_eth_bridge_wlan_wlan_v6.name, ETH_BRIDGE_WLAN_WLAN_ROUTE_TABLE_NAME_V6, sizeof(rt_tbl_eth_bridge_wlan_wlan_v6.name));
+
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 	/* Construct IPACM ipa_client map to rm_resource table */
 	ipa_client_rm_map_tbl[IPA_CLIENT_WLAN1_PROD]= IPA_RM_RESOURCE_WLAN_PROD;
 	ipa_client_rm_map_tbl[IPA_CLIENT_USB_PROD]= IPA_RM_RESOURCE_USB_PROD;
@@ -482,7 +540,11 @@ int IPACM_Config::AddNatIfaces(char *dev_name)
 
 	if (ipa_nat_iface_entries < ipa_num_ipa_interfaces)
 	{
+<<<<<<< HEAD
 		strlcpy(pNatIfaces[ipa_nat_iface_entries - 1].iface_name,
+=======
+		memcpy(pNatIfaces[ipa_nat_iface_entries - 1].iface_name,
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 					 dev_name, IPA_IFACE_NAME_LEN);
 
 		IPACMDBG_H("Add Nat IfaceName: %s ,update nat-ifaces number: %d\n",
@@ -756,7 +818,11 @@ int IPACM_Config::SetExtProp(ipa_ioc_query_intf_ext_props *prop)
 		{
 			if(ext_prop_v4.num_ext_props >= MAX_NUM_EXT_PROPS)
 			{
+<<<<<<< HEAD
 				IPACMERR("IPv4 extended property table is full!\n");
+=======
+				IPACMDBG_H("IPv4 extended property table is full!\n");
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 				continue;
 			}
 			memcpy(&ext_prop_v4.prop[ext_prop_v4.num_ext_props], &prop->ext[i], sizeof(struct ipa_ioc_ext_intf_prop));
@@ -766,7 +832,11 @@ int IPACM_Config::SetExtProp(ipa_ioc_query_intf_ext_props *prop)
 		{
 			if(ext_prop_v6.num_ext_props >= MAX_NUM_EXT_PROPS)
 			{
+<<<<<<< HEAD
 				IPACMERR("IPv6 extended property table is full!\n");
+=======
+				IPACMDBG_H("IPv6 extended property table is full!\n");
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 				continue;
 			}
 			memcpy(&ext_prop_v6.prop[ext_prop_v6.num_ext_props], &prop->ext[i], sizeof(struct ipa_ioc_ext_intf_prop));
@@ -816,7 +886,11 @@ const char* IPACM_Config::getEventName(ipa_cm_event_id event_id)
 {
 	if(event_id >= sizeof(ipacm_event_name)/sizeof(ipacm_event_name[0]))
 	{
+<<<<<<< HEAD
 		IPACMERR("Event name array is not consistent with event array!\n");
+=======
+		IPACMDBG_DMESG("ERROR: Event name array is not consistent with event array!\n");
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 		return NULL;
 	}
 

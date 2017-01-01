@@ -39,7 +39,10 @@ IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <netinet/in.h>
 #include <sys/inotify.h>
 #include <errno.h>
+<<<<<<< HEAD
 #include <pthread.h>
+=======
+>>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 
 #include "ipa_nat_logi.h"
 
