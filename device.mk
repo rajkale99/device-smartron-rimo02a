@@ -93,9 +93,15 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PACKAGES += \
     fingerprintd
 
+<<<<<<< HEAD
 # Healthd
 BOARD_HAL_STATIC_LIBRARIES := \
      libhealthd.msm8952
+=======
+# IR
+PRODUCT_PACKAGES += \
+    consumerir.msm8952
+>>>>>>> 42151a9... s2: really fix charger, remove unused camera wrapper
 
 # GPS
 PRODUCT_COPY_FILES += \
