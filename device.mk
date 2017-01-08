@@ -162,6 +162,7 @@ PRODUCT_PACKAGES += \
     libstagefrighthw \
     libstagefright_soft_flacdec
 
+<<<<<<< HEAD
 # NFC
 PRODUCT_PACKAGES += \
     libnfc \
@@ -182,6 +183,12 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.verified_boot.xml:system/etc/permissions/android.software.verified_boot.xml \
     frameworks/native/data/etc/android.software.webview.xml:system/etc/permissions/android.software.webview.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
+=======
+# IPA Manager
+#PRODUCT_PACKAGES += \
+#    ipacm \
+#    IPACM_cfg.xml
+>>>>>>> 0bfcde1... s2: N-ify
 
 # Power
 PRODUCT_PACKAGES += \

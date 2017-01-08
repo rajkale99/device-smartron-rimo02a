@@ -13,5 +13,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+<<<<<<< HEAD:AndroidProducts.mk
 PRODUCT_MAKEFILES := \
     $(LOCAL_DIR)/full_rimo02a.mk
+=======
+LOCAL_PATH := $(call my-dir)
+
+include $(CLEAR_VARS)
+LOCAL_SRC_FILES := healthd_s2.cpp
+LOCAL_MODULE := libhealthd.$(TARGET_BOARD_PLATFORM)
+LOCAL_CFLAGS := -Werror
+LOCAL_C_INCLUDES := system/core/healthd/include
+include $(BUILD_STATIC_LIBRARY)
+>>>>>>> 0bfcde1... s2: N-ify:libhealthd/Android.mk
