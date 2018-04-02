@@ -42,7 +42,6 @@ BOARD_KERNEL_BASE := 0x80000000
 BOARD_KERNEL_PAGESIZE := 2048
 BOARD_MKBOOTIMG_ARGS := --ramdisk_offset 0x01000000 --tags_offset 0x00000100
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
-TARGET_KERNEL_APPEND_DTB := true
 TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/smartron/msm8976
@@ -140,16 +139,13 @@ TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/rootdir/etc/fstab.qcom
 # RIL
 TARGET_RIL_VARIANT := caf
 
-# SELinux
-include device/qcom/sepolicy/sepolicy.mk
-
 # System Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
 # Vendor init
 TARGET_INIT_VENDOR_LIB := libinit_rimo02a
 TARGET_RECOVERY_DEVICE_MODULES := libinit_rimo02a
-
+ALLOW_MISSING_DEPENDENCIES=true
 # WiFi
 BOARD_HAS_QCOM_WLAN := true
 BOARD_WLAN_DEVICE := qcwcn

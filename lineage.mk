@@ -17,7 +17,7 @@
 $(call inherit-product, device/smartron/rimo02a/full_rimo02a.mk)
 
 # Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/cm/config/common_full_phone.mk)
+$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
 
 # Set those variables here to overwrite the inherited values.
 PRODUCT_NAME := lineage_rimo02a
@@ -35,5 +35,5 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 PRODUCT_GMS_CLIENTID_BASE := android-smartron
 
 PRODUCT_BUILD_PROP_OVERRIDES += \
-    BUILD_FINGERPRINT="Smartron/srtphone/rimo02a:7.1.2/T5524INDUQK-373/373:user/release-keys"
-    PRIVATE_BUILD_DESC="rimo02a-user 7.1.2 T5524INDUQK-373 373 release-keys"
+    BUILD_FINGERPRINT="Smartron/srtphone/rimo02a:8.0.0/T5524INDUQK-475/475:user/release-keys"
+    PRIVATE_BUILD_DESC="rimo02a-user 8.0.0 T5524INDUQK-475 475 release-keys"
