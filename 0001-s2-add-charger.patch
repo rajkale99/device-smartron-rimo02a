@@ -1,0 +1,780 @@
+From 502865a2781a0a93ccd9840495377e94b9d08843 Mon Sep 17 00:00:00 2001
+From: codeworkx <daniel.hillenbrand@codeworkx.de>
+Date: Sun, 1 Jan 2017 10:46:54 +0100
+Subject: [PATCH] s2: add charger
+
+Change-Id: I5ab668f9b7484541ca26e4ae4428ae9d716c2e70
+---
+ BoardConfig.mk                  |   3 +-
+ device.mk                       |   8 ++
+ libhealthd/Android.mk           |  23 ++++
+ libhealthd/healthd_s2.cpp       | 293 ++++++++++++++++++++++++++++++++++++++++
+ rootdir/init.qcom.power.rc      |  41 ++++++
+ rootdir/init.qcom.rc            |  18 +--
+ rootdir/init.s2.open.usbdiag.sh |  18 ---
+ rootdir/init.s2.rc              |  29 ----
+ rootdir/init.s2.switch.diag.sh  |  36 -----
+ rootdir/init.s2.usb.rc          |   9 +-
+ rootdir/init.s2.usb.sh          | 114 ----------------
+ rootdir/init.target.rc          |  14 --
+ 12 files changed, 370 insertions(+), 236 deletions(-)
+ create mode 100644 libhealthd/Android.mk
+ create mode 100644 libhealthd/healthd_s2.cpp
+ create mode 100644 rootdir/init.qcom.power.rc
+ delete mode 100755 rootdir/init.s2.open.usbdiag.sh
+ delete mode 100755 rootdir/init.s2.switch.diag.sh
+
+diff --git a/BoardConfig.mk b/BoardConfig.mk
+index 9b8cd6f..973f2b7 100644
+--- a/BoardConfig.mk
++++ b/BoardConfig.mk
+@@ -113,7 +113,8 @@ USE_DEVICE_SPECIFIC_CAMERA := true
+ BOARD_QTI_CAMERA_32BIT_ONLY := true
+ 
+ # Charger
+-BOARD_CHARGER_ENABLE_SUSPEND := true
++BOARD_CHARGER_DISABLE_INIT_BLANK := true
++BLINK_PATH := "/sys/class/leds/red/blink"
+ 
+ # CNE
+ BOARD_USES_QCNE := true
+diff --git a/device.mk b/device.mk
+index 532aee6..4856c8b 100644
+--- a/device.mk
++++ b/device.mk
+@@ -138,6 +138,10 @@ PRODUCT_PACKAGES += \
+     Snap
+ #camera.msm8952
+ 
++# Charger
++PRODUCT_PACKAGES += \
++    charger_res_images
++
+ # CMActions
+ PRODUCT_PACKAGES += \
+     CMActions
+@@ -165,6 +169,10 @@ PRODUCT_PACKAGES += \
+ PRODUCT_PACKAGES += \
+     fingerprintd
+ 
++# Healthd
++PRODUCT_PACKAGES += \
++    libhealthd.msm8952
++
+ # IR
+ PRODUCT_PACKAGES += \
+     consumerir.msm8952
+diff --git a/libhealthd/Android.mk b/libhealthd/Android.mk
+new file mode 100644
+index 0000000..9ab431e
+--- /dev/null
++++ b/libhealthd/Android.mk
+@@ -0,0 +1,23 @@
++#
++# Copyright (C) 2017 The LineageOS Project
++#
++# Licensed under the Apache License, Version 2.0 (the "License");
++# you may not use this file except in compliance with the License.
++# You may obtain a copy of the License at
++#
++#      http://www.apache.org/licenses/LICENSE-2.0
++#
++# Unless required by applicable law or agreed to in writing, software
++# distributed under the License is distributed on an "AS IS" BASIS,
++# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++# See the License for the specific language governing permissions and
++# limitations under the License.
++
++LOCAL_PATH := $(call my-dir)
++
++include $(CLEAR_VARS)
++LOCAL_SRC_FILES := healthd_s2.cpp
++LOCAL_MODULE := libhealthd.$(TARGET_BOARD_PLATFORM)
++LOCAL_CFLAGS := -Werror
++LOCAL_C_INCLUDES := system/core/healthd
++include $(BUILD_STATIC_LIBRARY)
+diff --git a/libhealthd/healthd_s2.cpp b/libhealthd/healthd_s2.cpp
+new file mode 100644
+index 0000000..b565175
+--- /dev/null
++++ b/libhealthd/healthd_s2.cpp
+@@ -0,0 +1,293 @@
++/*
++ * Copyright (C) 2014 The Android Open Source Project
++ * Copyright (C) 2017 The LineageOS Project
++ *
++ * Licensed under the Apache License, Version 2.0 (the "License");
++ * you may not use this file except in compliance with the License.
++ * You may obtain a copy of the License at
++ *
++ *      http://www.apache.org/licenses/LICENSE-2.0
++ *
++ * Unless required by applicable law or agreed to in writing, software
++ * distributed under the License is distributed on an "AS IS" BASIS,
++ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++ * See the License for the specific language governing permissions and
++ * limitations under the License.
++ */
++
++#include <errno.h>
++#include <fcntl.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++#include <sys/stat.h>
++#include <sys/types.h>
++#include <time.h>
++#include <unistd.h>
++
++#include <cutils/android_reboot.h>
++#include <cutils/klog.h>
++#include <cutils/misc.h>
++#include <cutils/uevent.h>
++#include <cutils/properties.h>
++
++#include <pthread.h>
++#include <linux/android_alarm.h>
++#include <sys/timerfd.h>
++#include <linux/rtc.h>
++
++#include <healthd.h>
++
++#define LOGE(x...) do { KLOG_ERROR("charger", x); } while (0)
++#define LOGI(x...) do { KLOG_INFO("charger", x); } while (0)
++#define LOGV(x...) do { KLOG_DEBUG("charger", x); } while (0)
++
++enum alarm_time_type {
++    ALARM_TIME,
++    RTC_TIME,
++};
++
++/*
++ * shouldn't be changed after
++ * reading from alarm register
++ */
++static time_t alm_secs;
++
++static int alarm_get_time(enum alarm_time_type time_type,
++                          time_t *secs)
++{
++    struct tm tm;
++    unsigned int cmd;
++    int rc, fd = -1;
++
++    if (!secs)
++        return -1;
++
++    fd = open("/dev/rtc0", O_RDONLY);
++    if (fd < 0) {
++        LOGE("Can't open rtc devfs node\n");
++        return -1;
++    }
++
++    switch (time_type) {
++        case ALARM_TIME:
++            cmd = RTC_ALM_READ;
++            break;
++        case RTC_TIME:
++            cmd = RTC_RD_TIME;
++            break;
++        default:
++            LOGE("Invalid time type\n");
++            goto err;
++    }
++
++    rc = ioctl(fd, cmd, &tm);
++    if (rc < 0) {
++        LOGE("Unable to get time\n");
++        goto err;
++    }
++
++    *secs = mktime(&tm) + tm.tm_gmtoff;
++    if (*secs < 0) {
++        LOGE("Invalid seconds = %ld\n", *secs);
++        goto err;
++    }
++
++    close(fd);
++    return 0;
++
++err:
++    close(fd);
++    return -1;
++}
++
++#define ERR_SECS 2
++static int alarm_is_alm_expired()
++{
++    int rc;
++    time_t rtc_secs;
++
++    rc = alarm_get_time(RTC_TIME, &rtc_secs);
++    if (rc < 0)
++        return 0;
++
++    return (alm_secs >= rtc_secs - ERR_SECS &&
++            alm_secs <= rtc_secs + ERR_SECS) ? 1 : 0;
++}
++
++static int timerfd_set_reboot_time_and_wait(time_t secs)
++{
++    int fd;
++    int ret = -1;
++    fd = timerfd_create(CLOCK_REALTIME_ALARM, 0);
++    if (fd < 0) {
++        LOGE("Can't open timerfd alarm node\n");
++        goto err_return;
++    }
++
++    struct itimerspec spec;
++    memset(&spec, 0, sizeof(spec));
++    spec.it_value.tv_sec = secs;
++
++    if (timerfd_settime(fd, 0 /* relative */, &spec, NULL)) {
++        LOGE("Can't set timerfd alarm\n");
++        goto err_close;
++    }
++
++    uint64_t unused;
++    if (read(fd, &unused, sizeof(unused)) < 0) {
++       LOGE("Wait alarm error\n");
++       goto err_close;
++    }
++
++    ret = 0;
++err_close:
++    close(fd);
++err_return:
++    return ret;
++}
++
++static int alarm_set_reboot_time_and_wait(time_t secs)
++{
++    int rc, fd;
++    struct timespec ts;
++
++    fd = open("/dev/alarm", O_RDWR);
++    if (fd < 0) {
++        LOGE("Can't open alarm devfs node, trying timerfd\n");
++        return timerfd_set_reboot_time_and_wait(secs);
++    }
++
++    /* get the elapsed realtime from boot time to now */
++    rc = ioctl(fd, ANDROID_ALARM_GET_TIME(
++                      ANDROID_ALARM_ELAPSED_REALTIME_WAKEUP), &ts);
++    if (rc < 0) {
++        LOGE("Unable to get elapsed realtime\n");
++        goto err;
++    }
++
++    /* calculate the elapsed time from boot time to reboot time */
++    ts.tv_sec += secs;
++    ts.tv_nsec = 0;
++
++    rc = ioctl(fd, ANDROID_ALARM_SET(
++                      ANDROID_ALARM_ELAPSED_REALTIME_WAKEUP), &ts);
++    if (rc < 0) {
++        LOGE("Unable to set reboot time to %ld\n", secs);
++        goto err;
++    }
++
++    do {
++        rc = ioctl(fd, ANDROID_ALARM_WAIT);
++    } while ((rc < 0 && errno == EINTR) || !alarm_is_alm_expired());
++
++    if (rc <= 0) {
++        LOGE("Unable to wait on alarm\n");
++        goto err;
++    }
++
++    close(fd);
++    return 0;
++
++err:
++    if (fd >= 0)
++        close(fd);
++    return -1;
++}
++
++static void *alarm_thread(void *)
++{
++    time_t rtc_secs, rb_secs;
++    int rc;
++
++    /*
++     * to support power off alarm, the time
++     * stored in alarm register at latest
++     * shutdown time should be some time
++     * earlier than the actual alarm time
++     * set by user
++     */
++    rc = alarm_get_time(ALARM_TIME, &alm_secs);
++    if (rc < 0 || !alm_secs)
++        goto err;
++
++    rc = alarm_get_time(RTC_TIME, &rtc_secs);
++    if (rc < 0)
++        goto err;
++
++    /*
++     * calculate the reboot time after which
++     * the phone will reboot
++     */
++    rb_secs = alm_secs - rtc_secs;
++    if (rb_secs <= 0)
++        goto err;
++
++    rc = alarm_set_reboot_time_and_wait(rb_secs);
++    if (rc < 0)
++        goto err;
++
++    LOGI("Exit from power off charging, reboot the phone!\n");
++    android_reboot(ANDROID_RB_RESTART, 0, 0);
++
++err:
++    LOGE("Exit from alarm thread\n");
++    return NULL;
++}
++
++void healthd_board_init(struct healthd_config*)
++{
++    pthread_t tid;
++    int rc;
++    char value[PROP_VALUE_MAX];
++
++    property_get("ro.bootmode", value, "");
++    if (!strcmp("charger", value)) {
++        rc = pthread_create(&tid, NULL, alarm_thread, NULL);
++        if (rc < 0)
++            LOGE("Create alarm thread failed\n");
++    }
++}
++
++int healthd_board_battery_update(struct android::BatteryProperties*)
++{
++    // return 0 to log periodic polled battery status to kernel log
++    return 1;
++}
++
++void healthd_board_mode_charger_draw_battery(struct android::BatteryProperties*)
++{
++
++}
++
++void healthd_board_mode_charger_battery_update(struct android::BatteryProperties*)
++{
++
++}
++
++void healthd_board_mode_charger_set_backlight(bool enable)
++{
++    int fd;
++    int value;
++
++    if (enable)
++        value = 1000;
++    else
++        value = 0;
++
++    fd = open("/sys/class/leds/lcd-backlight/brightness", O_RDWR);
++    if (fd >= 0) {
++        char buffer[4];
++        int bytes = snprintf(buffer, sizeof(buffer), "%d", value);
++
++        if (bytes >= 0 && bytes < 4)
++            write(fd, buffer, bytes);
++
++        close(fd);
++    }
++}
++
++void healthd_board_mode_charger_init()
++{
++
++}
+diff --git a/rootdir/init.qcom.power.rc b/rootdir/init.qcom.power.rc
+new file mode 100644
+index 0000000..664ca48
+--- /dev/null
++++ b/rootdir/init.qcom.power.rc
+@@ -0,0 +1,41 @@
++on charger
++    wait /dev/block/bootdevice/by-name/system
++    mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
++
++    load_system_props
++
++    # Disable thermal
++    write /sys/module/msm_thermal/core_control/enabled 0
++
++    # Bring CPUs online
++    write /sys/devices/system/cpu/cpu1/online 1
++    write /sys/devices/system/cpu/cpu2/online 1
++    write /sys/devices/system/cpu/cpu3/online 1
++    write /sys/devices/system/cpu/cpu4/online 1
++    write /sys/devices/system/cpu/cpu5/online 1
++
++    # Configure governor settings for little cluster
++    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "powersave"
++    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 400000
++
++    # Configure governor settings for big cluster
++    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "powersave"
++    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 400000
++
++    # Bring CPUs offline
++    write /sys/devices/system/cpu/cpu1/online 0
++    write /sys/devices/system/cpu/cpu2/online 0
++    write /sys/devices/system/cpu/cpu3/online 0
++    write /sys/devices/system/cpu/cpu4/online 0
++    write /sys/devices/system/cpu/cpu5/online 0
++
++    # Enable thermal
++    write /sys/module/msm_thermal/core_control/enabled 1
++
++    # for debugging
++    #setprop persist.sys.usb.config mtp,adb
++
++service charger /sbin/healthd -c
++    class charger
++    critical
++    seclabel u:r:healthd:s0
+diff --git a/rootdir/init.qcom.rc b/rootdir/init.qcom.rc
+index c38ec0d..ec994cc 100755
+--- a/rootdir/init.qcom.rc
++++ b/rootdir/init.qcom.rc
+@@ -28,6 +28,7 @@
+ import init.s2.rc
+ import init.target.rc
+ 
++import init.qcom.power.rc
+ import init.qcom.factory.rc
+ 
+ on early-init
+@@ -881,11 +882,6 @@ service hcidump /system/bin/sh /system/etc/hcidump.sh
+     disabled
+     oneshot
+ 
+-service charger /charger
+-    class charger
+-    group system graphics
+-    seclabel u:r:healthd:s0
+-
+ service ssr_diag /system/bin/ssr_diag
+     class late_start
+     user system
+@@ -908,18 +904,6 @@ service charger_monitor /system/bin/charger_monitor
+     group root
+     disabled
+ 
+-service qbcharger /charger -m 1
+-    disabled
+-    oneshot
+-
+-on property:sys.qbcharger.enable=true
+-    write /sys/power/wake_lock QuickBoot
+-    start qbcharger
+-
+-on property:sys.qbcharger.enable=false
+-    write /sys/power/wake_unlock QuickBoot
+-    stop qbcharger
+-
+ service diag_mdlog_start /system/bin/diag_mdlog
+     class late_start
+     user root
+diff --git a/rootdir/init.s2.open.usbdiag.sh b/rootdir/init.s2.open.usbdiag.sh
+deleted file mode 100755
+index 6738fcb..0000000
+--- a/rootdir/init.s2.open.usbdiag.sh
++++ /dev/null
+@@ -1,18 +0,0 @@
+-#!/system/bin/sh
+-
+-LOG_TAG="openusbdiag"
+-LOG_NAME="${0}:"
+-loge ()
+-{
+-  /system/bin/log -t $LOG_TAG -p e "$LOG_NAME $@"
+-}
+-
+-logi ()
+-{
+-  /system/bin/log -t $LOG_TAG -p i "$LOG_NAME $@"
+-}
+-logi "============================================="
+-logi "rm usb serial number flag file start"
+-rm -rf /persist/serialno
+-logi "rm usb serial number flag file end"
+-
+diff --git a/rootdir/init.s2.rc b/rootdir/init.s2.rc
+index dc7fa89..35e0245 100755
+--- a/rootdir/init.s2.rc
++++ b/rootdir/init.s2.rc
+@@ -157,20 +157,6 @@ on property:persist.sys.le_fast_chrg_enable=0
+     write /sys/class/power_supply/battery/le_quick_charge_mode 1
+ # add by letv for reduced power rate when normal charge be selected end
+ 
+-/* added by rentianzhi for diag in charger mode, LAFITE-11(QL1530) 20160114, begin*/
+-on charger_svc
+-    trigger early-fs
+-    trigger fs
+-    trigger post-fs
+-    trigger post-fs-data
+-    trigger firmware_mounts_complete
+-    trigger early-boot
+-    trigger boot
+-/* added by rentianzhi for diag in charger mode, LAFITE-11(QL1530) 20160114, end*/
+-
+-on charger
+-    setprop debug.charger.on 1
+-
+ #< LAFITE-347 guohongtao 2016-01-14 begin>
+ service qcom-serialno-sh /system/bin/sh /init.s2.serialno.sh
+     class main
+@@ -178,21 +164,6 @@ service qcom-serialno-sh /system/bin/sh /init.s2.serialno.sh
+     oneshot
+     disabled
+ 
+-service opendiagcharge /system/bin/sh /init.s2.switch.diag.sh
+-    class main
+-    user root
+-    oneshot
+-    disabled
+-
+-service openusbdiag /system/bin/sh /init.s2.open.usbdiag.sh
+-    disabled
+-    user root
+-    oneshot
+-
+-on property:persist.sys.usb.open_diag=true
+-    setprop persist.sys.usb.open_diag false
+-    start openusbdiag
+-
+ #huanghaining 2016-03-25 add for ntfs begin
+     #load ufsd modules
+ on fs
+diff --git a/rootdir/init.s2.switch.diag.sh b/rootdir/init.s2.switch.diag.sh
+deleted file mode 100755
+index 8786a27..0000000
+--- a/rootdir/init.s2.switch.diag.sh
++++ /dev/null
+@@ -1,36 +0,0 @@
+-#!/system/bin/sh
+-LOG_TAG="opendiagcharge"
+-LOG_NAME="${0}:"
+-loge ()
+-{
+-  /system/bin/log -t $LOG_TAG -p e "$LOG_NAME $@"
+-}
+-logi ()
+-{
+-  /system/bin/log -t $LOG_TAG -p i "$LOG_NAME $@"
+-}
+-#< LAFITE-348 shenxinyu 2016-01-18 begin>
+-bootmode=`getprop ro.bootmode`
+-if [ "$bootmode" = "charger" ]; then
+-    usr_flag=`cat /persist/serialno`
+-    if [ "$usr_flag" = "1" ]; then
+-        logi "boot into charger user mode"
+-    setprop persist.sys.usb.config mtp
+-        while [ 1 -eq 1 ]
+-        do
+-            usb_value=`cat /sys/class/android_usb/android0/diag_status`
+-            logi "in cerculate the diag_status"
+-            if [ $usb_value -eq 1 ];then
+-                setprop persist.sys.usb.config diag,serial_tty,serial_smd,adb
+-                sleep 3
+-                echo 0 > /sys/class/android_usb/android0/diag_status
+-                break
+-            fi
+-            sleep 1
+-        done
+-    else
+-    setprop persist.sys.usb.config diag,serial_tty,serial_smd,adb
+-#< LAFITE-348 shenxinyu 2016-01-18 end>
+-    fi
+-fi
+-
+diff --git a/rootdir/init.s2.usb.rc b/rootdir/init.s2.usb.rc
+index e9cbb8b..9145d0c 100755
+--- a/rootdir/init.s2.usb.rc
++++ b/rootdir/init.s2.usb.rc
+@@ -29,9 +29,6 @@ on init
+     write /sys/class/android_usb/android0/f_rndis/wceis 1
+     write /sys/class/android_usb/android0/iSerial ${ro.serialno}
+ 
+-#on charger
+-    #setprop persist.sys.usb.config diag,serial_tty,serial_smd,adb
+-
+ on fs
+     mkdir /dev/usb-ffs 0770 shell shell
+     mkdir /dev/usb-ffs/adb 0770 shell shell
+@@ -842,13 +839,11 @@ on property:sys.usb.config=ptp,adb
+ #< LAFITE-347 guohongtao 2016-01-14 begin>
+ #< LAFITE-5875 guohongtao 2016-03-28 begin>
+ on property:sys.usb.config=mtp
+-    stop adbd
+     write /sys/class/android_usb/android0/enable 0
+     write /sys/class/android_usb/android0/idVendor 2B0E
+-    write /sys/class/android_usb/android0/idProduct 171B
+-    write /sys/class/android_usb/android0/functions mtp,adb
++    write /sys/class/android_usb/android0/idProduct 1714
++    write /sys/class/android_usb/android0/functions mtp
+     write /sys/class/android_usb/android0/enable 1
+-    start adbd
+     setprop sys.usb.state ${sys.usb.config}
+ 
+ on property:sys.usb.config=mtp,cdrom
+diff --git a/rootdir/init.s2.usb.sh b/rootdir/init.s2.usb.sh
+index 544fd7d..e818da3 100755
+--- a/rootdir/init.s2.usb.sh
++++ b/rootdir/init.s2.usb.sh
+@@ -83,120 +83,6 @@ done
+ fi
+ 
+ target=`getprop ro.board.platform`
+-
+-#
+-# Allow USB enumeration with default PID/VID
+-#
+-#< LAFITE-277 guohongtao 201601011 begin>
+-#baseband=`getprop ro.baseband`
+-#echo 1  > /sys/class/android_usb/f_mass_storage/lun/nofua
+-#usb_config=`getprop persist.sys.usb.config`
+-#case "$usb_config" in
+-#    "" | "adb") #USB persist config not set, select default configuration
+-#      case "$esoc_link" in
+-#          "HSIC")
+-#              setprop persist.sys.usb.config diag,diag_mdm,serial_hsic,serial_tty,rmnet_hsic,mass_storage,adb
+-#              setprop persist.rmnet.mux enabled
+-#          ;;
+-#          "HSIC+PCIe")
+-#              setprop persist.sys.usb.config diag,diag_mdm,serial_hsic,rmnet_qti_ether,mass_storage,adb
+-#          ;;
+-#          "PCIe")
+-#              setprop persist.sys.usb.config diag,diag_mdm,serial_tty,rmnet_qti_ether,mass_storage,adb
+-#          ;;
+-#          *)
+-#          case "$baseband" in
+-#              "mdm")
+-#                   setprop persist.sys.usb.config diag,diag_mdm,serial_hsic,serial_tty,rmnet_hsic,mass_storage,adb
+-#              ;;
+-#              "mdm2")
+-#                   setprop persist.sys.usb.config diag,diag_mdm,serial_hsic,serial_tty,rmnet_hsic,mass_storage,adb
+-#              ;;
+-#              "sglte")
+-#                   setprop persist.sys.usb.config diag,diag_qsc,serial_smd,serial_tty,serial_hsuart,rmnet_hsuart,mass_storage,adb
+-#              ;;
+-#              "dsda" | "sglte2")
+-#                   setprop persist.sys.usb.config diag,diag_mdm,diag_qsc,serial_hsic,serial_hsuart,rmnet_hsic,rmnet_hsuart,mass_storage,adb
+-#              ;;
+-#              "dsda2")
+-#                   setprop persist.sys.usb.config diag,diag_mdm,diag_mdm2,serial_hsic,serial_hsusb,rmnet_hsic,rmnet_hsusb,mass_storage,adb
+-#              ;;
+-#              *)
+-#        case "$target" in
+-#                        "msm8916")
+-#                            setprop persist.sys.usb.config diag,serial_smd,rmnet_bam,adb
+-#                        ;;
+-#                        "msm8994")
+-#                            setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_ipa,mass_storage,adb
+-#                        ;;
+-#                        "msm8909")
+-#                            setprop persist.sys.usb.config diag,serial_smd,rmnet_qti_bam,adb
+-#                        ;;
+-#                        "msm8952" | "msm8976")
+-#                            setprop persist.sys.usb.config diag,serial_smd,rmnet_ipa,adb
+-#                        ;;
+-#                        *)
+-#                            setprop persist.sys.usb.config diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb
+-#                        ;;
+-#                    esac
+-#              ;;
+-#          esac
+-#          ;;
+-#      esac
+-#    ;;
+-#    * ) ;; #USB persist config exists, do nothing
+-#esac
+-#< LAFITE-347 guohongtao 2016-01-14 begin>
+-#< LAFITE-734 guohongtao 2016-01-20 begin>
+-factory_cutting=`getprop ro.factory.cutting`
+-#< LAFITE-3668 guohongtao 2016-03-04 begin>
+-usb_config_tmp=`getprop persist.sys.usb.config`
+-if [ "$factory_cutting" = "1" ];then
+-    if [ "$usb_config_tmp" != "diag,serial_tty,serial_smd,adb" ];then
+-        setprop persist.sys.usb.config diag,serial_tty,serial_smd,adb
+-    fi
+-else
+-    uniqueserialno=`cat /persist/serialno`
+-#< LAFITE-4213 guohongtao 2016-03-22 begin>
+-    if [ "$uniqueserialno" = "" ];then
+-        if [ "$usb_config_tmp" != "diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb" ];then
+-            if [ "$usb_config_tmp" != "diag,serial_tty,serial_smd,adb" ];then
+-                setprop persist.sys.usb.config diag,serial_tty,serial_smd,adb
+-            fi
+-        fi
+-    elif [ "$uniqueserialno" = "0" ];then
+-        if [ "$usb_config_tmp" != "diag,serial_smd,serial_tty,rmnet_bam,mass_storage,adb" ];then
+-            if [ "$usb_config_tmp" != "diag,serial_tty,serial_smd,adb" ];then
+-                setprop persist.sys.usb.config diag,serial_tty,serial_smd,adb
+-            fi
+-        fi
+-#< LAFITE-4213 guohongtao 2016-03-22 end>
+-#< LAFITE-10351 guohongtao 2016-05-10 begin>
+-    elif [ "$uniqueserialno" = "1" ];then
+-        first_bootup=`getprop persist.sys.first.flag`
+-        if [ "$first_bootup" = "" ];then
+-            setprop persist.sys.usb.config mtp
+-            setprop persist.sys.first.flag asserted
+-        else
+-            usb_config_tmp=`getprop persist.sys.usb.config`
+-            SUBSTRING=${usb_config_tmp##*,}
+-            if [ "$SUBSTRING" = "adb" ];then
+-                if [ "$usb_config_tmp" != "mtp,adb" ];then
+-                    setprop persist.sys.usb.config mtp,adb
+-                fi
+-            else
+-                if [ "$usb_config_tmp" != "mtp" ];then
+-                    setprop persist.sys.usb.config mtp
+-                fi
+-            fi
+-        fi
+-    fi
+-fi
+-#< LAFITE-10351 guohongtao 2016-05-10 end>
+-#< LAFITE-3668 guohongtao 2016-03-04 end>
+-#< LAFITE-734 guohongtao 2016-01-20 end>
+-#< LAFITE-347 guohongtao 2016-01-14 end>
+-#< LAFITE-277 guohongtao 201601011 end>
+ #< LAFITE-5 guohongtao 201601018 begin>
+ cdromname="/system/etc/LAFITE.ISO"
+ echo $cdromname > /sys/class/android_usb/android0/f_mass_storage/rom/file
+diff --git a/rootdir/init.target.rc b/rootdir/init.target.rc
+index 00a10b9..7623c5b 100755
+--- a/rootdir/init.target.rc
++++ b/rootdir/init.target.rc
+@@ -225,20 +225,6 @@ on property:init.svc.zygote=restarting
+ 
+ #LAFITE-8049  color service issue wangtianyu 2016-04-20 end >
+ 
+-#< LAFITE-1560 wanghao 2016-02-17 begin
+-#/* added by rentianzhi for diag in charger mode, LAFITE-11(QL1530) 20160114, begin*/
+-on charger
+-    wait /dev/block/bootdevice/by-name/system
+-    mount ext4 /dev/block/bootdevice/by-name/system /system ro barrier=1
+-    load_system_props
+-    start qcom-post-boot
+-    start hvdcp_opti
+-    start qcom-c_main-sh
+-    start irsc_util
+-    start qcomsysd
+-#/* added by rentianzhi for diag in charger mode, LAFITE-11(QL1530) 20160114, end*/
+-# LAFITE-1560 wanghao 2016-02-17 end >
+-
+ service dts_configurator /system/bin/dts_configurator
+     class late_start
+     user system
+-- 
+2.7.4
+

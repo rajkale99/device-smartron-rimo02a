@@ -46,7 +46,7 @@ TARGET_KERNEL_ARCH := arm64
 TARGET_KERNEL_HEADER_ARCH := arm64
 TARGET_KERNEL_SOURCE := kernel/smartron/msm8976
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
-TARGET_KERNEL_CONFIG := lineageos_rimo02a_defconfig
+TARGET_KERNEL_CONFIG := lineageos-rimo02a_defconfig
 
 # Partitions
 BOARD_BOOTIMAGE_PARTITION_SIZE := 67108864
@@ -100,6 +100,7 @@ BOARD_QTI_CAMERA_32BIT_ONLY := true
 # Charger
 BOARD_CHARGER_DISABLE_INIT_BLANK := true
 BOARD_CHARGER_ENABLE_SUSPEND := true
+BLINK_PATH := "/sys/class/leds/red/blink"
 
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
