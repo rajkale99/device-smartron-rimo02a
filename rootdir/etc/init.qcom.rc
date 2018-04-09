@@ -25,15 +25,7 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 
-<<<<<<< HEAD:rootdir/etc/init.qcom.rc
 import init.qcom.usb.rc
-=======
-import init.s2.rc
-import init.target.rc
-
-import init.qcom.power.rc
-import init.qcom.factory.rc
->>>>>>> 502865a... s2: add charger:rootdir/init.qcom.rc
 
 on early-init
     chown system graphics /sys/devices/virtual/graphics/fb0/idle_time
@@ -882,42 +874,10 @@ service ril-daemon3 /system/bin/rild -c 3
     user root
     group radio cache inet misc audio sdcard_r sdcard_rw qcom_diag diag log
 
-<<<<<<< HEAD:rootdir/etc/init.qcom.rc
 service charger /charger
     class charger
     group graphics system
     seclabel u:r:healthd:s0
-=======
-service usb_uicc_enable /system/bin/sh /system/etc/init.qcom.uicc.sh
-    class late_start
-    user root
-    disabled
-    oneshot
-
-service usb_uicc_daemon /system/bin/usb_uicc_client
-    class main
-    user system
-    group system log net_raw
-    oneshot
-
-on property:sys.usb_uicc.enabled=1
-    start usb_uicc_enable
-
-on property:sys.usb_uicc.enabled=0
-    start usb_uicc_enable
-
-service profiler_daemon /system/bin/profiler_daemon
-    class late_start
-    user root
-    group root
-    disabled
-
-service hcidump /system/bin/sh /system/etc/hcidump.sh
-    user bluetooth
-    group bluetooth system net_bt_admin net_admin
-    disabled
-    oneshot
->>>>>>> 502865a... s2: add charger:rootdir/init.qcom.rc
 
 service ssr_diag /system/bin/ssr_diag
     class late_start
@@ -936,7 +896,6 @@ on property:persist.usb.hvdcp.detect=true
 on property:persist.usb.hvdcp.detect=false
     stop hvdcp
 
-<<<<<<< HEAD:rootdir/etc/init.qcom.rc
 service qbcharger /charger -m 1
     disabled
     oneshot
@@ -948,53 +907,6 @@ on property:sys.qbcharger.enable=true
 on property:sys.qbcharger.enable=false
     write /sys/power/wake_unlock QuickBoot
     stop qbcharger
-=======
-service charger_monitor /system/bin/charger_monitor
-    user root
-    group root
-    disabled
-
-service diag_mdlog_start /system/bin/diag_mdlog
-    class late_start
-    user root
-    group system qcom_diag sdcard_rw sdcard_r media_rw
-    disabled
-    oneshot
-
-service diag_mdlog_stop /system/bin/diag_mdlog -k
-    class late_start
-    user root
-    group system qcom_diag sdcard_rw sdcard_r media_rw
-    disabled
-    oneshot
-
-service qlogd /system/xbin/qlogd
-    socket qlogd stream 0662 system system
-    class main
-    disabled
-on property:persist.sys.qlogd=1
-    start qlogd
-on property:persist.sys.qlogd=0
-    stop qlogd
-
-service rootagent /system/bin/sh /system/etc/init.qcom.rootagent.sh
-    disabled
-    oneshot
-on property:persist.sys.rootagent=1
-    start rootagent
-on property:persist.sys.rootagent=0
-    stop rootagent
-
-service bms-sh /system/bin/sh /init.qcom.bms.sh
-    class main
-    user root
-    oneshot
-
-service vm_bms /system/bin/vm_bms
-    user root
-    group root
-    disabled
->>>>>>> 502865a... s2: add charger:rootdir/init.qcom.rc
 
 service msm_irqbalance /system/bin/msm_irqbalance -f /system/vendor/etc/msm_irqbalance.conf
     class core

@@ -65,10 +65,6 @@ PRODUCT_PACKAGES += \
 
 # Charger
 PRODUCT_PACKAGES += \
-    charger_res_images
-
-# CMActions
-PRODUCT_PACKAGES += \
 charger_res_images
 
 PRODUCT_COPY_FILES += \
@@ -98,13 +94,6 @@ PRODUCT_PACKAGES += \
     fingerprintd
 
 # Healthd
-<<<<<<< HEAD
-=======
-PRODUCT_PACKAGES += \
-    libhealthd.msm8952
-
-# IR
->>>>>>> 502865a... s2: add charger
 PRODUCT_PACKAGES += \
 libhealthd.msm8952
 

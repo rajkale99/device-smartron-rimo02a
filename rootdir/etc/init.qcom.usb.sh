@@ -83,7 +83,6 @@ done
 fi
 
 target=`getprop ro.board.platform`
-<<<<<<< HEAD:rootdir/etc/init.qcom.usb.sh
 
 #
 # Allow USB enumeration with default PID/VID
@@ -146,12 +145,6 @@ case "$usb_config" in
     ;;
     * ) ;; #USB persist config exists, do nothing
 esac
-=======
-#< LAFITE-5 guohongtao 201601018 begin>
-cdromname="/system/etc/LAFITE.ISO"
-echo $cdromname > /sys/class/android_usb/android0/f_mass_storage/rom/file
-#< LAFITE-5 guohongtao 201601018 end>
->>>>>>> 502865a... s2: add charger:rootdir/init.s2.usb.sh
 
 #
 # Do target specific things
