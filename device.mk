@@ -94,8 +94,8 @@ PRODUCT_PACKAGES += \
     fingerprintd
 
 # Healthd
-PRODUCT_PACKAGES += \
-libhealthd.msm8952
+BOARD_HAL_STATIC_LIBRARIES := \
+     libhealthd.msm8952
 
 # GPS
 PRODUCT_COPY_FILES += \
