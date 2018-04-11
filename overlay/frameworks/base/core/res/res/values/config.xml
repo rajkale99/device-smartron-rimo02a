@@ -91,7 +91,7 @@
          than the size of the config_autoBrightnessLevels array.
          This must be overridden in platform specific overlays -->
     <integer-array name="config_autoBrightnessLcdBacklightValues">
-<<<<<<< HEAD
+
         <item>30</item>
         <item>40</item>
         <item>50</item>
@@ -111,7 +111,7 @@
         <item>255</item>
         <item>255</item>
         <item>255</item>
-=======
+
         <item>5</item>
         <item>14</item>
         <item>23</item>
@@ -129,7 +129,7 @@
         <item>240</item>
         <item>255</item>
         <item>255</item>
->>>>>>> 76915f3... s2: liblight: remove scaling of brightness for lcd panel
+
         <item>255</item>
         <item>255</item>
     </integer-array>
@@ -178,15 +178,15 @@
     <!-- Shutdown if the battery temperature exceeds (this value * 0.1) Celsius. -->
     <integer name="config_shutdownBatteryTemperature">680</integer>
 
-<<<<<<< HEAD
-=======
+
+
     <!-- Is the battery LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveBatteryLed">true</bool>
 
     <!-- Is the notification LED intrusive? Used to decide if there should be a disable option -->
     <bool name="config_intrusiveNotificationLed">true</bool>
 
->>>>>>> 0bfcde1... s2: N-ify
+
     <!-- reference volume index for music stream to limit headphone volume and display warning -->
     <integer name="config_safe_media_volume_index">10</integer>
 
