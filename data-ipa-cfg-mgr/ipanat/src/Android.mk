@@ -1,15 +1,9 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 BOARD_PLATFORM_LIST := msm8916
 BOARD_PLATFORM_LIST += msm8909
 ifneq ($(call is-board-platform-in-list,$(BOARD_PLATFORM_LIST)),true)
 ifneq (,$(filter $(QCOM_BOARD_PLATFORMS),$(TARGET_BOARD_PLATFORM)))
 ifneq (, $(filter aarch64 arm arm64, $(TARGET_ARCH)))
 
-=======
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
-=======
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -26,19 +20,14 @@ LOCAL_CFLAGS := -DDEBUG
 LOCAL_MODULE := libipanat
 LOCAL_MODULE_TAGS := optional
 LOCAL_PRELINK_MODULE := false
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 LOCAL_CLANG := true
 include $(BUILD_SHARED_LIBRARY)
 
 endif # $(TARGET_ARCH)
 endif
 endif
-=======
 
 include $(BUILD_SHARED_LIBRARY)
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
-=======
 
 include $(BUILD_SHARED_LIBRARY)
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
