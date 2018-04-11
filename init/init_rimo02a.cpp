@@ -43,6 +43,6 @@ void vendor_load_properties()
     if (platform != ANDROID_TARGET)
         return;
 
-    property_set("ro.build.description", "s2-user 6.0.1 IEXCNFN5801809291S 63 release-keys");
-    property_set("ro.build.fingerprint", "LeEco/Le2_CN/le_s2:6.0.1/IEXCNFN5801809291S/63:user/release-keys");
+    property_set("ro.build.description", "rimo02a-user 8.0.0 T5524INDUQK-475 475 release-keys");
+    property_set("ro.build.fingerprint", "Smartron/srtphone/rimo02a:8.0.0/T5524INDUQK-475/475:user/release-keys");
 }
