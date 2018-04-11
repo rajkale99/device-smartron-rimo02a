@@ -92,9 +92,9 @@ LOCAL_SHARED_LIBRARIES += libnetfilter_conntrack
 <<<<<<< HEAD
 <<<<<<< HEAD
 LOCAL_CLANG := true
-=======
+
 LOCAL_SHARED_LIBRARIES += libdhcpcd
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+
 =======
 LOCAL_SHARED_LIBRARIES += libdhcpcd
 >>>>>>> 410177e... s2: add data-ipa-cfg-mgr
@@ -122,13 +122,13 @@ LOCAL_MODULE_TAGS := optional
 LOCAL_SRC_FILES := $(LOCAL_MODULE)
 LOCAL_MODULE_OWNER := ipacm
 include $(BUILD_PREBUILT)
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
 
 endif # $(TARGET_ARCH)
 endif
 endif
-=======
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
-=======
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+endif
+
+
+
