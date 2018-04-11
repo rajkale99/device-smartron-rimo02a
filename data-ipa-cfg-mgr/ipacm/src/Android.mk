@@ -22,14 +22,14 @@ LOCAL_C_INCLUDES += external/icu/icu4c/source/common
 else
 LOCAL_C_INCLUDES += external/icu4c/common
 endif
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+
+
+
 LOCAL_C_INCLUDES += external/dhcpcd
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
-=======
+
+
 LOCAL_C_INCLUDES += external/dhcpcd
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+
 LOCAL_C_INCLUDES += external/libxml2/include
 LOCAL_C_INCLUDES += external/libnetfilter_conntrack/include
 LOCAL_C_INCLUDES += external/libnfnetlink/include
@@ -44,10 +44,10 @@ ifneq (,$(filter userdebug eng, $(TARGET_BUILD_VARIANT)))
 LOCAL_CFLAGS += -DDEBUG
 endif
 
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
 ifeq ($(TARGET_BOARD_PLATFORM),msmcobalt)
-=======
+
 ifeq ($(TARGET_BOARD_PLATFORM),msm8998)
 
 
