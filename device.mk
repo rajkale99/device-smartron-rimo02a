@@ -11,15 +11,12 @@
 # distributed under the License is distributed on an "AS IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
-# limitations under the License.
-#
-
-<<<<<<< HEAD
+# limitations under 
 LOCAL_PATH := device/smartron/rimo02a
-=======
+
 $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 
-$(call inherit-product-if-exists, vendor/leeco/s2/s2-vendor.mk)
+$(call inherit-product-if-exists, vendor/smartron/rimo02a/rimo02a-vendor.mk)
 
 # Overlay
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
@@ -68,8 +65,6 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.hardware.opengles.aep.xml:system/etc/permissions/android.hardware.opengles.aep.xml \
     frameworks/native/data/etc/android.hardware.vulkan.level-0.xml:system/etc/permissions/android.hardware.vulkan.level.xml \
     frameworks/native/data/etc/android.hardware.vulkan.version-1_0_3.xml:system/etc/permissions/android.hardware.vulkan.version.xml
->>>>>>> 2ec8e61... s2: vulkanify
-
 # Audio
 PRODUCT_PACKAGES += \
     audiod \
@@ -140,10 +135,9 @@ PRODUCT_PACKAGES += \
     memtrack.msm8952 \
     liboverlay
 
-<<<<<<< HEAD
+
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.sf.lcd_density=480
-=======
 # Display / OpenGLES
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.opengles.version=196610 \
@@ -154,21 +148,20 @@ PRODUCT_PACKAGES += \
     ebtables \
     ethertypes \
     libebtc
->>>>>>> 2ec8e61... s2: vulkanify
+
 
 # Fingerprint
 PRODUCT_PACKAGES += \
     fingerprintd
 
-<<<<<<< HEAD
+
 # Healthd
 BOARD_HAL_STATIC_LIBRARIES := \
      libhealthd.msm8952
-=======
+
 # IR
 PRODUCT_PACKAGES += \
     consumerir.msm8952
->>>>>>> 42151a9... s2: really fix charger, remove unused camera wrapper
 
 # GPS
 PRODUCT_COPY_FILES += \
@@ -229,7 +222,7 @@ PRODUCT_PACKAGES += \
     libstagefrighthw \
     libstagefright_soft_flacdec
 
-<<<<<<< HEAD
+
 # NFC
 PRODUCT_PACKAGES += \
     libnfc \
@@ -250,12 +243,12 @@ PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.verified_boot.xml:system/etc/permissions/android.software.verified_boot.xml \
     frameworks/native/data/etc/android.software.webview.xml:system/etc/permissions/android.software.webview.xml \
     frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml
-=======
+
 # IPA Manager
 #PRODUCT_PACKAGES += \
 #    ipacm \
 #    IPACM_cfg.xml
->>>>>>> 0bfcde1... s2: N-ify
+
 
 # Power
 PRODUCT_PACKAGES += \
