@@ -1,15 +1,15 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
 BOARD_PLATFORM_LIST := msm8916
 BOARD_PLATFORM_LIST += msm8909
 ifneq ($(call is-board-platform-in-list,$(BOARD_PLATFORM_LIST)),true)
 ifneq (,$(filter $(QCOM_BOARD_PLATFORMS),$(TARGET_BOARD_PLATFORM)))
 ifneq (, $(filter aarch64 arm arm64, $(TARGET_ARCH)))
 
-=======
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
-=======
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+
+
+
+
 LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
@@ -49,10 +49,10 @@ endif
 ifeq ($(TARGET_BOARD_PLATFORM),msmcobalt)
 =======
 ifeq ($(TARGET_BOARD_PLATFORM),msm8998)
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
-=======
+
+
 ifeq ($(TARGET_BOARD_PLATFORM),msm8998)
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+
 LOCAL_CFLAGS += -DFEATURE_IPA_V3
 endif
 
@@ -89,15 +89,15 @@ LOCAL_SHARED_LIBRARIES := libipanat
 LOCAL_SHARED_LIBRARIES += libxml2
 LOCAL_SHARED_LIBRARIES += libnfnetlink
 LOCAL_SHARED_LIBRARIES += libnetfilter_conntrack
-<<<<<<< HEAD
-<<<<<<< HEAD
+
+
 LOCAL_CLANG := true
 
 LOCAL_SHARED_LIBRARIES += libdhcpcd
 
-=======
+
 LOCAL_SHARED_LIBRARIES += libdhcpcd
->>>>>>> 410177e... s2: add data-ipa-cfg-mgr
+
 include $(BUILD_EXECUTABLE)
 
 ################################################################################
