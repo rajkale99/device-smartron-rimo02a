@@ -59,11 +59,6 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2684354560
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 26838785024
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-# Init
-TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
-TARGET_INIT_VENDOR_LIB := libinit_rimo02a
-TARGET_RECOVERY_DEVICE_MODULES := libinit_rimo02a
-
 # Qualcomm support
 BOARD_USES_QCOM_HARDWARE := true
 BOARD_USES_QC_TIME_SERVICES := true
@@ -131,8 +126,6 @@ BLINK_PATH := "/sys/class/leds/red/blink"
 BACKLIGHT_PATH := "/sys/class/leds/lcd-backlight/brightness"
 BLINK_PATH := "/sys/class/leds/red/blink"
 
-BOARD_HAL_STATIC_LIBRARIES := \
-    libhealthd.msm8952
 
 # CNE
 BOARD_USES_QCNE := true
